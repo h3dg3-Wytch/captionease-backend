@@ -3,7 +3,7 @@
     "dynamo": {
       "stack": "Dynamo",
       "entry": "./src/core/dynamo"
-    },
+    }
   },
   "services": [
     {

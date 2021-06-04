@@ -52,7 +52,7 @@ module.exports = {
   },
   output: {
     libraryTarget: 'commonjs2',
-    path: path.join(__dirname, 'terraform/build'),
+    path: path.join(__dirname, '.webpack'),
     filename: '[name].js',
     sourceMapFilename: '[file].map'
   }

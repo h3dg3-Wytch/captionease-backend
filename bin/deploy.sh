@@ -32,7 +32,6 @@ SERVICE_STACKS="$(jq '.services[].stack' infrastructure/config.json | jq -s )"
 echo "Packaging up services"
 
 yarn run zip
-yarn run zip:server
 
 echo "Applying infrastructure"
 
@@ -69,17 +68,4 @@ echo "Cleaning assets folder"
 
 find . -name 'asset.*.zip' -print0 | xargs -0 rm
 
-echo "Running post migrations..."
-
-# Check current version
-
-# Check master version on github
-
-# If master version is ahead of current version then apply migration 
-# with ENVIRONMENT warning and user confirmation
-# otherwise dont run migrations
-
 echo "✅ Infrastructure deployment complete"
-
-# yarn run deploy:notify
-
