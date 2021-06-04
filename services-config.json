@@ -1,0 +1,30 @@
+{
+  "services": [
+    {
+      "name": "transcribe",
+      "handlers": [
+        {
+          "name": "extract-audio",
+          "entry": "./src/services/transcribe/extract-audio"
+        },
+        {
+          "name": "send-transcribe-job",
+          "entry": "./src/services/transcribe/send-transcribe-job"
+        },
+        {
+          "name": "assembly-webhook",
+          "entry": "./src/services/transcribe/assembly-webhook"
+        }
+      ]
+    },
+    {
+      "name": "encode",
+      "handlers": [
+        {
+          "name": "encode-captions",
+          "entry": "./src/services/encode/encode-captions-for-export"
+        }
+      ]
+    }
+  ]
+}

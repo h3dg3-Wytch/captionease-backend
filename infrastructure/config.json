@@ -1,0 +1,36 @@
+{
+  "core": {
+    "dynamo": {
+      "stack": "Dynamo",
+      "entry": "./src/core/dynamo"
+    },
+  },
+  "services": [
+    {
+      "stack": "EncodeService",
+      "handlers": [
+        {
+          "name": "encode-captions-for-export",
+          "entry": "./src/services/encode/encode-captions-for-export"
+        }
+      ]
+    },
+    {
+      "stack": "TranscribeService",
+      "handlers": [
+        {
+          "name": "assembly-webhook",
+          "entry": "./src/services/transcribe/assembly-webhook"
+        },
+        {
+          "name": "extract-audio",
+          "entry": "./src/services/transcribe/extract-audio"
+        },
+        {
+          "name": "send-transcribe-job",
+          "entry": "./src/services/transcribe/send-transcribe-job"
+        }
+      ]
+    }
+  ]
+}

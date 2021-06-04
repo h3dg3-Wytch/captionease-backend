@@ -1,0 +1,39 @@
+# Common
+**/node_modules
+npm-debug.log
+coverage
+.coverage
+.eslintcache
+yarn-error.log
+*.log
+npm-debug.log*
+pids
+*.pid
+.idea
+.DS_Store
+.vscode
+.docker-args
+package-lock.json
+.yarn
+.webpack
+
+# Build
+dist
+build
+build-server
+
+# Terraform
+*terraform.tfstate*
+**/.terraform
+*.tf.remote
+
+# Env
+.env.local
+.env.development
+.env.production
+
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
