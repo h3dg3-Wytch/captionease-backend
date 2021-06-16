@@ -1,0 +1,182 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Construct",
+          "version": "1.107.0"
+        }
+      },
+      "development-Dynamo": {
+        "id": "development-Dynamo",
+        "path": "development-Dynamo",
+        "children": {
+          "DynamoTableVideos": {
+            "id": "DynamoTableVideos",
+            "path": "development-Dynamo/DynamoTableVideos",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "development-Dynamo/DynamoTableVideos/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      },
+                      {
+                        "attributeName": "userId",
+                        "keyType": "RANGE"
+                      }
+                    ],
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      },
+                      {
+                        "attributeName": "userId",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "tableName": "development-videos"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
+                  "version": "1.107.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "development-Dynamo/DynamoTableVideos/ScalingRole",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Resource",
+                  "version": "1.107.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-dynamodb.Table",
+              "version": "1.107.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "development-Dynamo/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "development-Dynamo/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.107.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "development-Dynamo/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnCondition",
+                  "version": "1.107.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.107.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.107.0"
+        }
+      },
+      "development-EncodeService": {
+        "id": "development-EncodeService",
+        "path": "development-EncodeService",
+        "children": {
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "development-EncodeService/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "development-EncodeService/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.107.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "development-EncodeService/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnCondition",
+                  "version": "1.107.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.107.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.107.0"
+        }
+      },
+      "development-TranscribeService": {
+        "id": "development-TranscribeService",
+        "path": "development-TranscribeService",
+        "children": {
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "development-TranscribeService/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "development-TranscribeService/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.107.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "development-TranscribeService/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnCondition",
+                  "version": "1.107.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.107.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.107.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "@aws-cdk/core.App",
+      "version": "1.107.0"
+    }
+  }
+}

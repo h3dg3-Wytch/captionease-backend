@@ -10,3 +10,4 @@ class EncodeService extends cdk.Stack {
   }
 }
 
+module.exports = { EncodeService }

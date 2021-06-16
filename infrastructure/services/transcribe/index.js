@@ -9,3 +9,5 @@ class TranscribeService extends cdk.Stack {
     super(app, id);
   }
 }
+
+module.exports = { TranscribeService }

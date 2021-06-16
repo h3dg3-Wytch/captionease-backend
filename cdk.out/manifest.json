@@ -1,0 +1,213 @@
+{
+  "version": "11.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "development-Dynamo": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "development-Dynamo.template.json",
+        "validateOnSynth": false
+      },
+      "metadata": {
+        "/development-Dynamo/DynamoTableVideos": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "DynamoTableVideos2148946B"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
+              "new Table (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-dynamodb/lib/table.js:482:23)",
+              "new Dynamo (/Users/rexpeterson/work/captionease-backend/infrastructure/central/dynamodb.js:8:25)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:27:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/development-Dynamo/DynamoTableVideos/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoTableVideos2148946B",
+            "trace": [
+              "new Table (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-dynamodb/lib/table.js:456:22)",
+              "new Dynamo (/Users/rexpeterson/work/captionease-backend/infrastructure/central/dynamodb.js:8:25)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:27:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/development-Dynamo/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
+              "/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:9",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:185:9)",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:182:9)",
+              "injectMetadataResources (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:117:5)",
+              "Object.synthesize (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:48:5)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/development-Dynamo/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:30:35)",
+              "/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:9",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:185:9)",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:182:9)",
+              "injectMetadataResources (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:117:5)",
+              "Object.synthesize (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:48:5)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ]
+      },
+      "displayName": "development-Dynamo"
+    },
+    "development-EncodeService": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "development-EncodeService.template.json",
+        "validateOnSynth": false
+      },
+      "metadata": {
+        "/development-EncodeService/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
+              "/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:9",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:185:9)",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:182:9)",
+              "injectMetadataResources (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:117:5)",
+              "Object.synthesize (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:48:5)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/development-EncodeService/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:30:35)",
+              "/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:9",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:185:9)",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:182:9)",
+              "injectMetadataResources (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:117:5)",
+              "Object.synthesize (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:48:5)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ]
+      },
+      "displayName": "development-EncodeService"
+    },
+    "development-TranscribeService": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "development-TranscribeService.template.json",
+        "validateOnSynth": false
+      },
+      "metadata": {
+        "/development-TranscribeService/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
+              "/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:9",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:185:9)",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:182:9)",
+              "injectMetadataResources (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:117:5)",
+              "Object.synthesize (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:48:5)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/development-TranscribeService/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:30:35)",
+              "/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:9",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:185:9)",
+              "visit (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:182:9)",
+              "injectMetadataResources (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:117:5)",
+              "Object.synthesize (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:48:5)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ]
+      },
+      "displayName": "development-TranscribeService"
+    }
+  }
+}
