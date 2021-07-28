@@ -6,7 +6,7 @@ dotenv.config();
 
 const cdk = require("@aws-cdk/core");
 
-const { Dynamo } = require("./core/dynamo");
+const { Dynamo } = require("./central/dynamodb");
 
 const { EncodeService } = require("./services/encode");
 const { TranscribeService } = require("./services/transcribe");
@@ -19,7 +19,7 @@ const isDevelopment = stage !== "production";
 
 const env = {
   account: process.env.AWS_ACCOUNT_ID,
-  region: "eu-west-1",
+  region: "us-east-1",
   isDevelopment,
 };
 

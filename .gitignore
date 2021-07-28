@@ -28,6 +28,7 @@ build-server
 *.tf.remote
 
 # Env
+.env
 .env.local
 .env.development
 .env.production

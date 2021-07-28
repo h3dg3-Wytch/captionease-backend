@@ -56,5 +56,4 @@ do
   fi
 done
 
-yarn run deploy:notify
 
