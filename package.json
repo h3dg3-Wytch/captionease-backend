@@ -19,10 +19,10 @@
     "test": "jest --maxWorkers=50%",
     "test:ci": "jest --runInBand",
     "deploy:notify": "babel-node ./bin/deploy-notify.js cameron",
-    "deploy:development": "AWS_PROFILE=captionease-admin STAGE=development AWS_ACCOUNT_ID=AKIARBWIJ3UYSPXIFNOG ./bin/deploy.sh",
-    "deploy:central:development": "AWS_PROFILE=captionease-admin STAGE=development AWS_ACCOUNT_ID=AKIARBWIJ3UYSPXIFNOG ./bin/deploy-core.sh",
-    "deploy:production": "AWS_PROFILE=captionease-admin STAGE=production AWS_ACCOUNT_ID=AKIARBWIJ3UYSPXIFNOG ./bin/deploy.sh",
-    "deploy:central:production": "AWS_PROFILE=captionease-admin STAGE=production AWS_ACCOUNT_ID=AKIARBWIJ3UYSPXIFNOG ./bin/deploy-core.sh"
+    "deploy:development": "AWS_PROFILE=captionease-development-admin STAGE=development ./bin/deploy.sh",
+    "deploy:central:development": "AWS_PROFILE=captionease-admin STAGE=development ./bin/deploy-core.sh",
+    "deploy:production": "AWS_PROFILE=captionease-admin STAGE=production ./bin/deploy.sh",
+    "deploy:central:production": "AWS_PROFILE=captionease-admin STAGE=production ./bin/deploy-core.sh"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.13.15",
@@ -34,7 +34,10 @@
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-inline-import": "^3.0.0",
     "convict": "^6.1.0",
-    "dotenv": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "cross-var": "^1.1.0",
+    "dotenv": "^10.0.0",
+    "dotenv-cli": "^4.0.0",
     "joi": "^17.4.0",
     "slack-webhook": "^1.0.0",
     "source-map-loader": "^0.2.4",

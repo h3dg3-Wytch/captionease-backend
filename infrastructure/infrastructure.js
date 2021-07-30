@@ -11,6 +11,8 @@ const { Dynamo } = require("./central/dynamodb");
 const { EncodeService } = require("./services/encode");
 const { TranscribeService } = require("./services/transcribe");
 
+console.log(process.env.AWS_ACCESS_KEY_ID)
+
 const app = new cdk.App();
 
 const stage = process.env.STAGE;
@@ -18,7 +20,7 @@ const stage = process.env.STAGE;
 const isDevelopment = stage !== "production";
 
 const env = {
-  account: process.env.AWS_ACCOUNT_ID,
+  account: process.env.AWS_ACCESS_KEY_ID,
   region: "us-east-1",
   isDevelopment,
 };
