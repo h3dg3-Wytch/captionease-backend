@@ -24,6 +24,13 @@ class EncodeService extends cdk.Stack {
   // extract audo sqs queue
   // const audioQueue = new sqs.Queue(this, 'AudioInputQueue');
 
+  const ffmpegLayer = lambda.LayerVersion(this, 'ffmpeg-layer', {
+    compatibleRuntimes: [
+      lambda.Runtime.DOTNET_CORE_1,
+    ],
+    code: lambda.Code.fromAsset(''),
+    description: 'layer for ffmpeg use',
+  });
   // // extract lambda
   const extractAudioLambda = createLambdaFunction({ 
     app: this,
