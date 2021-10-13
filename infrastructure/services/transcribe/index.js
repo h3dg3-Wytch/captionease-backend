@@ -26,6 +26,7 @@ class TranscribeService extends cdk.Stack {
       functionName: 'encodeCaptionsLambda',
       codeAssetPath: path.resolve(__dirname, '../../../build/encode-captions-for-export.zip'),
       handler: "encode-captions-for-export.handler",
+      environment: { STAGE: stage }
     }); 
 
     // encode video bucket 

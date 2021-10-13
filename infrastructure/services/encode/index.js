@@ -4,6 +4,7 @@ const apigateway = require('@aws-cdk/aws-apigateway');
 const lambda = require('@aws-cdk/aws-lambda');
 const cdk = require('@aws-cdk/core');
 const s3 = require('@aws-cdk/aws-s3');
+const s3n = require('@aws-cdk/aws-s3-notifications');
 const sqs = require('@aws-cdk/aws-sqs');
 const { S3EventSource } = require('@aws-cdk/aws-lambda-event-sources');
 
@@ -15,6 +16,7 @@ class EncodeService extends cdk.Stack {
     super(app, id);
 
   //video input bucket
+  // manually add the acceleration 
   const videoInputBucket = new s3.Bucket(this, 'VideoInputBucket');
 
   // video input s3 event source (sqs) queue
@@ -24,6 +26,20 @@ class EncodeService extends cdk.Stack {
   // extract audo sqs queue
   // const audioQueue = new sqs.Queue(this, 'AudioInputQueue');
 
+  const ffmpegExecutionLayer = new lambda.LayerVersion(
+    this,
+    "FFMPEGformLayer",
+    {
+      code: lambda.Code.fromAsset(
+        path.join(
+          __dirname,
+          "../../layers/ffmpeg.zip"
+        )
+      ),
+      compatibleRuntimes: [lambda.Runtime.NODEJS_12_X],
+      description: "Binary file of ffmpeg",
+    }
+  );
   // // extract lambda
   const extractAudioLambda = createLambdaFunction({ 
     app: this,
@@ -31,15 +47,14 @@ class EncodeService extends cdk.Stack {
     functionName: 'extraAudioLambda',
     codeAssetPath: path.resolve(__dirname, '../../../build/extract-audio.zip'),
     handler: "extract-audio.handler",
+    environment: { STAGE: stage }
   }); 
   
   // extracted audio bucket
   const extractAudioBucket = new s3.Bucket(this, 'ExtractAudioBucket');
 
-  // extracted audio s3 event source (sqs)
-  extractAudioLambda.addEventSource( new S3EventSource(videoInputBucket, {
-    events: [s3.EventType.OBJECT_CREATED]
-  }))
+  videoInputBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(extractAudioLambda))
+  videoInputBucket.grantReadWrite(extractAudioLambda);
 
   // send transcription job lambda
   const sendTranscriptionLambda = createLambdaFunction({ 
@@ -48,11 +63,11 @@ class EncodeService extends cdk.Stack {
     functionName: 'sendTranscriptionLambda',
     codeAssetPath: path.resolve(__dirname, '../../../build/send-transcribe-job.zip'),
     handler: "send-transcribe-job.handler",
+    environment: { STAGE: stage }
   }); 
   
-  sendTranscriptionLambda.addEventSource( new S3EventSource(extractAudioBucket, {
-    events: [s3.EventType.OBJECT_CREATED]
-  }));
+  extractAudioBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(sendTranscriptionLambda))
+  extractAudioBucket.grantReadWrite(extractAudioLambda);
 
   // assembly webhook api gateway
 
@@ -74,6 +89,7 @@ class EncodeService extends cdk.Stack {
     functionName: 'assemblyWebhookLambda',
     codeAssetPath: path.resolve(__dirname, '../../../build/assembly-webhook.zip'),
     handler: "assembly-webhook.handler",
+      environment: { STAGE: stage }
   }); 
 
   const assemblyWebhookApiLambdaIntegration = new apigateway.LambdaIntegration(
@@ -84,10 +100,8 @@ class EncodeService extends cdk.Stack {
 
   // assembly event bridge
   const videoTranscriptionBucket = new s3.Bucket(this, 'VideoTranscriptionBucket')
+  videoTranscriptionBucket.grantReadWrite(assemblyWebhookLambda);
 
-  assemblyWebhookLambda.addEventSource( new S3EventSource(videoTranscriptionBucket, {
-    events: [s3.EventType.OBJECT_CREATED]
-  }));
 
   }
 

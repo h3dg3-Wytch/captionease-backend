@@ -68,6 +68,58 @@
         "aws:cdk:path": "development-EncodeService/VideoInputBucket/AllowBucketNotificationsTodevelopmentEncodeServiceExtractAudioLambdaA619F51B"
       }
     },
+    "FFMPEGformLayer787129EE": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "Content": {
+          "S3Bucket": {
+            "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3BucketD54C6570"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "CompatibleRuntimes": [
+          "nodejs12.x"
+        ],
+        "Description": "Binary file of ffmpeg"
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-EncodeService/FFMPEGformLayer/Resource",
+        "aws:asset:path": "asset.c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c.zip",
+        "aws:asset:property": "Content"
+      }
+    },
     "ExtractAudioLambdaServiceRole0AE87B8E": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -102,12 +154,97 @@
         "aws:cdk:path": "development-EncodeService/ExtractAudioLambda/ServiceRole/Resource"
       }
     },
+    "ExtractAudioLambdaServiceRoleDefaultPolicyE1C9E0C3": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "VideoInputBucket940F4F43",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "VideoInputBucket940F4F43",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ExtractAudioBucket197901EB",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ExtractAudioBucket197901EB",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "ExtractAudioLambdaServiceRoleDefaultPolicyE1C9E0C3",
+        "Roles": [
+          {
+            "Ref": "ExtractAudioLambdaServiceRole0AE87B8E"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-EncodeService/ExtractAudioLambda/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
     "ExtractAudioLambda12696EC4": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters941bf7e1195b6c9a39ac61275578bad5d3f52eae9c8a1f939b143e82bd850e9fS3BucketE5D99661"
+            "Ref": "AssetParameters02492197f4060c2111fc2d2b3a6fe383f596b57db0470997547636a9f781a37aS3Bucket6469C901"
           },
           "S3Key": {
             "Fn::Join": [
@@ -120,7 +257,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters941bf7e1195b6c9a39ac61275578bad5d3f52eae9c8a1f939b143e82bd850e9fS3VersionKeyFE527492"
+                          "Ref": "AssetParameters02492197f4060c2111fc2d2b3a6fe383f596b57db0470997547636a9f781a37aS3VersionKey1DC1FF1A"
                         }
                       ]
                     }
@@ -133,7 +270,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters941bf7e1195b6c9a39ac61275578bad5d3f52eae9c8a1f939b143e82bd850e9fS3VersionKeyFE527492"
+                          "Ref": "AssetParameters02492197f4060c2111fc2d2b3a6fe383f596b57db0470997547636a9f781a37aS3VersionKey1DC1FF1A"
                         }
                       ]
                     }
@@ -149,6 +286,11 @@
             "Arn"
           ]
         },
+        "Environment": {
+          "Variables": {
+            "STAGE": "development"
+          }
+        },
         "FunctionName": "extraAudioLambda",
         "Handler": "extract-audio.handler",
         "MemorySize": 521,
@@ -156,11 +298,12 @@
         "Timeout": 60
       },
       "DependsOn": [
+        "ExtractAudioLambdaServiceRoleDefaultPolicyE1C9E0C3",
         "ExtractAudioLambdaServiceRole0AE87B8E"
       ],
       "Metadata": {
         "aws:cdk:path": "development-EncodeService/ExtractAudioLambda/Resource",
-        "aws:asset:path": "asset.941bf7e1195b6c9a39ac61275578bad5d3f52eae9c8a1f939b143e82bd850e9f.zip",
+        "aws:asset:path": "asset.02492197f4060c2111fc2d2b3a6fe383f596b57db0470997547636a9f781a37a.zip",
         "aws:asset:property": "Code"
       }
     },
@@ -354,7 +497,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters337e8e58b61a12dcce4df97c067e7dcf962b6661ce75a9bbffbfa8e14b5eff3aS3Bucket02117B5D"
+            "Ref": "AssetParameters9c759408e1bbd07cadfb486665e0d587d5c04c7d7c58977871f1dcf5ceb54c3cS3Bucket0C7B666B"
           },
           "S3Key": {
             "Fn::Join": [
@@ -367,7 +510,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters337e8e58b61a12dcce4df97c067e7dcf962b6661ce75a9bbffbfa8e14b5eff3aS3VersionKey524AB003"
+                          "Ref": "AssetParameters9c759408e1bbd07cadfb486665e0d587d5c04c7d7c58977871f1dcf5ceb54c3cS3VersionKey3F21A3EB"
                         }
                       ]
                     }
@@ -380,7 +523,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters337e8e58b61a12dcce4df97c067e7dcf962b6661ce75a9bbffbfa8e14b5eff3aS3VersionKey524AB003"
+                          "Ref": "AssetParameters9c759408e1bbd07cadfb486665e0d587d5c04c7d7c58977871f1dcf5ceb54c3cS3VersionKey3F21A3EB"
                         }
                       ]
                     }
@@ -396,6 +539,11 @@
             "Arn"
           ]
         },
+        "Environment": {
+          "Variables": {
+            "STAGE": "development"
+          }
+        },
         "FunctionName": "sendTranscriptionLambda",
         "Handler": "send-transcribe-job.handler",
         "MemorySize": 521,
@@ -407,7 +555,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "development-EncodeService/sendTranscriptionLambda/Resource",
-        "aws:asset:path": "asset.337e8e58b61a12dcce4df97c067e7dcf962b6661ce75a9bbffbfa8e14b5eff3a.zip",
+        "aws:asset:path": "asset.9c759408e1bbd07cadfb486665e0d587d5c04c7d7c58977871f1dcf5ceb54c3c.zip",
         "aws:asset:property": "Code"
       }
     },
@@ -810,12 +958,64 @@
         "aws:cdk:path": "development-EncodeService/assemblyWebhookLambda/ServiceRole/Resource"
       }
     },
+    "assemblyWebhookLambdaServiceRoleDefaultPolicyA3CB1869": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "VideoTranscriptionBucket53EBD46C",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "VideoTranscriptionBucket53EBD46C",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "assemblyWebhookLambdaServiceRoleDefaultPolicyA3CB1869",
+        "Roles": [
+          {
+            "Ref": "assemblyWebhookLambdaServiceRoleA8F8BA14"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-EncodeService/assemblyWebhookLambda/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
     "assemblyWebhookLambda2AE37EC2": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParametersd6cdb60cb7fcbadbf62d5977fd4cac71f25311c2054295189b1f143c8e7c28c0S3Bucket667917AA"
+            "Ref": "AssetParametersa6189e71e6c18ecc6e19f6b950142cdd2e056cf5c9355c42393adb5be4db9da3S3BucketAD7A2B93"
           },
           "S3Key": {
             "Fn::Join": [
@@ -828,7 +1028,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersd6cdb60cb7fcbadbf62d5977fd4cac71f25311c2054295189b1f143c8e7c28c0S3VersionKey4AB7D087"
+                          "Ref": "AssetParametersa6189e71e6c18ecc6e19f6b950142cdd2e056cf5c9355c42393adb5be4db9da3S3VersionKey0279340B"
                         }
                       ]
                     }
@@ -841,7 +1041,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersd6cdb60cb7fcbadbf62d5977fd4cac71f25311c2054295189b1f143c8e7c28c0S3VersionKey4AB7D087"
+                          "Ref": "AssetParametersa6189e71e6c18ecc6e19f6b950142cdd2e056cf5c9355c42393adb5be4db9da3S3VersionKey0279340B"
                         }
                       ]
                     }
@@ -857,6 +1057,11 @@
             "Arn"
           ]
         },
+        "Environment": {
+          "Variables": {
+            "STAGE": "development"
+          }
+        },
         "FunctionName": "assemblyWebhookLambda",
         "Handler": "assembly-webhook.handler",
         "MemorySize": 521,
@@ -864,11 +1069,12 @@
         "Timeout": 60
       },
       "DependsOn": [
+        "assemblyWebhookLambdaServiceRoleDefaultPolicyA3CB1869",
         "assemblyWebhookLambdaServiceRoleA8F8BA14"
       ],
       "Metadata": {
         "aws:cdk:path": "development-EncodeService/assemblyWebhookLambda/Resource",
-        "aws:asset:path": "asset.d6cdb60cb7fcbadbf62d5977fd4cac71f25311c2054295189b1f143c8e7c28c0.zip",
+        "aws:asset:path": "asset.a6189e71e6c18ecc6e19f6b950142cdd2e056cf5c9355c42393adb5be4db9da3.zip",
         "aws:asset:property": "Code"
       }
     },
@@ -880,70 +1086,10 @@
         "aws:cdk:path": "development-EncodeService/VideoTranscriptionBucket/Resource"
       }
     },
-    "VideoTranscriptionBucketNotificationsC7876A15": {
-      "Type": "Custom::S3BucketNotifications",
-      "Properties": {
-        "ServiceToken": {
-          "Fn::GetAtt": [
-            "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
-            "Arn"
-          ]
-        },
-        "BucketName": {
-          "Ref": "VideoTranscriptionBucket53EBD46C"
-        },
-        "NotificationConfiguration": {
-          "LambdaFunctionConfigurations": [
-            {
-              "Events": [
-                "s3:ObjectCreated:*"
-              ],
-              "LambdaFunctionArn": {
-                "Fn::GetAtt": [
-                  "assemblyWebhookLambda2AE37EC2",
-                  "Arn"
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "DependsOn": [
-        "VideoTranscriptionBucketAllowBucketNotificationsTodevelopmentEncodeServiceassemblyWebhookLambda2940B332604B42B0"
-      ],
-      "Metadata": {
-        "aws:cdk:path": "development-EncodeService/VideoTranscriptionBucket/Notifications/Resource"
-      }
-    },
-    "VideoTranscriptionBucketAllowBucketNotificationsTodevelopmentEncodeServiceassemblyWebhookLambda2940B332604B42B0": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "assemblyWebhookLambda2AE37EC2",
-            "Arn"
-          ]
-        },
-        "Principal": "s3.amazonaws.com",
-        "SourceAccount": {
-          "Ref": "AWS::AccountId"
-        },
-        "SourceArn": {
-          "Fn::GetAtt": [
-            "VideoTranscriptionBucket53EBD46C",
-            "Arn"
-          ]
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "development-EncodeService/VideoTranscriptionBucket/AllowBucketNotificationsTodevelopmentEncodeServiceassemblyWebhookLambda2940B332"
-      }
-    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAAE1VQ0W7DIAz8lr4T2iib9rq01d6mVdkXeMTLaAJEGFZFiH8fkKXannw2d74zNa8PT/ywe4YbVaIf90EYizy8OxAjOxlNznrh2OlTd0jGW4GsJUKXCIPUA7tPE+MCFhQ6tLl58272RZi29NJJoyPLLoEaHo5ejFheVxTZBOqjBx7yHrRKEiUFe/FaZGlmbjgyCYqHzkzFtdSLmaRYSoiCIqOmghyUeMnLYJYDOLzBkqRIrp3l71UbbIUwXjt2xnkyi0Jd8v3p8s3FcgXb6Ucg/PcPd/yK7sv0ebSiGCPTpkd+pf13/cDrR97sriRlZZOxVMi7tf4AMSrfdpcBAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAAE1WQwU7DMAyGn2X3NFtVEFe6IU4gpiJxD6npsjZJFTtMVZV3J0nXiZ38/bZj/3HJy90T322exQUL2fbbWVoHfP4kIXt2sAbJeUns8GMaQOudBFYjAsWGTpmO3bKx4yic0EDgkvjwNPr8ME5pFSlrAktbZqz4vPeyh1xdKLBB6O9W8DnNAacVYnzB3sQE7gtcFrF0p1+9kXQtrBwYVoVIDpFno0wJzefGDtlijkc7KDllx5mir1F1guAiptgKSPWorl9esZbSekPsBcbBThpMNv9PpYPkFQusd9kLhLsj3fgd6GTblFoohMCMbYGfcftbPvDykVebMypVuLhYaeDNEv8A8Gx8obQBAAA="
       },
       "Metadata": {
         "aws:cdk:path": "development-EncodeService/CDKMetadata/Default"
@@ -952,41 +1098,53 @@
     }
   },
   "Parameters": {
-    "AssetParameters941bf7e1195b6c9a39ac61275578bad5d3f52eae9c8a1f939b143e82bd850e9fS3BucketE5D99661": {
+    "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3BucketD54C6570": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"941bf7e1195b6c9a39ac61275578bad5d3f52eae9c8a1f939b143e82bd850e9f\""
+      "Description": "S3 bucket for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParameters941bf7e1195b6c9a39ac61275578bad5d3f52eae9c8a1f939b143e82bd850e9fS3VersionKeyFE527492": {
+    "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B": {
       "Type": "String",
-      "Description": "S3 key for asset version \"941bf7e1195b6c9a39ac61275578bad5d3f52eae9c8a1f939b143e82bd850e9f\""
+      "Description": "S3 key for asset version \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParameters941bf7e1195b6c9a39ac61275578bad5d3f52eae9c8a1f939b143e82bd850e9fArtifactHashE361E4C0": {
+    "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cArtifactHash1ED8151E": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"941bf7e1195b6c9a39ac61275578bad5d3f52eae9c8a1f939b143e82bd850e9f\""
+      "Description": "Artifact hash for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParameters337e8e58b61a12dcce4df97c067e7dcf962b6661ce75a9bbffbfa8e14b5eff3aS3Bucket02117B5D": {
+    "AssetParameters02492197f4060c2111fc2d2b3a6fe383f596b57db0470997547636a9f781a37aS3Bucket6469C901": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"337e8e58b61a12dcce4df97c067e7dcf962b6661ce75a9bbffbfa8e14b5eff3a\""
+      "Description": "S3 bucket for asset \"02492197f4060c2111fc2d2b3a6fe383f596b57db0470997547636a9f781a37a\""
     },
-    "AssetParameters337e8e58b61a12dcce4df97c067e7dcf962b6661ce75a9bbffbfa8e14b5eff3aS3VersionKey524AB003": {
+    "AssetParameters02492197f4060c2111fc2d2b3a6fe383f596b57db0470997547636a9f781a37aS3VersionKey1DC1FF1A": {
       "Type": "String",
-      "Description": "S3 key for asset version \"337e8e58b61a12dcce4df97c067e7dcf962b6661ce75a9bbffbfa8e14b5eff3a\""
+      "Description": "S3 key for asset version \"02492197f4060c2111fc2d2b3a6fe383f596b57db0470997547636a9f781a37a\""
     },
-    "AssetParameters337e8e58b61a12dcce4df97c067e7dcf962b6661ce75a9bbffbfa8e14b5eff3aArtifactHash83711935": {
+    "AssetParameters02492197f4060c2111fc2d2b3a6fe383f596b57db0470997547636a9f781a37aArtifactHashE258F64E": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"337e8e58b61a12dcce4df97c067e7dcf962b6661ce75a9bbffbfa8e14b5eff3a\""
+      "Description": "Artifact hash for asset \"02492197f4060c2111fc2d2b3a6fe383f596b57db0470997547636a9f781a37a\""
     },
-    "AssetParametersd6cdb60cb7fcbadbf62d5977fd4cac71f25311c2054295189b1f143c8e7c28c0S3Bucket667917AA": {
+    "AssetParameters9c759408e1bbd07cadfb486665e0d587d5c04c7d7c58977871f1dcf5ceb54c3cS3Bucket0C7B666B": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"d6cdb60cb7fcbadbf62d5977fd4cac71f25311c2054295189b1f143c8e7c28c0\""
+      "Description": "S3 bucket for asset \"9c759408e1bbd07cadfb486665e0d587d5c04c7d7c58977871f1dcf5ceb54c3c\""
     },
-    "AssetParametersd6cdb60cb7fcbadbf62d5977fd4cac71f25311c2054295189b1f143c8e7c28c0S3VersionKey4AB7D087": {
+    "AssetParameters9c759408e1bbd07cadfb486665e0d587d5c04c7d7c58977871f1dcf5ceb54c3cS3VersionKey3F21A3EB": {
       "Type": "String",
-      "Description": "S3 key for asset version \"d6cdb60cb7fcbadbf62d5977fd4cac71f25311c2054295189b1f143c8e7c28c0\""
+      "Description": "S3 key for asset version \"9c759408e1bbd07cadfb486665e0d587d5c04c7d7c58977871f1dcf5ceb54c3c\""
     },
-    "AssetParametersd6cdb60cb7fcbadbf62d5977fd4cac71f25311c2054295189b1f143c8e7c28c0ArtifactHash55058412": {
+    "AssetParameters9c759408e1bbd07cadfb486665e0d587d5c04c7d7c58977871f1dcf5ceb54c3cArtifactHashA7AAFCE1": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"d6cdb60cb7fcbadbf62d5977fd4cac71f25311c2054295189b1f143c8e7c28c0\""
+      "Description": "Artifact hash for asset \"9c759408e1bbd07cadfb486665e0d587d5c04c7d7c58977871f1dcf5ceb54c3c\""
+    },
+    "AssetParametersa6189e71e6c18ecc6e19f6b950142cdd2e056cf5c9355c42393adb5be4db9da3S3BucketAD7A2B93": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"a6189e71e6c18ecc6e19f6b950142cdd2e056cf5c9355c42393adb5be4db9da3\""
+    },
+    "AssetParametersa6189e71e6c18ecc6e19f6b950142cdd2e056cf5c9355c42393adb5be4db9da3S3VersionKey0279340B": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"a6189e71e6c18ecc6e19f6b950142cdd2e056cf5c9355c42393adb5be4db9da3\""
+    },
+    "AssetParametersa6189e71e6c18ecc6e19f6b950142cdd2e056cf5c9355c42393adb5be4db9da3ArtifactHashF630AF8E": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"a6189e71e6c18ecc6e19f6b950142cdd2e056cf5c9355c42393adb5be4db9da3\""
     }
   },
   "Outputs": {

@@ -1,0 +1,38 @@
+{
+    "Records": [
+        {
+            "eventVersion": "2.1",
+            "eventSource": "aws:s3",
+            "awsRegion": "us-east-1",
+            "eventTime": "2021-08-17T17:59:46.432Z",
+            "eventName": "ObjectCreated:Put",
+            "userIdentity": {
+                "principalId": "A3AF4P8C81EXLR"
+            },
+            "requestParameters": {
+                "sourceIPAddress": "67.83.48.100"
+            },
+            "responseElements": {
+                "x-amz-request-id": "AZXB1WQFZPRMAKPQ",
+                "x-amz-id-2": "Qr6JPOIi82WTtISYJ8zh3TCYWGTm+VcdS4qT/fgHaReoOsDVixeIgCHzCro+dK0ieQ3IuOzQe1q2We7WcX1WllmHUyDMHuSs"
+            },
+            "s3": {
+                "s3SchemaVersion": "1.0",
+                "configurationId": "ZWJhMmE1MGYtODc0My00YjMyLTg3YTAtNjU2YjBlN2M3YTJh",
+                "bucket": {
+                    "name": "development-encodeservic-videoinputbucket940f4f43-iy9if872u4ib",
+                    "ownerIdentity": {
+                        "principalId": "A3AF4P8C81EXLR"
+                    },
+                    "arn": "arn:aws:s3:::development-encodeservic-videoinputbucket940f4f43-iy9if872u4ib"
+                },
+                "object": {
+                    "key": "file_example_MP4_480_1_5MG.mp4",
+                    "size": 1570024,
+                    "eTag": "d9061d3da8601932e98f79ec8ba1c877",
+                    "sequencer": "00611BF917C308B058"
+                }
+            }
+        }
+    ]
+}
