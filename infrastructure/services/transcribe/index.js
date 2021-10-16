@@ -4,6 +4,7 @@ const apigateway = require('@aws-cdk/aws-apigateway');
 const lambda = require('@aws-cdk/aws-lambda');
 const cdk = require('@aws-cdk/core');
 const s3 = require('@aws-cdk/aws-s3');
+const s3n = require('@aws-cdk/aws-s3-notifications');
 const sqs = require('@aws-cdk/aws-sqs');
 const { S3EventSource } = require('@aws-cdk/aws-lambda-event-sources');
 
@@ -52,12 +53,16 @@ class TranscribeService extends cdk.Stack {
     },
     layers: [ffmpegLayer]
   }); 
+
+  videoInputBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(extractAudioLambda))
+  videoInputBucket.grantReadWrite(extractAudioLambda);
+
   
 
   // extracted audio s3 event source (sqs)
-  extractAudioLambda.addEventSource( new S3EventSource(videoInputBucket, {
-    events: [s3.EventType.OBJECT_CREATED]
-  }))
+  // extractAudioLambda.addEventSource( new S3EventSource(videoInputBucket, {
+  //   events: [s3.EventType.OBJECT_CREATED]
+  // }))
 
   // send transcription job lambda
   const sendTranscriptionLambda = createLambdaFunction({ 
@@ -68,9 +73,11 @@ class TranscribeService extends cdk.Stack {
     handler: "send-transcribe-job.handler",
   }); 
   
-  sendTranscriptionLambda.addEventSource( new S3EventSource(extractAudioBucket, {
-    events: [s3.EventType.OBJECT_CREATED]
-  }));
+  extractAudioBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(sendTranscriptionLambda))
+  extractAudioBucket.grantReadWrite(extractAudioLambda);
+  // sendTranscriptionLambda.addEventSource( new S3EventSource(extractAudioBucket, {
+  //   events: [s3.EventType.OBJECT_CREATED]
+  // }));
 
   // assembly webhook api gateway
 
