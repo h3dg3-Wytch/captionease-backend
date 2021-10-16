@@ -32,6 +32,7 @@ async function extractAudio(event, { logger }) {
 	const clients = createClients(config);
 
 	try {
+		logger.info('inside the extract audio lambda')
 		logger.info(JSON.stringify(event));
 
 		const eventRecord = event.Records && event.Records[0];

@@ -15,6 +15,18 @@ class TranscribeService extends cdk.Stack {
     super(app, id);
 //video input bucket
   const videoInputBucket = new s3.Bucket(this, 'VideoInputBucket');
+  // extracted audio bucket
+  const extractAudioBucket = new s3.Bucket(this, 'ExtractAudioBucket');
+
+  const ffmpegLayer = new lambda.LayerVersion(this, 'ffmpeg-layer', {
+    compatibleRuntimes: [
+      lambda.Runtime.NODEJS_10_X,
+      lambda.Runtime.NODEJS_12_X,
+      lambda.Runtime.NODEJS_14_X,
+    ],
+    code: lambda.Code.fromAsset(path.resolve(__dirname, '../../layers/ffmpeg.zip')),
+    description: 'ffmpeg use for lambda',
+  });
 
   // video input s3 event source (sqs) queue
   // const videoInputQueue = new cdk.Queue(this, id, );
@@ -27,13 +39,20 @@ class TranscribeService extends cdk.Stack {
   const extractAudioLambda = createLambdaFunction({ 
     app: this,
     id: 'ExtractAudioLambda',
-    functionName: 'extraAudioLambda',
+    functionName: 'extractAudioLambda',
     codeAssetPath: path.resolve(__dirname, '../../../build/extract-audio.zip'),
     handler: "extract-audio.handler",
+    environment: {
+      STAGE: process.env.STAGE,
+      NODE_ENV: process.env.NODE_ENV,
+      SUPABASE_API_URL: process.env.SUPABASE_API_URL,
+      SUPABASE_API_KEY: process.env.SUPABASE_API_KEY,
+      VIDEO_INPUT_BUCKET: videoInputBucket.bucketArn,
+      EXTRACTED_VIDEO_AUDIO_BUCKET: extractAudioBucket.bucketArn
+    },
+    layers: [ffmpegLayer]
   }); 
   
-  // extracted audio bucket
-  const extractAudioBucket = new s3.Bucket(this, 'ExtractAudioBucket');
 
   // extracted audio s3 event source (sqs)
   extractAudioLambda.addEventSource( new S3EventSource(videoInputBucket, {
