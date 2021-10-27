@@ -45,8 +45,8 @@ async function extractAudio(event, { logger }) {
 		const blob = await clients.s3.get({ bucket: inputBucket, key});
 		const body = blob?.Body;
 
-		const videoKeyName = `tmp/${key}`;
-		const audioKeyName = `tmp/test.mp3`;
+		const videoKeyName = `/tmp/${key}`;
+		const audioKeyName = `/tmp/test.mp3`;
 
 		// @ts-ignore
 		// defensive check later
@@ -68,6 +68,11 @@ async function extractAudio(event, { logger }) {
 
 		//replace with mp4 with mp3
 		logger.info(`Extracting audio from video :: Video key ${inputBucket}/${key}`);
+
+		fs.readdirSync('/opt/').forEach(file => {
+			logger.info(`opt: ${file}`);
+		});
+		
 		
 		const stout = childProcess.execFileSync("/opt/ffmpeg", args, {});
 
@@ -91,7 +96,18 @@ async function extractAudio(event, { logger }) {
 
 	
 	} catch (error) {
-		logger.error(error.message);
+		logger.error(error);
+		fs.readdir('/tmp/', (err, files) => {
+			if (err) throw err;
+			
+			for (const file of files) {
+			  fs.unlink(path.join('/tmp/', file), err => {
+				if (err) throw err;
+				logger.info(`Deleting ${file}`);
+			  });
+			}
+		});	
+
 
     throw error;
 	}
