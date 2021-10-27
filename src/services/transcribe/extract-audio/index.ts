@@ -13,11 +13,6 @@ import { createS3Client } from "../../../utils/aws/s3";
 import customConfig from './config';
 import { generateUUID } from "../../../utils/uuid";
 
-import childProcess from "child_process";
-
-
-import childProcess from "child_process";
-
 const createClients = (config: any) => ({
   s3: createS3Client(),
 });
@@ -59,7 +54,6 @@ async function extractAudio(event, { logger }) {
 		const inputBucket = eventRecord.s3.bucket.name;
 		const key = eventRecord.s3.object.key;
 
-<<<<<<< HEAD
 		logger.info(`Getting bucket, key: ${key} inputBucket: ${inputBucket} `);
 
 		const blob = await clients.s3.get({ bucket: inputBucket, key});
@@ -95,7 +89,6 @@ async function extractAudio(event, { logger }) {
 		
 		
 		const stout = childProcess.execFileSync("/opt/ffmpeg", args, {});
-=======
 // 		ID (generate an ID using uuid package)
 // state (starts with pending)
 // videoBucketKey (location of uploaded video on s3)
@@ -195,11 +188,10 @@ async function extractAudio(event, { logger }) {
 		//     }
 		// 	))
 		// 	.then(() => s3Util.uploadFileToS3(OUTPUT_BUCKET, resultKey, outputFile, MIME_TYPE));
->>>>>>> c010e2ac54a9e794432a85219b97222b28d2762a
 
 		// development-encodeservic-videoinputbucket940f4f43-iy9if872u4ib
 
-		const audioBucket = 'development-encodeservic-extractaudiobucket197901-1wjvufyahi68c';
+		const audioBucket = 'development-encodeservice-extractaudiobucket197901-1wjvufyahi68c';
 
 		const audioName = fs.readFileSync(audioKeyName);
 		logger.info(`audoName:${audioName} Reading audio file...`);
@@ -218,7 +210,6 @@ async function extractAudio(event, { logger }) {
 	
 	} catch (error) {
 		logger.error(error);
-<<<<<<< HEAD
 		fs.readdir('/tmp/', (err, files) => {
 			if (err) throw err;
 			
@@ -230,7 +221,6 @@ async function extractAudio(event, { logger }) {
 			}
 		});	
 
-=======
 		logger.info('cleaning out tmp')
 		await fs.readdir('/tmp/',async (err, files) => {
 			if (err) throw err;
@@ -243,7 +233,6 @@ async function extractAudio(event, { logger }) {
 			  });
 			}
 		  });
->>>>>>> c010e2ac54a9e794432a85219b97222b28d2762a
 
     throw error;
 	}
