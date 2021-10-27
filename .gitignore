@@ -21,7 +21,11 @@ package-lock.json
 dist
 build
 build-server
+<<<<<<< HEAD
 cdk-out
+=======
+cdk.out/
+>>>>>>> c010e2ac54a9e794432a85219b97222b28d2762a
 
 # Terraform
 *terraform.tfstate*
