@@ -1,4 +1,4 @@
-import uuidv4 from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
 import os from "os";
@@ -13,6 +13,7 @@ import { createS3Client } from "../../../utils/aws/s3";
 import customConfig from './config';
 import { generateUUID } from "../../../utils/uuid";
 import childProcess from 'child_process';
+import cleanOutTmp from "../../../utils/clean-out-tmp";
 
 const createClients = (config: any) => ({
   s3: createS3Client(),
@@ -52,10 +53,6 @@ async function extractAudio(event, { logger }) {
 		const videoKeyName = `/tmp/${key}`;
 		const audioKeyName = `/tmp/temp.mp3`;
 
-		// @ts-ignore
-		// defensive check later
-
-
 		logger.info('Writing video file to temp...');
 
 		fs.writeFileSync(videoKeyName, body);
@@ -82,85 +79,14 @@ async function extractAudio(event, { logger }) {
 		
 		logger.info(`audioName:${audioKeyName} Reading audio file...`);
 
-		clients.s3.put({ file: audioName, bucket: audioBucket, key: audioKeyName });
+		await clients.s3.put({ file: audioName, bucket: audioBucket, key: `${uuidv4()}-temp.mp3`});
 		logger.info(`audioName:${audioKeyName} Writing audio file to s3 ...`);
 		
-
-
-		logger.info('cleaning out tmp')
-		await fs.readdir('/tmp/',async (err, files) => {
-			if (err) throw err;
-			logger.info(files);
-
-		  
-			for (const file of files) {
-			  await fs.unlink(path.join('/tmp/', file), err => {
-				if (err) throw err;
-			  });
-			}
-		  });
-
-		// logger.info(`Retrieved video ${JSON.stringify(data)}`);
-
-
-		// // compress video
-		// // split video into audio
-		// // create audioKey
-		// // store audio in s3
-		// // update video record with audio key
-
-		// // 	const id = context.awsRequestId,
-		// // 	const resultKey = key.replace(/\.[^.]+$/, EXTENSION),
-		// // 	const workdir = os.tmpdir(),
-		// // 	const inputFile = path.join(workdir,  id + path.extname(key)),
-		// // 	const outputFile = path.join(workdir, id + EXTENSION);
-
-		// // return s3Util.downloadFileFromS3(inputBucket, key, inputFile)
-		// // 	.then(() => childProcessPromise.spawn(
-		// // 		'/opt/bin/ffmpeg',
-		// // 		['-loglevel', 'error', '-y', '-i', inputFile, '-vf', `thumbnail,scale=${THUMB_WIDTH}:-1`, '-frames:v', '1', outputFile],
-		// // 		{
-		// //       env: process.env, 
-		// //       cwd: workdir
-		// //     }
-		// // 	))
-		// // 	.then(() => s3Util.uploadFileToS3(OUTPUT_BUCKET, resultKey, outputFile, MIME_TYPE));
-
-		// // development-encodeservic-videoinputbucket940f4f43-iy9if872u4ib
-
-		// const audioBucket = 'development-encodeservice-extractaudiobucket197901-1wjvufyahi68c';
-
-		// const audioName = fs.readFileSync(audioKeyName);
-		// logger.info(`audoName:${audioName} Reading audio file...`);
-
-		// clients.s3.put({ file: audioName, bucket: audioBucket, key: audioKeyName });
-
-		// //.... rest of the logic to clear up locally written files from running the executable
-
-
-		// // compress video
-		// // split video into audio
-		// // create audioKey
-		// // store audio in s3
-		// // update video record with audio key
-
-	
+		cleanOutTmp(logger);
+		
 	} catch (error) {
 		logger.error(error);
-
-		logger.info('cleaning out tmp')
-		await fs.readdir('/tmp/',async (err, files) => {
-			if (err) throw err;
-			logger.info(files);
-
-		  
-			for (const file of files) {
-			  await fs.unlink(path.join('/tmp/', file), err => {
-				if (err) throw err;
-			  });
-			}
-		  });
-
+		cleanOutTmp(logger);
     throw error;
 	}
 }

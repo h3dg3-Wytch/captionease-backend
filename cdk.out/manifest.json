@@ -319,13 +319,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.e19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14.zip",
-              "id": "e19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14",
+              "path": "asset.27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee.zip",
+              "id": "27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee",
               "packaging": "file",
-              "sourceHash": "e19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14",
-              "s3BucketParameter": "AssetParameterse19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14S3BucketBB3273BE",
-              "s3KeyParameter": "AssetParameterse19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14S3VersionKey3D1DCE49",
-              "artifactHashParameter": "AssetParameterse19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14ArtifactHash701E2513"
+              "sourceHash": "27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee",
+              "s3BucketParameter": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3BucketF849967C",
+              "s3KeyParameter": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3VersionKey87C6ED6C",
+              "artifactHashParameter": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeArtifactHash9DD98CF1"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -476,10 +476,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/e19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14/S3Bucket": [
+        "/development-TranscribeService/AssetParameters/27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameterse19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14S3BucketBB3273BE",
+            "data": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3BucketF849967C",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -501,10 +501,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/e19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14/S3VersionKey": [
+        "/development-TranscribeService/AssetParameters/27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameterse19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14S3VersionKey3D1DCE49",
+            "data": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3VersionKey87C6ED6C",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -526,10 +526,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/e19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14/ArtifactHash": [
+        "/development-TranscribeService/AssetParameters/27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameterse19a78f757726288a3715b42393a16832e472b22051244a66439bc0940b1bc14ArtifactHash701E2513",
+            "data": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeArtifactHash9DD98CF1",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
