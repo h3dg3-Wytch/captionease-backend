@@ -3,6 +3,10 @@
     "dynamo": {
       "stack": "Dynamo",
       "entry": "./src/core/dynamo"
+    },
+    "storage": {
+      "stack": "Storage",
+      "entry": "./src/core/storage"
     }
   },
   "services": [
