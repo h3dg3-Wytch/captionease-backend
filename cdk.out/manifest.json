@@ -306,7 +306,7 @@
               "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new LayerVersion (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:22:25)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:25:25)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -319,13 +319,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee.zip",
-              "id": "27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee",
+              "path": "asset.1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1.zip",
+              "id": "1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1",
               "packaging": "file",
-              "sourceHash": "27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee",
-              "s3BucketParameter": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3BucketF849967C",
-              "s3KeyParameter": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3VersionKey87C6ED6C",
-              "artifactHashParameter": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeArtifactHash9DD98CF1"
+              "sourceHash": "1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1",
+              "s3BucketParameter": "AssetParameters1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1S3BucketA7286ACA",
+              "s3KeyParameter": "AssetParameters1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1S3VersionKeyD55D78AF",
+              "artifactHashParameter": "AssetParameters1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1ArtifactHashF524F628"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -337,7 +337,7 @@
               "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
               "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:34:32)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:37:32)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -356,7 +356,7 @@
               "BucketNotifications.createResourceOnce (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:95:29)",
               "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:44:31)",
               "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:51:22)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:54:22)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -376,7 +376,7 @@
               "LambdaDestination.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-notifications/lib/lambda.js:40:21)",
               "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:47:36)",
               "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:51:22)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:54:22)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -393,7 +393,7 @@
             "data": "ffmpeglayer406486B5",
             "trace": [
               "new LayerVersion (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/layers.js:64:26)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:22:25)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:25:25)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -417,7 +417,7 @@
               "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new LayerVersion (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:22:25)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:25:25)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -441,7 +441,7 @@
               "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new LayerVersion (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:22:25)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:25:25)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -465,7 +465,7 @@
               "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new LayerVersion (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:22:25)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:25:25)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -476,10 +476,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee/S3Bucket": [
+        "/development-TranscribeService/AssetParameters/1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3BucketF849967C",
+            "data": "AssetParameters1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1S3BucketA7286ACA",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -490,7 +490,7 @@
               "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
               "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:34:32)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:37:32)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -501,10 +501,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee/S3VersionKey": [
+        "/development-TranscribeService/AssetParameters/1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3VersionKey87C6ED6C",
+            "data": "AssetParameters1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1S3VersionKeyD55D78AF",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -515,7 +515,7 @@
               "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
               "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:34:32)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:37:32)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -526,10 +526,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee/ArtifactHash": [
+        "/development-TranscribeService/AssetParameters/1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeArtifactHash9DD98CF1",
+            "data": "AssetParameters1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1ArtifactHashF524F628",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -540,7 +540,7 @@
               "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
               "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:34:32)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:37:32)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -559,7 +559,7 @@
               "new Role (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
               "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:79:35)",
               "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:34:32)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:37:32)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -581,7 +581,7 @@
               "Function.addToPrincipalOrResource (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/node_modules/@aws-cdk/aws-iam/lib/grant.js:45:30)",
               "Import.grant (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:442:31)",
               "Import.grantReadWrite (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:335:21)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:52:22)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:55:22)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -599,7 +599,7 @@
             "trace": [
               "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:135:26)",
               "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:34:32)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:37:32)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -621,7 +621,7 @@
               "BucketNotifications.createResourceOnce (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:87:91)",
               "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:44:31)",
               "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:51:22)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:54:22)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -645,7 +645,7 @@
               "BucketNotifications.createResourceOnce (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:87:91)",
               "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:44:31)",
               "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:51:22)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:54:22)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -666,7 +666,7 @@
               "BucketNotifications.createResourceOnce (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:87:91)",
               "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:44:31)",
               "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
-              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:51:22)",
+              "new TranscribeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/transcribe/index.js:54:22)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:49:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",

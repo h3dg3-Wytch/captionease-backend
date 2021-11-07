@@ -379,6 +379,14 @@
               "version": "1.130.0"
             }
           },
+          "DynamoTableVideos": {
+            "id": "DynamoTableVideos",
+            "path": "development-TranscribeService/DynamoTableVideos",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Resource",
+              "version": "1.107.0"
+            }
+          },
           "ffmpeg-layer": {
             "id": "ffmpeg-layer",
             "path": "development-TranscribeService/ffmpeg-layer",
@@ -510,13 +518,13 @@
                   "version": "1.107.0"
                 }
               },
-              "27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee": {
-                "id": "27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee",
-                "path": "development-TranscribeService/AssetParameters/27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee",
+              "1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1": {
+                "id": "1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1",
+                "path": "development-TranscribeService/AssetParameters/1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "development-TranscribeService/AssetParameters/27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee/S3Bucket",
+                    "path": "development-TranscribeService/AssetParameters/1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -524,7 +532,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "development-TranscribeService/AssetParameters/27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee/S3VersionKey",
+                    "path": "development-TranscribeService/AssetParameters/1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -532,7 +540,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "development-TranscribeService/AssetParameters/27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63ee/ArtifactHash",
+                    "path": "development-TranscribeService/AssetParameters/1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -682,6 +690,47 @@
                                       ]
                                     }
                                   ]
+                                },
+                                {
+                                  "Action": [
+                                    "dynamodb:BatchGetItem",
+                                    "dynamodb:GetRecords",
+                                    "dynamodb:GetShardIterator",
+                                    "dynamodb:Query",
+                                    "dynamodb:GetItem",
+                                    "dynamodb:Scan",
+                                    "dynamodb:ConditionCheckItem",
+                                    "dynamodb:BatchWriteItem",
+                                    "dynamodb:PutItem",
+                                    "dynamodb:UpdateItem",
+                                    "dynamodb:DeleteItem"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":dynamodb:",
+                                          {
+                                            "Ref": "AWS::Region"
+                                          },
+                                          ":",
+                                          {
+                                            "Ref": "AWS::AccountId"
+                                          },
+                                          ":table/development-videos"
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Ref": "AWS::NoValue"
+                                    }
+                                  ]
                                 }
                               ],
                               "Version": "2012-10-17"
@@ -745,7 +794,7 @@
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3BucketF849967C"
+                        "Ref": "AssetParameters1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1S3BucketA7286ACA"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -758,7 +807,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3VersionKey87C6ED6C"
+                                      "Ref": "AssetParameters1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1S3VersionKeyD55D78AF"
                                     }
                                   ]
                                 }
@@ -771,7 +820,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters27450ee8a60fbfa88a761d240611a90e9ceea49cfaa31e723ab9c5972c8c63eeS3VersionKey87C6ED6C"
+                                      "Ref": "AssetParameters1352f25b0e9bbfbc3f0795c379bced8a6de5bb7ba5c6fa8fe26d30f337a985d1S3VersionKeyD55D78AF"
                                     }
                                   ]
                                 }

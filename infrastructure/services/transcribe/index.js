@@ -6,6 +6,7 @@ const cdk = require('@aws-cdk/core');
 const s3 = require('@aws-cdk/aws-s3');
 const s3n = require('@aws-cdk/aws-s3-notifications');
 const sqs = require('@aws-cdk/aws-sqs');
+const dynamodb = require('@aws-cdk/aws-dynamodb');
 const { S3EventSource } = require('@aws-cdk/aws-lambda-event-sources');
 
 
@@ -18,6 +19,8 @@ class TranscribeService extends cdk.Stack {
     // A user uploads a video
     const videoInputBucket = s3.Bucket.fromBucketName(this, 'VideoInputBucket', `development-storage-videoinputbucket940f4f43-1du1ixen5jp8u`);
     const extractedAudioBucket = s3.Bucket.fromBucketName(this, 'AudioExtractedBucket', `development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz`);
+
+    const videoTable = dynamodb.Table.fromTableName(this, 'DynamoTableVideos', 'development-videos' )
 
     const ffmpegLayer = new lambda.LayerVersion(this, 'ffmpeg-layer', {
       compatibleRuntimes: [
@@ -52,6 +55,8 @@ class TranscribeService extends cdk.Stack {
     videoInputBucket.grantReadWrite(extractAudioLambda);
 
     extractedAudioBucket.grantReadWrite(extractAudioLambda);
+
+    videoTable.grantReadWriteData(extractAudioLambda);
     
 
 

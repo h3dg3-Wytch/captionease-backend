@@ -5733,6 +5733,11 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
+dynamodb-toolbox@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/dynamodb-toolbox/-/dynamodb-toolbox-0.3.4.tgz#5cd74536d88ae2901375dce0041fac0424c91e95"
+  integrity sha512-5J4f4EMkcO8jJw/TDAVG4Vy0tlCaDOMYILutPUe1fvTFSuw0QKIYPifY17bAj1QKkx2tB96dLEXNntmWoWvDng==
+
 ecc-jsbn@~0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"

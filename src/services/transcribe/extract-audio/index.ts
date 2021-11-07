@@ -14,9 +14,11 @@ import customConfig from './config';
 import { generateUUID } from "../../../utils/uuid";
 import childProcess from 'child_process';
 import cleanOutTmp from "../../../utils/clean-out-tmp";
+import { createDynamoDbClient } from "../../../utils/aws/dynamodb";
 
 const createClients = (config: any) => ({
   s3: createS3Client(),
+  db: createDynamoDbClient() 
 });
 
 process.env.PATH =
@@ -28,11 +30,22 @@ const getExtension = (filename: string) => {
   return ext[ext.length - 1];
 };
 
+const generateDefaultVideoItem = (
+	videoBucketKey,
+) => ({
+	id: '' + generateUUID(),
+	userId: ''+ generateUUID(),
+	state: 'pending',
+	videoBucketKey,
+	extractedAudioKey: null,
+	transcriptionState: 'pending',
+	transcriptionKey: null
+})
+
 async function extractAudio(event, { logger }) {
   const config = getConfig(customConfig);
 
 	const clients = createClients(config);
-	
 
 	try {
 
@@ -41,7 +54,6 @@ async function extractAudio(event, { logger }) {
 
 		const eventRecord = event.Records && event.Records[0];
 
-		const id = generateUUID();
 		const inputBucket = eventRecord.s3.bucket.name;
 		const key = eventRecord.s3.object.key;
 
@@ -49,6 +61,16 @@ async function extractAudio(event, { logger }) {
 
 		const blob = await clients.s3.get({ bucket: inputBucket, key});
 		const body = blob?.Body;
+
+		const item = generateDefaultVideoItem({videoBucketKey: key});
+
+		try{
+		await clients.db.put(item);
+
+		}catch(e) {
+			logger.info(e);
+
+		}
 
 		const videoKeyName = `/tmp/${key}`;
 		const audioKeyName = `/tmp/temp.mp3`;
@@ -79,7 +101,7 @@ async function extractAudio(event, { logger }) {
 		
 		logger.info(`audioName:${audioKeyName} Reading audio file...`);
 
-		await clients.s3.put({ file: audioName, bucket: audioBucket, key: `${uuidv4()}-temp.mp3`});
+		await clients.s3.put({ file: audioName, bucket: audioBucket, key: `${generateUUID()}-temp.mp3`});
 		logger.info(`audioName:${audioKeyName} Writing audio file to s3 ...`);
 		
 		cleanOutTmp(logger);
