@@ -40,10 +40,14 @@ export const createDynamoDbClient = () => {
     const put = async (item) => {
         await entity.put(item);
     }
+    const update = async (item) => {
+        await entity.update(item);
+    }
 
     return {
         client,
-        put
+        put,
+        update
 
     };
 

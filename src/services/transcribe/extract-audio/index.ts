@@ -30,9 +30,9 @@ const getExtension = (filename: string) => {
   return ext[ext.length - 1];
 };
 
-const generateDefaultVideoItem = (
+const generateDefaultVideoItem = ({
 	videoBucketKey,
-) => ({
+}) => ({
 	id: '' + generateUUID(),
 	userId: ''+ generateUUID(),
 	state: 'pending',
@@ -64,13 +64,7 @@ async function extractAudio(event, { logger }) {
 
 		const item = generateDefaultVideoItem({videoBucketKey: key});
 
-		try{
 		await clients.db.put(item);
-
-		}catch(e) {
-			logger.info(e);
-
-		}
 
 		const videoKeyName = `/tmp/${key}`;
 		const audioKeyName = `/tmp/temp.mp3`;
@@ -95,22 +89,22 @@ async function extractAudio(event, { logger }) {
 
 		const audioName = fs.readFileSync(audioKeyName);
 		
-		fs.readdirSync('/tmp/').forEach(file => {
-			logger.info(`opt: ${file}`);
-		});
-		
 		logger.info(`audioName:${audioKeyName} Reading audio file...`);
 
-		await clients.s3.put({ file: audioName, bucket: audioBucket, key: `${generateUUID()}-temp.mp3`});
+		const audioBucketKeyName = `${generateUUID()}-temp.mp3`
+
+		await clients.s3.put({ file: audioName, bucket: audioBucket, key: audioBucketKeyName });
 		logger.info(`audioName:${audioKeyName} Writing audio file to s3 ...`);
-		
-		cleanOutTmp(logger);
+
+		item.extractedAudioKey = audioBucketKeyName as any;
+
+		await clients.db.update(item);
 		
 	} catch (error) {
 		logger.error(error);
-		cleanOutTmp(logger);
-    throw error;
+		throw error;
 	}
+	cleanOutTmp(logger);
 }
 
 const options = {
