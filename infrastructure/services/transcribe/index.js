@@ -57,37 +57,53 @@ class TranscribeService extends cdk.Stack {
     extractedAudioBucket.grantReadWrite(extractAudioLambda);
 
     videoTable.grantReadWriteData(extractAudioLambda);
-    
 
 
     // For the extracted audio, dispatch a job to Assembly A.I for transcribining
 
-    // const sendTranscriptionLambda = createLambdaFunction({ 
-    //   app: this,
-    //   id: 'sendTranscriptionLambda',
-    //   functionName: 'sendTranscriptionLambda',
-    //   codeAssetPath: path.resolve(__dirname, '../../../build/send-transcribe-job.zip'),
-    //   handler: "send-transcribe-job.handler",
-    // }); 
+    const sendTranscriptionLambda = createLambdaFunction({ 
+      app: this,
+      id: 'sendTranscriptionLambda',
+      functionName: 'sendTranscriptionLambda',
+      codeAssetPath: path.resolve(__dirname, '../../../build/send-transcribe-job.zip'),
+      handler: "send-transcribe-job.handler",
+      environment: {
+        STAGE: process.env.STAGE
+      }
+    }); 
     
-    // extractAudioBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(sendTranscriptionLambda))
-    // extractAudioBucket.grantReadWrite(extractAudioLambda);
-    // // sendTranscriptionLambda.addEventSource( new S3EventSource(extractAudioBucket, {
-    // //   events: [s3.EventType.OBJECT_CREATED]
-    // // }));
+    extractedAudioBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(sendTranscriptionLambda))
+    extractedAudioBucket.grantReadWrite(sendTranscriptionLambda);
+    // sendTranscriptionLambda.addEventSource( new S3EventSource(extractedAudioBucket, {
+    //   events: [s3.EventType.OBJECT_CREATED]
+    // }));
+
+    videoTable.grantReadWriteData(sendTranscriptionLambda);
+
 
     // assembly webhook api gateway
 
-    // const apiGatewayName = `assembly-${stage}-webhook`;
+    const apiGatewayName = `assembly-${stage}-webhook`;
 
-    // const api = new apigateway.RestApi(this, 'ApiGatewayForApiService', {
-    //   restApiName: apiGatewayName,
-    //   deployOptions: { stageName: stage },
-    //   failOnWarnings: true,
-    //   proxy: false,
-    // });
+    const api = new apigateway.RestApi(this, 'ApiGatewayForApiService', {
+      restApiName: apiGatewayName,
+      deployOptions: { stageName: stage },
+      defaultCorsPreflightOptions: {
+        allowHeaders: [
+          'Content-Type',
+          'X-Amz-Date',
+          'Authorization',
+          'X-Api-Key',
+        ],
+        allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+        allowCredentials: true,
+        allowOrigins: apigateway.Cors.ALL_ORIGINS,
+      },
+      failOnWarnings: true,
+      proxy: false,
+    });
 
-    // const assemblyWebhookApi = api.root.addResource('webhook');
+    const assemblyWebhookApi = api.root.addResource('webhook');
     // addCorsOptions(assemblyWebhookApi);
   }
 }

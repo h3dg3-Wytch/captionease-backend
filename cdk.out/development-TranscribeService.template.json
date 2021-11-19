@@ -65,6 +65,71 @@
         "aws:cdk:path": "development-TranscribeService/VideoInputBucket/AllowBucketNotificationsTodevelopmentTranscribeServiceExtractAudioLambda34FAF03A"
       }
     },
+    "AudioExtractedBucketNotifications6E18EA69": {
+      "Type": "Custom::S3BucketNotifications",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
+            "Arn"
+          ]
+        },
+        "BucketName": "development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz",
+        "NotificationConfiguration": {
+          "LambdaFunctionConfigurations": [
+            {
+              "Events": [
+                "s3:ObjectCreated:*"
+              ],
+              "LambdaFunctionArn": {
+                "Fn::GetAtt": [
+                  "sendTranscriptionLambda653766BA",
+                  "Arn"
+                ]
+              }
+            }
+          ]
+        },
+        "Managed": false
+      },
+      "DependsOn": [
+        "AudioExtractedBucketAllowBucketNotificationsTodevelopmentTranscribeServicesendTranscriptionLambdaA272CF20F7E94B5A"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/AudioExtractedBucket/Notifications/Resource"
+      }
+    },
+    "AudioExtractedBucketAllowBucketNotificationsTodevelopmentTranscribeServicesendTranscriptionLambdaA272CF20F7E94B5A": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "sendTranscriptionLambda653766BA",
+            "Arn"
+          ]
+        },
+        "Principal": "s3.amazonaws.com",
+        "SourceAccount": {
+          "Ref": "AWS::AccountId"
+        },
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/AudioExtractedBucket/AllowBucketNotificationsTodevelopmentTranscribeServicesendTranscriptionLambdaA272CF20"
+      }
+    },
     "ffmpeglayer406486B5": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
@@ -292,7 +357,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParametersaddd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4baS3BucketD8317966"
+            "Ref": "AssetParameters34377c902e662f7098e43cf16e0c7c53363481a538014361248e6c70baf0271eS3Bucket4A58C902"
           },
           "S3Key": {
             "Fn::Join": [
@@ -305,7 +370,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersaddd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4baS3VersionKey5C2B099E"
+                          "Ref": "AssetParameters34377c902e662f7098e43cf16e0c7c53363481a538014361248e6c70baf0271eS3VersionKeyB9579C54"
                         }
                       ]
                     }
@@ -318,7 +383,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersaddd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4baS3VersionKey5C2B099E"
+                          "Ref": "AssetParameters34377c902e662f7098e43cf16e0c7c53363481a538014361248e6c70baf0271eS3VersionKeyB9579C54"
                         }
                       ]
                     }
@@ -383,7 +448,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "development-TranscribeService/ExtractAudioLambda/Resource",
-        "aws:asset:path": "asset.addd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4ba.zip",
+        "aws:asset:path": "asset.34377c902e662f7098e43cf16e0c7c53363481a538014361248e6c70baf0271e.zip",
         "aws:asset:property": "Code"
       }
     },
@@ -475,10 +540,411 @@
         "aws:cdk:path": "development-TranscribeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource"
       }
     },
+    "sendTranscriptionLambdaServiceRole094A4526": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/sendTranscriptionLambda/ServiceRole/Resource"
+      }
+    },
+    "sendTranscriptionLambdaServiceRoleDefaultPolicy6C448E60": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":dynamodb:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":table/development-videos"
+                    ]
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "sendTranscriptionLambdaServiceRoleDefaultPolicy6C448E60",
+        "Roles": [
+          {
+            "Ref": "sendTranscriptionLambdaServiceRole094A4526"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/sendTranscriptionLambda/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "sendTranscriptionLambda653766BA": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters2d0fc07e6d3fb057daf24d240ce48aaf82e8fa34d65a1062bafdd8a5c351cc95S3Bucket97F5824D"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters2d0fc07e6d3fb057daf24d240ce48aaf82e8fa34d65a1062bafdd8a5c351cc95S3VersionKey5AD29287"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters2d0fc07e6d3fb057daf24d240ce48aaf82e8fa34d65a1062bafdd8a5c351cc95S3VersionKey5AD29287"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "sendTranscriptionLambdaServiceRole094A4526",
+            "Arn"
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "STAGE": "development"
+          }
+        },
+        "FunctionName": "sendTranscriptionLambda",
+        "Handler": "send-transcribe-job.handler",
+        "MemorySize": 521,
+        "Runtime": "nodejs12.x",
+        "Timeout": 60
+      },
+      "DependsOn": [
+        "sendTranscriptionLambdaServiceRoleDefaultPolicy6C448E60",
+        "sendTranscriptionLambdaServiceRole094A4526"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/sendTranscriptionLambda/Resource",
+        "aws:asset:path": "asset.2d0fc07e6d3fb057daf24d240ce48aaf82e8fa34d65a1062bafdd8a5c351cc95.zip",
+        "aws:asset:property": "Code"
+      }
+    },
+    "ApiGatewayForApiServiceF97F9386": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "FailOnWarnings": true,
+        "Name": "assembly-development-webhook"
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Resource"
+      }
+    },
+    "ApiGatewayForApiServiceCloudWatchRole21D61FAC": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/CloudWatchRole/Resource"
+      }
+    },
+    "ApiGatewayForApiServiceAccount12973782": {
+      "Type": "AWS::ApiGateway::Account",
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "ApiGatewayForApiServiceCloudWatchRole21D61FAC",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ApiGatewayForApiServiceF97F9386"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Account"
+      }
+    },
+    "ApiGatewayForApiServiceDeploymentB7C1F9F3708ee791b1dbdeb2f74a1494e91e5edd": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "Description": "Automatically created by the RestApi construct"
+      },
+      "DependsOn": [
+        "ApiGatewayForApiServiceOPTIONS80DD8D66",
+        "ApiGatewayForApiServicewebhookOPTIONSF30E100D",
+        "ApiGatewayForApiServicewebhookE33C8AAD"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Deployment/Resource"
+      }
+    },
+    "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A": {
+      "Type": "AWS::ApiGateway::Stage",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "DeploymentId": {
+          "Ref": "ApiGatewayForApiServiceDeploymentB7C1F9F3708ee791b1dbdeb2f74a1494e91e5edd"
+        },
+        "StageName": "development"
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/DeploymentStage.development/Resource"
+      }
+    },
+    "ApiGatewayForApiServiceOPTIONS80DD8D66": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Fn::GetAtt": [
+            "ApiGatewayForApiServiceF97F9386",
+            "RootResourceId"
+          ]
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/OPTIONS/Resource"
+      }
+    },
+    "ApiGatewayForApiServicewebhookE33C8AAD": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayForApiServiceF97F9386",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "webhook",
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/Resource"
+      }
+    },
+    "ApiGatewayForApiServicewebhookOPTIONSF30E100D": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "ApiGatewayForApiServicewebhookE33C8AAD"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/OPTIONS/Resource"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAAE41QTWvDMAz9Lb07akw2dt1a6GmHksHumqMVN7ENlt1SjP/7bHcd5LaT3tPTx5MkJNm/QL95xSt3apq3STlPkD4CqlmMxC56ReKNmULJnbQ9ib2zHHxUQey/7RE9GgrkK/mrL7hUTTpoZ7Oos9OC5mtCSLWHvNHMRRPveCP/Sb6RIq34IVoVfoUHzoKHDqsdhuZKaDSQRre0rS0e3aLVrblrKOcs5NCvzmyeeIBdVDOFHTL9a5C4v2f1gsfVdY11E8GZtxf5BPIZhs2Zte58tEEbgvEefwBuLb13dgEAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAAE41RTU+EMBD9LXsvXQgar7JrPGncYOK9lhG70JZ0pm4I4b9bChi4eZo3X533XjM+ZOkDTw+P4oaJrJrjIK0DPryTkA0rAa13EliBCBRqtTI1O1uD5Lwkdv4yF+GEBgI3JW+eOh/Lf5sBh/lKkbJmZNOVoRX6sxJ8mLbBaYUYeuxF9OA+wMUktHb5szeSlsaKR4Z5IiZiyCM/poTmQ2nbeDXGi22V7CPPiAKDTtWC4Cb6MApIRacWvisspLTeEHuCrrW9BhMFbbLJh3hiBqvUk0Bgr0DftpqaC9oaseJxHFmWpzvbozOY85OXDVB86x9yRjZ/1+5LtmeMrYBf8fiT3fHsnueHKyqVuKBPaeDlHH8Bd3j8OgYCAAA="
       },
       "Metadata": {
         "aws:cdk:path": "development-TranscribeService/CDKMetadata/Default"
@@ -499,17 +965,57 @@
       "Type": "String",
       "Description": "Artifact hash for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParametersaddd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4baS3BucketD8317966": {
+    "AssetParameters34377c902e662f7098e43cf16e0c7c53363481a538014361248e6c70baf0271eS3Bucket4A58C902": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"addd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4ba\""
+      "Description": "S3 bucket for asset \"34377c902e662f7098e43cf16e0c7c53363481a538014361248e6c70baf0271e\""
     },
-    "AssetParametersaddd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4baS3VersionKey5C2B099E": {
+    "AssetParameters34377c902e662f7098e43cf16e0c7c53363481a538014361248e6c70baf0271eS3VersionKeyB9579C54": {
       "Type": "String",
-      "Description": "S3 key for asset version \"addd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4ba\""
+      "Description": "S3 key for asset version \"34377c902e662f7098e43cf16e0c7c53363481a538014361248e6c70baf0271e\""
     },
-    "AssetParametersaddd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4baArtifactHash5BDE521C": {
+    "AssetParameters34377c902e662f7098e43cf16e0c7c53363481a538014361248e6c70baf0271eArtifactHashD5C9B2E9": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"addd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4ba\""
+      "Description": "Artifact hash for asset \"34377c902e662f7098e43cf16e0c7c53363481a538014361248e6c70baf0271e\""
+    },
+    "AssetParameters2d0fc07e6d3fb057daf24d240ce48aaf82e8fa34d65a1062bafdd8a5c351cc95S3Bucket97F5824D": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"2d0fc07e6d3fb057daf24d240ce48aaf82e8fa34d65a1062bafdd8a5c351cc95\""
+    },
+    "AssetParameters2d0fc07e6d3fb057daf24d240ce48aaf82e8fa34d65a1062bafdd8a5c351cc95S3VersionKey5AD29287": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"2d0fc07e6d3fb057daf24d240ce48aaf82e8fa34d65a1062bafdd8a5c351cc95\""
+    },
+    "AssetParameters2d0fc07e6d3fb057daf24d240ce48aaf82e8fa34d65a1062bafdd8a5c351cc95ArtifactHashF8331A5D": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"2d0fc07e6d3fb057daf24d240ce48aaf82e8fa34d65a1062bafdd8a5c351cc95\""
+    }
+  },
+  "Outputs": {
+    "ApiGatewayForApiServiceEndpointE631541E": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "ApiGatewayForApiServiceF97F9386"
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region"
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix"
+            },
+            "/",
+            {
+              "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+            },
+            "/"
+          ]
+        ]
+      }
     }
   },
   "Conditions": {

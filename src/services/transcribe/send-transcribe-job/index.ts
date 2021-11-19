@@ -6,6 +6,8 @@ import customConfig from './config';
 async function sendTranscribeJob(event, { logger }) {
   const config = getConfig(customConfig);
 
+  logger.info('inside the transcribe lambda job', JSON.stringify(event));
+
   return logger.info(
     `Send transcribe job working :: ${config.STAGE}`
   );
