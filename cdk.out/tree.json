@@ -12,106 +12,17 @@
           "version": "1.107.0"
         }
       },
-      "development-Dynamo": {
-        "id": "development-Dynamo",
-        "path": "development-Dynamo",
-        "children": {
-          "DynamoTableVideos": {
-            "id": "DynamoTableVideos",
-            "path": "development-Dynamo/DynamoTableVideos",
-            "children": {
-              "Resource": {
-                "id": "Resource",
-                "path": "development-Dynamo/DynamoTableVideos/Resource",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
-                  "aws:cdk:cloudformation:props": {
-                    "keySchema": [
-                      {
-                        "attributeName": "id",
-                        "keyType": "HASH"
-                      },
-                      {
-                        "attributeName": "userId",
-                        "keyType": "RANGE"
-                      }
-                    ],
-                    "attributeDefinitions": [
-                      {
-                        "attributeName": "id",
-                        "attributeType": "S"
-                      },
-                      {
-                        "attributeName": "userId",
-                        "attributeType": "S"
-                      }
-                    ],
-                    "billingMode": "PAY_PER_REQUEST",
-                    "tableName": "development-videos"
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
-                  "version": "1.107.0"
-                }
-              },
-              "ScalingRole": {
-                "id": "ScalingRole",
-                "path": "development-Dynamo/DynamoTableVideos/ScalingRole",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Resource",
-                  "version": "1.107.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-dynamodb.Table",
-              "version": "1.107.0"
-            }
-          },
-          "CDKMetadata": {
-            "id": "CDKMetadata",
-            "path": "development-Dynamo/CDKMetadata",
-            "children": {
-              "Default": {
-                "id": "Default",
-                "path": "development-Dynamo/CDKMetadata/Default",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.107.0"
-                }
-              },
-              "Condition": {
-                "id": "Condition",
-                "path": "development-Dynamo/CDKMetadata/Condition",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnCondition",
-                  "version": "1.107.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.Construct",
-              "version": "1.107.0"
-            }
-          }
-        },
-        "constructInfo": {
-          "fqn": "@aws-cdk/core.Stack",
-          "version": "1.107.0"
-        }
-      },
-      "development-Storage": {
-        "id": "development-Storage",
-        "path": "development-Storage",
+      "captionese-central-stack-development": {
+        "id": "captionese-central-stack-development",
+        "path": "captionese-central-stack-development",
         "children": {
           "VideoInputBucket": {
             "id": "VideoInputBucket",
-            "path": "development-Storage/VideoInputBucket",
+            "path": "captionese-central-stack-development/VideoInputBucket",
             "children": {
               "Notifications": {
                 "id": "Notifications",
-                "path": "development-Storage/VideoInputBucket/Notifications",
+                "path": "captionese-central-stack-development/VideoInputBucket/Notifications",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Construct",
                   "version": "1.130.0"
@@ -119,7 +30,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "development-Storage/VideoInputBucket/Resource",
+                "path": "captionese-central-stack-development/VideoInputBucket/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                   "aws:cdk:cloudformation:props": {}
@@ -137,11 +48,11 @@
           },
           "AudioExtractedBucket": {
             "id": "AudioExtractedBucket",
-            "path": "development-Storage/AudioExtractedBucket",
+            "path": "captionese-central-stack-development/AudioExtractedBucket",
             "children": {
               "Notifications": {
                 "id": "Notifications",
-                "path": "development-Storage/AudioExtractedBucket/Notifications",
+                "path": "captionese-central-stack-development/AudioExtractedBucket/Notifications",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Construct",
                   "version": "1.130.0"
@@ -149,7 +60,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "development-Storage/AudioExtractedBucket/Resource",
+                "path": "captionese-central-stack-development/AudioExtractedBucket/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                   "aws:cdk:cloudformation:props": {}
@@ -167,11 +78,11 @@
           },
           "VideoTranscriptionsBucket": {
             "id": "VideoTranscriptionsBucket",
-            "path": "development-Storage/VideoTranscriptionsBucket",
+            "path": "captionese-central-stack-development/VideoTranscriptionsBucket",
             "children": {
               "Notifications": {
                 "id": "Notifications",
-                "path": "development-Storage/VideoTranscriptionsBucket/Notifications",
+                "path": "captionese-central-stack-development/VideoTranscriptionsBucket/Notifications",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Construct",
                   "version": "1.130.0"
@@ -179,7 +90,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "development-Storage/VideoTranscriptionsBucket/Resource",
+                "path": "captionese-central-stack-development/VideoTranscriptionsBucket/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                   "aws:cdk:cloudformation:props": {}
@@ -197,11 +108,11 @@
           },
           "VideoEncodedBucket": {
             "id": "VideoEncodedBucket",
-            "path": "development-Storage/VideoEncodedBucket",
+            "path": "captionese-central-stack-development/VideoEncodedBucket",
             "children": {
               "Notifications": {
                 "id": "Notifications",
-                "path": "development-Storage/VideoEncodedBucket/Notifications",
+                "path": "captionese-central-stack-development/VideoEncodedBucket/Notifications",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Construct",
                   "version": "1.130.0"
@@ -209,7 +120,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "development-Storage/VideoEncodedBucket/Resource",
+                "path": "captionese-central-stack-development/VideoEncodedBucket/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                   "aws:cdk:cloudformation:props": {}
@@ -227,798 +138,13 @@
           },
           "CDKMetadata": {
             "id": "CDKMetadata",
-            "path": "development-Storage/CDKMetadata",
+            "path": "captionese-central-stack-development/CDKMetadata",
             "children": {
               "Default": {
                 "id": "Default",
-                "path": "development-Storage/CDKMetadata/Default",
+                "path": "captionese-central-stack-development/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.107.0"
-                }
-              },
-              "Condition": {
-                "id": "Condition",
-                "path": "development-Storage/CDKMetadata/Condition",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnCondition",
-                  "version": "1.107.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.Construct",
-              "version": "1.107.0"
-            }
-          }
-        },
-        "constructInfo": {
-          "fqn": "@aws-cdk/core.Stack",
-          "version": "1.107.0"
-        }
-      },
-      "development-EncodeService": {
-        "id": "development-EncodeService",
-        "path": "development-EncodeService",
-        "children": {
-          "CDKMetadata": {
-            "id": "CDKMetadata",
-            "path": "development-EncodeService/CDKMetadata",
-            "children": {
-              "Default": {
-                "id": "Default",
-                "path": "development-EncodeService/CDKMetadata/Default",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.107.0"
-                }
-              },
-              "Condition": {
-                "id": "Condition",
-                "path": "development-EncodeService/CDKMetadata/Condition",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnCondition",
-                  "version": "1.107.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.Construct",
-              "version": "1.107.0"
-            }
-          }
-        },
-        "constructInfo": {
-          "fqn": "@aws-cdk/core.Stack",
-          "version": "1.107.0"
-        }
-      },
-      "development-TranscribeService": {
-        "id": "development-TranscribeService",
-        "path": "development-TranscribeService",
-        "children": {
-          "VideoInputBucket": {
-            "id": "VideoInputBucket",
-            "path": "development-TranscribeService/VideoInputBucket",
-            "children": {
-              "Notifications": {
-                "id": "Notifications",
-                "path": "development-TranscribeService/VideoInputBucket/Notifications",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "development-TranscribeService/VideoInputBucket/Notifications/Resource",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnResource",
-                      "version": "1.130.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.130.0"
-                }
-              },
-              "AllowBucketNotificationsTodevelopmentTranscribeServiceExtractAudioLambda34FAF03A": {
-                "id": "AllowBucketNotificationsTodevelopmentTranscribeServiceExtractAudioLambda34FAF03A",
-                "path": "development-TranscribeService/VideoInputBucket/AllowBucketNotificationsTodevelopmentTranscribeServiceExtractAudioLambda34FAF03A",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
-                  "aws:cdk:cloudformation:props": {
-                    "action": "lambda:InvokeFunction",
-                    "functionName": {
-                      "Fn::GetAtt": [
-                        "ExtractAudioLambda12696EC4",
-                        "Arn"
-                      ]
-                    },
-                    "principal": "s3.amazonaws.com",
-                    "sourceAccount": {
-                      "Ref": "AWS::AccountId"
-                    },
-                    "sourceArn": {
-                      "Fn::Join": [
-                        "",
-                        [
-                          "arn:",
-                          {
-                            "Ref": "AWS::Partition"
-                          },
-                          ":s3:::development-storage-videoinputbucket940f4f43-1du1ixen5jp8u"
-                        ]
-                      ]
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-lambda.CfnPermission",
-                  "version": "1.107.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.130.0"
-            }
-          },
-          "AudioExtractedBucket": {
-            "id": "AudioExtractedBucket",
-            "path": "development-TranscribeService/AudioExtractedBucket",
-            "children": {
-              "Notifications": {
-                "id": "Notifications",
-                "path": "development-TranscribeService/AudioExtractedBucket/Notifications",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.130.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.130.0"
-            }
-          },
-          "DynamoTableVideos": {
-            "id": "DynamoTableVideos",
-            "path": "development-TranscribeService/DynamoTableVideos",
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.Resource",
-              "version": "1.107.0"
-            }
-          },
-          "ffmpeg-layer": {
-            "id": "ffmpeg-layer",
-            "path": "development-TranscribeService/ffmpeg-layer",
-            "children": {
-              "Code": {
-                "id": "Code",
-                "path": "development-TranscribeService/ffmpeg-layer/Code",
-                "children": {
-                  "Stage": {
-                    "id": "Stage",
-                    "path": "development-TranscribeService/ffmpeg-layer/Code/Stage",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.AssetStaging",
-                      "version": "1.107.0"
-                    }
-                  },
-                  "AssetBucket": {
-                    "id": "AssetBucket",
-                    "path": "development-TranscribeService/ffmpeg-layer/Code/AssetBucket",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.107.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
-                  "version": "1.107.0"
-                }
-              },
-              "Resource": {
-                "id": "Resource",
-                "path": "development-TranscribeService/ffmpeg-layer/Resource",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::Lambda::LayerVersion",
-                  "aws:cdk:cloudformation:props": {
-                    "content": {
-                      "s3Bucket": {
-                        "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3BucketD54C6570"
-                      },
-                      "s3Key": {
-                        "Fn::Join": [
-                          "",
-                          [
-                            {
-                              "Fn::Select": [
-                                0,
-                                {
-                                  "Fn::Split": [
-                                    "||",
-                                    {
-                                      "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B"
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "Fn::Select": [
-                                1,
-                                {
-                                  "Fn::Split": [
-                                    "||",
-                                    {
-                                      "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        ]
-                      }
-                    },
-                    "compatibleRuntimes": [
-                      "nodejs10.x",
-                      "nodejs12.x",
-                      "nodejs14.x"
-                    ],
-                    "description": "ffmpeg use for lambda"
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-lambda.CfnLayerVersion",
-                  "version": "1.107.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-lambda.LayerVersion",
-              "version": "1.107.0"
-            }
-          },
-          "AssetParameters": {
-            "id": "AssetParameters",
-            "path": "development-TranscribeService/AssetParameters",
-            "children": {
-              "c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c": {
-                "id": "c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c",
-                "path": "development-TranscribeService/AssetParameters/c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c",
-                "children": {
-                  "S3Bucket": {
-                    "id": "S3Bucket",
-                    "path": "development-TranscribeService/AssetParameters/c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c/S3Bucket",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.107.0"
-                    }
-                  },
-                  "S3VersionKey": {
-                    "id": "S3VersionKey",
-                    "path": "development-TranscribeService/AssetParameters/c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c/S3VersionKey",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.107.0"
-                    }
-                  },
-                  "ArtifactHash": {
-                    "id": "ArtifactHash",
-                    "path": "development-TranscribeService/AssetParameters/c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c/ArtifactHash",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.107.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.107.0"
-                }
-              },
-              "addd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4ba": {
-                "id": "addd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4ba",
-                "path": "development-TranscribeService/AssetParameters/addd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4ba",
-                "children": {
-                  "S3Bucket": {
-                    "id": "S3Bucket",
-                    "path": "development-TranscribeService/AssetParameters/addd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4ba/S3Bucket",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.107.0"
-                    }
-                  },
-                  "S3VersionKey": {
-                    "id": "S3VersionKey",
-                    "path": "development-TranscribeService/AssetParameters/addd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4ba/S3VersionKey",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.107.0"
-                    }
-                  },
-                  "ArtifactHash": {
-                    "id": "ArtifactHash",
-                    "path": "development-TranscribeService/AssetParameters/addd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4ba/ArtifactHash",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.107.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.107.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.Construct",
-              "version": "1.107.0"
-            }
-          },
-          "ExtractAudioLambda": {
-            "id": "ExtractAudioLambda",
-            "path": "development-TranscribeService/ExtractAudioLambda",
-            "children": {
-              "ServiceRole": {
-                "id": "ServiceRole",
-                "path": "development-TranscribeService/ExtractAudioLambda/ServiceRole",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "development-TranscribeService/ExtractAudioLambda/ServiceRole/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
-                      "aws:cdk:cloudformation:props": {
-                        "assumeRolePolicyDocument": {
-                          "Statement": [
-                            {
-                              "Action": "sts:AssumeRole",
-                              "Effect": "Allow",
-                              "Principal": {
-                                "Service": "lambda.amazonaws.com"
-                              }
-                            }
-                          ],
-                          "Version": "2012-10-17"
-                        },
-                        "managedPolicyArns": [
-                          {
-                            "Fn::Join": [
-                              "",
-                              [
-                                "arn:",
-                                {
-                                  "Ref": "AWS::Partition"
-                                },
-                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-                              ]
-                            ]
-                          }
-                        ]
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.CfnRole",
-                      "version": "1.107.0"
-                    }
-                  },
-                  "DefaultPolicy": {
-                    "id": "DefaultPolicy",
-                    "path": "development-TranscribeService/ExtractAudioLambda/ServiceRole/DefaultPolicy",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "development-TranscribeService/ExtractAudioLambda/ServiceRole/DefaultPolicy/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
-                          "aws:cdk:cloudformation:props": {
-                            "policyDocument": {
-                              "Statement": [
-                                {
-                                  "Action": [
-                                    "s3:GetObject*",
-                                    "s3:GetBucket*",
-                                    "s3:List*",
-                                    "s3:DeleteObject*",
-                                    "s3:PutObject*",
-                                    "s3:Abort*"
-                                  ],
-                                  "Effect": "Allow",
-                                  "Resource": [
-                                    {
-                                      "Fn::Join": [
-                                        "",
-                                        [
-                                          "arn:",
-                                          {
-                                            "Ref": "AWS::Partition"
-                                          },
-                                          ":s3:::development-storage-videoinputbucket940f4f43-1du1ixen5jp8u"
-                                        ]
-                                      ]
-                                    },
-                                    {
-                                      "Fn::Join": [
-                                        "",
-                                        [
-                                          "arn:",
-                                          {
-                                            "Ref": "AWS::Partition"
-                                          },
-                                          ":s3:::development-storage-videoinputbucket940f4f43-1du1ixen5jp8u/*"
-                                        ]
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "Action": [
-                                    "s3:GetObject*",
-                                    "s3:GetBucket*",
-                                    "s3:List*",
-                                    "s3:DeleteObject*",
-                                    "s3:PutObject*",
-                                    "s3:Abort*"
-                                  ],
-                                  "Effect": "Allow",
-                                  "Resource": [
-                                    {
-                                      "Fn::Join": [
-                                        "",
-                                        [
-                                          "arn:",
-                                          {
-                                            "Ref": "AWS::Partition"
-                                          },
-                                          ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz"
-                                        ]
-                                      ]
-                                    },
-                                    {
-                                      "Fn::Join": [
-                                        "",
-                                        [
-                                          "arn:",
-                                          {
-                                            "Ref": "AWS::Partition"
-                                          },
-                                          ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz/*"
-                                        ]
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "Action": [
-                                    "dynamodb:BatchGetItem",
-                                    "dynamodb:GetRecords",
-                                    "dynamodb:GetShardIterator",
-                                    "dynamodb:Query",
-                                    "dynamodb:GetItem",
-                                    "dynamodb:Scan",
-                                    "dynamodb:ConditionCheckItem",
-                                    "dynamodb:BatchWriteItem",
-                                    "dynamodb:PutItem",
-                                    "dynamodb:UpdateItem",
-                                    "dynamodb:DeleteItem"
-                                  ],
-                                  "Effect": "Allow",
-                                  "Resource": [
-                                    {
-                                      "Fn::Join": [
-                                        "",
-                                        [
-                                          "arn:",
-                                          {
-                                            "Ref": "AWS::Partition"
-                                          },
-                                          ":dynamodb:",
-                                          {
-                                            "Ref": "AWS::Region"
-                                          },
-                                          ":",
-                                          {
-                                            "Ref": "AWS::AccountId"
-                                          },
-                                          ":table/development-videos"
-                                        ]
-                                      ]
-                                    },
-                                    {
-                                      "Ref": "AWS::NoValue"
-                                    }
-                                  ]
-                                }
-                              ],
-                              "Version": "2012-10-17"
-                            },
-                            "policyName": "ExtractAudioLambdaServiceRoleDefaultPolicyE1C9E0C3",
-                            "roles": [
-                              {
-                                "Ref": "ExtractAudioLambdaServiceRole0AE87B8E"
-                              }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                          "version": "1.107.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.Policy",
-                      "version": "1.107.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-iam.Role",
-                  "version": "1.107.0"
-                }
-              },
-              "Code": {
-                "id": "Code",
-                "path": "development-TranscribeService/ExtractAudioLambda/Code",
-                "children": {
-                  "Stage": {
-                    "id": "Stage",
-                    "path": "development-TranscribeService/ExtractAudioLambda/Code/Stage",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.AssetStaging",
-                      "version": "1.107.0"
-                    }
-                  },
-                  "AssetBucket": {
-                    "id": "AssetBucket",
-                    "path": "development-TranscribeService/ExtractAudioLambda/Code/AssetBucket",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.107.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
-                  "version": "1.107.0"
-                }
-              },
-              "Resource": {
-                "id": "Resource",
-                "path": "development-TranscribeService/ExtractAudioLambda/Resource",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
-                  "aws:cdk:cloudformation:props": {
-                    "code": {
-                      "s3Bucket": {
-                        "Ref": "AssetParametersaddd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4baS3BucketD8317966"
-                      },
-                      "s3Key": {
-                        "Fn::Join": [
-                          "",
-                          [
-                            {
-                              "Fn::Select": [
-                                0,
-                                {
-                                  "Fn::Split": [
-                                    "||",
-                                    {
-                                      "Ref": "AssetParametersaddd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4baS3VersionKey5C2B099E"
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "Fn::Select": [
-                                1,
-                                {
-                                  "Fn::Split": [
-                                    "||",
-                                    {
-                                      "Ref": "AssetParametersaddd488ffb48ef4959a5357531209cfc18917f5c778d68be307c814df67fe4baS3VersionKey5C2B099E"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        ]
-                      }
-                    },
-                    "role": {
-                      "Fn::GetAtt": [
-                        "ExtractAudioLambdaServiceRole0AE87B8E",
-                        "Arn"
-                      ]
-                    },
-                    "environment": {
-                      "variables": {
-                        "STAGE": "development",
-                        "NODE_ENV": "development",
-                        "SUPABASE_API_URL": "https://jtlvnnrxubgfwmzltxon.supabase.co",
-                        "SUPABASE_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNDQwOTk2NSwiZXhwIjoxOTQ5OTg1OTY1fQ.-i-Jl1gw1MM2KAz7NZwLrADMpqtBmY38t4_oHR6KGeM",
-                        "VIDEO_INPUT_BUCKET": {
-                          "Fn::Join": [
-                            "",
-                            [
-                              "arn:",
-                              {
-                                "Ref": "AWS::Partition"
-                              },
-                              ":s3:::development-storage-videoinputbucket940f4f43-1du1ixen5jp8u"
-                            ]
-                          ]
-                        },
-                        "EXTRACTED_VIDEO_AUDIO_BUCKET": {
-                          "Fn::Join": [
-                            "",
-                            [
-                              "arn:",
-                              {
-                                "Ref": "AWS::Partition"
-                              },
-                              ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz"
-                            ]
-                          ]
-                        }
-                      }
-                    },
-                    "functionName": "extractAudioLambda",
-                    "handler": "extract-audio.handler",
-                    "layers": [
-                      {
-                        "Ref": "ffmpeglayer406486B5"
-                      }
-                    ],
-                    "memorySize": 521,
-                    "runtime": "nodejs12.x",
-                    "timeout": 60
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
-                  "version": "1.107.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-lambda.Function",
-              "version": "1.107.0"
-            }
-          },
-          "BucketNotificationsHandler050a0587b7544547bf325f094a3db834": {
-            "id": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834",
-            "path": "development-TranscribeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834",
-            "children": {
-              "Role": {
-                "id": "Role",
-                "path": "development-TranscribeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "development-TranscribeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
-                      "aws:cdk:cloudformation:props": {
-                        "assumeRolePolicyDocument": {
-                          "Statement": [
-                            {
-                              "Action": "sts:AssumeRole",
-                              "Effect": "Allow",
-                              "Principal": {
-                                "Service": "lambda.amazonaws.com"
-                              }
-                            }
-                          ],
-                          "Version": "2012-10-17"
-                        },
-                        "managedPolicyArns": [
-                          {
-                            "Fn::Join": [
-                              "",
-                              [
-                                "arn:",
-                                {
-                                  "Ref": "AWS::Partition"
-                                },
-                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-                              ]
-                            ]
-                          }
-                        ]
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.CfnRole",
-                      "version": "1.130.0"
-                    }
-                  },
-                  "DefaultPolicy": {
-                    "id": "DefaultPolicy",
-                    "path": "development-TranscribeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "development-TranscribeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
-                          "aws:cdk:cloudformation:props": {
-                            "policyDocument": {
-                              "Statement": [
-                                {
-                                  "Action": "s3:PutBucketNotification",
-                                  "Effect": "Allow",
-                                  "Resource": "*"
-                                },
-                                {
-                                  "Action": "s3:GetBucketNotification",
-                                  "Effect": "Allow",
-                                  "Resource": "*"
-                                }
-                              ],
-                              "Version": "2012-10-17"
-                            },
-                            "policyName": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36",
-                            "roles": [
-                              {
-                                "Ref": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
-                              }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                          "version": "1.130.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.Policy",
-                      "version": "1.130.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-iam.Role",
-                  "version": "1.130.0"
-                }
-              },
-              "Resource": {
-                "id": "Resource",
-                "path": "development-TranscribeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.130.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.Construct",
-              "version": "1.130.0"
-            }
-          },
-          "CDKMetadata": {
-            "id": "CDKMetadata",
-            "path": "development-TranscribeService/CDKMetadata",
-            "children": {
-              "Default": {
-                "id": "Default",
-                "path": "development-TranscribeService/CDKMetadata/Default",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.107.0"
-                }
-              },
-              "Condition": {
-                "id": "Condition",
-                "path": "development-TranscribeService/CDKMetadata/Condition",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnCondition",
                   "version": "1.107.0"
                 }
               }

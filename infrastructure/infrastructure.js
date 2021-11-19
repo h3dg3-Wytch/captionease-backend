@@ -11,6 +11,7 @@ const { Dynamo } = require("./central/dynamodb");
 const { EncodeService } = require("./services/encode");
 const { TranscribeService } = require("./services/transcribe");
 const { Storage } = require('./central/storage');
+const { CentralStack } = require('./central/central');
 
 console.log(process.env.AWS_ACCESS_KEY_ID)
 
@@ -27,31 +28,37 @@ const env = {
 };
 
 // Central
-new Dynamo(app, `${stage}-Dynamo`, {
-  serviceName: "dynamo",
-  env,
-  stage,
-});
-new Storage(app, `${stage}-Storage`, {
-  serviceName: "storage",
-  env,
-  stage
-});
+// new Dynamo(app, `${stage}-Dynamo`, {
+//   serviceName: "dynamo",
+//   env,
+//   stage,
+// });
+// new Storage(app, `${stage}-Storage`, {
+//   serviceName: "storage",
+//   env,
+//   stage
+// });
 
-// Services
-new EncodeService(app, `${stage}-EncodeService`, {
-  serviceName: "encode",
-  env,
-  stage,
-  dependencies: {},
-});
+// // Services
+// new EncodeService(app, `${stage}-EncodeService`, {
+//   serviceName: "encode",
+//   env,
+//   stage,
+//   dependencies: {},
+// });
 
-new TranscribeService(app, `${stage}-TranscribeService`, {
-  serviceName: "transcribe",
-  env,
-  stage,
-  dependencies: {},
-});
+// new TranscribeService(app, `${stage}-TranscribeService`, {
+//   serviceName: "transcribe",
+//   env,
+//   stage,
+//   dependencies: {},
+// });
+
+new CentralStack(app, `captionese-central-stack-${stage}`, {
+  env, 
+  stage, 
+  dependencies: {}
+})
 
 
 app.synth();
