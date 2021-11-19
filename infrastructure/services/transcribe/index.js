@@ -68,7 +68,8 @@ class TranscribeService extends cdk.Stack {
       codeAssetPath: path.resolve(__dirname, '../../../build/send-transcribe-job.zip'),
       handler: "send-transcribe-job.handler",
       environment: {
-        STAGE: process.env.STAGE
+        STAGE: process.env.STAGE,
+        ASSEMBLY_AI_KEY: process.env.ASSEMBLY_AI_KEY
       }
     }); 
     
