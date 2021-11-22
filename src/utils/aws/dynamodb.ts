@@ -44,11 +44,20 @@ export const createDynamoDbClient = () => {
         await entity.update(item);
     }
 
+    const search = async(options) => {
+        await entity.scan(options)
+    }
+
+    const searchById = async (id) => {
+        await entity.query(id)
+    }
+
     return {
         client,
         put,
-        update
-
+        update,
+        search, 
+        searchById
     };
 
 }

@@ -357,7 +357,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5S3Bucket7F52AD07"
+            "Ref": "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3Bucket716DC84A"
           },
           "S3Key": {
             "Fn::Join": [
@@ -370,7 +370,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5S3VersionKeyC25A870F"
+                          "Ref": "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3VersionKeyC2BFFAC0"
                         }
                       ]
                     }
@@ -383,7 +383,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5S3VersionKeyC25A870F"
+                          "Ref": "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3VersionKeyC2BFFAC0"
                         }
                       ]
                     }
@@ -448,7 +448,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "development-TranscribeService/ExtractAudioLambda/Resource",
-        "aws:asset:path": "asset.55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5.zip",
+        "aws:asset:path": "asset.a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d.zip",
         "aws:asset:property": "Code"
       }
     },
@@ -676,7 +676,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009S3BucketC67E96C0"
+            "Ref": "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3BucketCE6167B3"
           },
           "S3Key": {
             "Fn::Join": [
@@ -689,7 +689,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009S3VersionKeyC8D43123"
+                          "Ref": "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3VersionKeyC90C6B8B"
                         }
                       ]
                     }
@@ -702,7 +702,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009S3VersionKeyC8D43123"
+                          "Ref": "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3VersionKeyC90C6B8B"
                         }
                       ]
                     }
@@ -736,14 +736,13 @@
       ],
       "Metadata": {
         "aws:cdk:path": "development-TranscribeService/sendTranscriptionLambda/Resource",
-        "aws:asset:path": "asset.96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009.zip",
+        "aws:asset:path": "asset.a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9.zip",
         "aws:asset:property": "Code"
       }
     },
     "ApiGatewayForApiServiceF97F9386": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "FailOnWarnings": true,
         "Name": "assembly-development-webhook"
       },
       "Metadata": {
@@ -801,7 +800,7 @@
         "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Account"
       }
     },
-    "ApiGatewayForApiServiceDeploymentB7C1F9F3708ee791b1dbdeb2f74a1494e91e5edd": {
+    "ApiGatewayForApiServiceDeploymentB7C1F9F393047e0563c51137ef7cf633dd863e27": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -812,6 +811,7 @@
       "DependsOn": [
         "ApiGatewayForApiServiceOPTIONS80DD8D66",
         "ApiGatewayForApiServicewebhookOPTIONSF30E100D",
+        "ApiGatewayForApiServicewebhookPOSTA353740B",
         "ApiGatewayForApiServicewebhookE33C8AAD"
       ],
       "Metadata": {
@@ -825,7 +825,7 @@
           "Ref": "ApiGatewayForApiServiceF97F9386"
         },
         "DeploymentId": {
-          "Ref": "ApiGatewayForApiServiceDeploymentB7C1F9F3708ee791b1dbdeb2f74a1494e91e5edd"
+          "Ref": "ApiGatewayForApiServiceDeploymentB7C1F9F393047e0563c51137ef7cf633dd863e27"
         },
         "StageName": "development"
       },
@@ -851,7 +851,7 @@
           "IntegrationResponses": [
             {
               "ResponseParameters": {
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Headers": "'Cache-Control,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
                 "method.response.header.Access-Control-Allow-Origin": "'*'",
                 "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
                 "method.response.header.Access-Control-Allow-Credentials": "'true'"
@@ -913,7 +913,7 @@
           "IntegrationResponses": [
             {
               "ResponseParameters": {
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Headers": "'Cache-Control,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
                 "method.response.header.Access-Control-Allow-Origin": "'*'",
                 "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
                 "method.response.header.Access-Control-Allow-Credentials": "'true'"
@@ -942,6 +942,234 @@
         "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/OPTIONS/Resource"
       }
     },
+    "ApiGatewayForApiServicewebhookPOSTApiPermissiondevelopmentTranscribeServiceApiGatewayForApiService3CC86A33POSTwebhookF90CA0F0": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "assemblyWebhookLambda2AE37EC2",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayForApiServiceF97F9386"
+              },
+              "/",
+              {
+                "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+              },
+              "/POST/webhook"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST/ApiPermission.developmentTranscribeServiceApiGatewayForApiService3CC86A33.POST..webhook"
+      }
+    },
+    "ApiGatewayForApiServicewebhookPOSTApiPermissionTestdevelopmentTranscribeServiceApiGatewayForApiService3CC86A33POSTwebhook547B1899": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "assemblyWebhookLambda2AE37EC2",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayForApiServiceF97F9386"
+              },
+              "/test-invoke-stage/POST/webhook"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST/ApiPermission.Test.developmentTranscribeServiceApiGatewayForApiService3CC86A33.POST..webhook"
+      }
+    },
+    "ApiGatewayForApiServicewebhookPOSTA353740B": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "ResourceId": {
+          "Ref": "ApiGatewayForApiServicewebhookE33C8AAD"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "assemblyWebhookLambda2AE37EC2",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST/Resource"
+      }
+    },
+    "assemblyWebhookLambdaServiceRoleA8F8BA14": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/assemblyWebhookLambda/ServiceRole/Resource"
+      }
+    },
+    "assemblyWebhookLambda2AE37EC2": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3BucketC86F973E"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3VersionKeyA4175600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3VersionKeyA4175600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "assemblyWebhookLambdaServiceRoleA8F8BA14",
+            "Arn"
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "STAGE": "development"
+          }
+        },
+        "FunctionName": "assemblyWebhookLambda",
+        "Handler": "assembly-webhook.handler",
+        "MemorySize": 521,
+        "Runtime": "nodejs12.x",
+        "Timeout": 60
+      },
+      "DependsOn": [
+        "assemblyWebhookLambdaServiceRoleA8F8BA14"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/assemblyWebhookLambda/Resource",
+        "aws:asset:path": "asset.3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818.zip",
+        "aws:asset:property": "Code"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
@@ -966,29 +1194,41 @@
       "Type": "String",
       "Description": "Artifact hash for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParameters55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5S3Bucket7F52AD07": {
+    "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3Bucket716DC84A": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5\""
+      "Description": "S3 bucket for asset \"a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d\""
     },
-    "AssetParameters55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5S3VersionKeyC25A870F": {
+    "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3VersionKeyC2BFFAC0": {
       "Type": "String",
-      "Description": "S3 key for asset version \"55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5\""
+      "Description": "S3 key for asset version \"a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d\""
     },
-    "AssetParameters55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5ArtifactHash29A3FF22": {
+    "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dArtifactHashFBF84B0D": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5\""
+      "Description": "Artifact hash for asset \"a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d\""
     },
-    "AssetParameters96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009S3BucketC67E96C0": {
+    "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3BucketCE6167B3": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009\""
+      "Description": "S3 bucket for asset \"a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9\""
     },
-    "AssetParameters96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009S3VersionKeyC8D43123": {
+    "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3VersionKeyC90C6B8B": {
       "Type": "String",
-      "Description": "S3 key for asset version \"96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009\""
+      "Description": "S3 key for asset version \"a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9\""
     },
-    "AssetParameters96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009ArtifactHash4A1FAF2D": {
+    "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9ArtifactHashFE668322": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009\""
+      "Description": "Artifact hash for asset \"a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9\""
+    },
+    "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3BucketC86F973E": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818\""
+    },
+    "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3VersionKeyA4175600": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818\""
+    },
+    "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818ArtifactHashA7286995": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818\""
     }
   },
   "Outputs": {

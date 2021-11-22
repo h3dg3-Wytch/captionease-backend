@@ -61,6 +61,8 @@ class TranscribeService extends cdk.Stack {
 
     // For the extracted audio, dispatch a job to Assembly A.I for transcribining
 
+    console.log(process.env.ASSEMBLY_AI_KEY);
+
     const sendTranscriptionLambda = createLambdaFunction({ 
       app: this,
       id: 'sendTranscriptionLambda',
@@ -91,20 +93,36 @@ class TranscribeService extends cdk.Stack {
       deployOptions: { stageName: stage },
       defaultCorsPreflightOptions: {
         allowHeaders: [
-          'Content-Type',
-          'X-Amz-Date',
-          'Authorization',
-          'X-Api-Key',
+          'Cache-Control',
+          ...apigateway.Cors.DEFAULT_HEADERS
         ],
         allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
         allowCredentials: true,
         allowOrigins: apigateway.Cors.ALL_ORIGINS,
+        proxy: false
       },
-      failOnWarnings: true,
-      proxy: false,
     });
 
     const assemblyWebhookApi = api.root.addResource('webhook');
+
+    const assemblyWebhookLambda = createLambdaFunction({ 
+      app: this,
+      id: 'assemblyWebhookLambda',
+      functionName: 'assemblyWebhookLambda',
+      codeAssetPath: path.resolve(__dirname, '../../../build/assembly-webhook.zip'),
+      handler: "assembly-webhook.handler",
+      environment: {
+        STAGE: process.env.STAGE,
+      }
+    }); 
+
+    assemblyWebhookApi.addMethod(
+      'POST',
+      new apigateway.LambdaIntegration(assemblyWebhookLambda, {proxy: false}),
+    )
+    
+
+
     // addCorsOptions(assemblyWebhookApi);
   }
 }

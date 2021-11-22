@@ -91,7 +91,7 @@ async function extractAudio(event, { logger }) {
 		
 		logger.info(`audioName:${audioKeyName} Reading audio file...`);
 
-		const audioBucketKeyName = `${generateUUID()}-temp.mp3`
+		const audioBucketKeyName = `${item.id}.mp3`
 
 		await clients.s3.put({ file: audioName, bucket: audioBucket, key: audioBucketKeyName });
 		logger.info(`audioName:${audioKeyName} Writing audio file to s3 ...`);

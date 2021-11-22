@@ -564,13 +564,13 @@
                   "version": "1.107.0"
                 }
               },
-              "55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5": {
-                "id": "55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5",
-                "path": "development-TranscribeService/AssetParameters/55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5",
+              "a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d": {
+                "id": "a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d",
+                "path": "development-TranscribeService/AssetParameters/a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "development-TranscribeService/AssetParameters/55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5/S3Bucket",
+                    "path": "development-TranscribeService/AssetParameters/a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -578,7 +578,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "development-TranscribeService/AssetParameters/55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5/S3VersionKey",
+                    "path": "development-TranscribeService/AssetParameters/a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -586,7 +586,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "development-TranscribeService/AssetParameters/55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5/ArtifactHash",
+                    "path": "development-TranscribeService/AssetParameters/a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -598,13 +598,13 @@
                   "version": "1.107.0"
                 }
               },
-              "96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009": {
-                "id": "96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009",
-                "path": "development-TranscribeService/AssetParameters/96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009",
+              "a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9": {
+                "id": "a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9",
+                "path": "development-TranscribeService/AssetParameters/a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "development-TranscribeService/AssetParameters/96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009/S3Bucket",
+                    "path": "development-TranscribeService/AssetParameters/a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -612,7 +612,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "development-TranscribeService/AssetParameters/96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009/S3VersionKey",
+                    "path": "development-TranscribeService/AssetParameters/a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -620,7 +620,41 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "development-TranscribeService/AssetParameters/96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009/ArtifactHash",
+                    "path": "development-TranscribeService/AssetParameters/a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9/ArtifactHash",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.107.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.107.0"
+                }
+              },
+              "3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818": {
+                "id": "3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818",
+                "path": "development-TranscribeService/AssetParameters/3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "development-TranscribeService/AssetParameters/3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818/S3Bucket",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.107.0"
+                    }
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "development-TranscribeService/AssetParameters/3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818/S3VersionKey",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.107.0"
+                    }
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "development-TranscribeService/AssetParameters/3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -874,7 +908,7 @@
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5S3Bucket7F52AD07"
+                        "Ref": "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3Bucket716DC84A"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -887,7 +921,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5S3VersionKeyC25A870F"
+                                      "Ref": "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3VersionKeyC2BFFAC0"
                                     }
                                   ]
                                 }
@@ -900,7 +934,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters55fe60fb9317e30d728ea027f9c8d18f955552ffffaf920e5e5b6a9bf85f4fb5S3VersionKeyC25A870F"
+                                      "Ref": "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3VersionKeyC2BFFAC0"
                                     }
                                   ]
                                 }
@@ -1281,7 +1315,7 @@
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009S3BucketC67E96C0"
+                        "Ref": "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3BucketCE6167B3"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -1294,7 +1328,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009S3VersionKeyC8D43123"
+                                      "Ref": "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3VersionKeyC90C6B8B"
                                     }
                                   ]
                                 }
@@ -1307,7 +1341,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters96ed16d43f910ce288d8e6eb92f5f7b12b18d10ccbec8375a082559b2ddc9009S3VersionKeyC8D43123"
+                                      "Ref": "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3VersionKeyC90C6B8B"
                                     }
                                   ]
                                 }
@@ -1357,7 +1391,6 @@
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::ApiGateway::RestApi",
                   "aws:cdk:cloudformation:props": {
-                    "failOnWarnings": true,
                     "name": "assembly-development-webhook"
                   }
                 },
@@ -1475,7 +1508,7 @@
                           "Ref": "ApiGatewayForApiServiceF97F9386"
                         },
                         "deploymentId": {
-                          "Ref": "ApiGatewayForApiServiceDeploymentB7C1F9F3708ee791b1dbdeb2f74a1494e91e5edd"
+                          "Ref": "ApiGatewayForApiServiceDeploymentB7C1F9F393047e0563c51137ef7cf633dd863e27"
                         },
                         "stageName": "development"
                       }
@@ -1533,7 +1566,7 @@
                                 {
                                   "statusCode": "204",
                                   "responseParameters": {
-                                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                    "method.response.header.Access-Control-Allow-Headers": "'Cache-Control,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
                                     "method.response.header.Access-Control-Allow-Origin": "'*'",
                                     "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
                                     "method.response.header.Access-Control-Allow-Credentials": "'true'"
@@ -1619,7 +1652,7 @@
                                     {
                                       "statusCode": "204",
                                       "responseParameters": {
-                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                        "method.response.header.Access-Control-Allow-Headers": "'Cache-Control,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
                                         "method.response.header.Access-Control-Allow-Origin": "'*'",
                                         "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
                                         "method.response.header.Access-Control-Allow-Credentials": "'true'"
@@ -1650,6 +1683,158 @@
                           "fqn": "@aws-cdk/aws-apigateway.Method",
                           "version": "1.107.0"
                         }
+                      },
+                      "POST": {
+                        "id": "POST",
+                        "path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST",
+                        "children": {
+                          "ApiPermission.developmentTranscribeServiceApiGatewayForApiService3CC86A33.POST..webhook": {
+                            "id": "ApiPermission.developmentTranscribeServiceApiGatewayForApiService3CC86A33.POST..webhook",
+                            "path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST/ApiPermission.developmentTranscribeServiceApiGatewayForApiService3CC86A33.POST..webhook",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "assemblyWebhookLambda2AE37EC2",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "ApiGatewayForApiServiceF97F9386"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+                                      },
+                                      "/POST/webhook"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.107.0"
+                            }
+                          },
+                          "ApiPermission.Test.developmentTranscribeServiceApiGatewayForApiService3CC86A33.POST..webhook": {
+                            "id": "ApiPermission.Test.developmentTranscribeServiceApiGatewayForApiService3CC86A33.POST..webhook",
+                            "path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST/ApiPermission.Test.developmentTranscribeServiceApiGatewayForApiService3CC86A33.POST..webhook",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "assemblyWebhookLambda2AE37EC2",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "ApiGatewayForApiServiceF97F9386"
+                                      },
+                                      "/test-invoke-stage/POST/webhook"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                              "version": "1.107.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "POST",
+                                "resourceId": {
+                                  "Ref": "ApiGatewayForApiServicewebhookE33C8AAD"
+                                },
+                                "restApiId": {
+                                  "Ref": "ApiGatewayForApiServiceF97F9386"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "assemblyWebhookLambda2AE37EC2",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-apigateway.CfnMethod",
+                              "version": "1.107.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-apigateway.Method",
+                          "version": "1.107.0"
+                        }
                       }
                     },
                     "constructInfo": {
@@ -1666,6 +1851,158 @@
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-apigateway.RestApi",
+              "version": "1.107.0"
+            }
+          },
+          "assemblyWebhookLambda": {
+            "id": "assemblyWebhookLambda",
+            "path": "development-TranscribeService/assemblyWebhookLambda",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "development-TranscribeService/assemblyWebhookLambda/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "development-TranscribeService/assemblyWebhookLambda/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.107.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.107.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "development-TranscribeService/assemblyWebhookLambda/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "development-TranscribeService/assemblyWebhookLambda/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.107.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "development-TranscribeService/assemblyWebhookLambda/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Resource",
+                      "version": "1.107.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.107.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "development-TranscribeService/assemblyWebhookLambda/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3BucketC86F973E"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3VersionKeyA4175600"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3VersionKeyA4175600"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "assemblyWebhookLambdaServiceRoleA8F8BA14",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "STAGE": "development"
+                      }
+                    },
+                    "functionName": "assemblyWebhookLambda",
+                    "handler": "assembly-webhook.handler",
+                    "memorySize": 521,
+                    "runtime": "nodejs12.x",
+                    "timeout": 60
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.107.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
               "version": "1.107.0"
             }
           },

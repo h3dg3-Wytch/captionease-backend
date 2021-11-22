@@ -46,16 +46,15 @@ async function sendTranscribeJob(event, { logger }) {
 
   logger.info('audio url', audioUrl)
 
-  const webhook_url = await clients.s3.generatePresignedPostUrl({});
-  logger.info('webhook url', webhook_url)
+  // const webhook_url = await clients.s3.generatePresignedPostUrl({});
 
   const assemblyAiRepsonse = await  axios({
     method: 'post',
-    headers: {authorization: ASSEMBLY_AI_KEY, 'content-type': 'application/json'} ,
+    headers: {authorization: '2d0bd2d301374b0a8d7efebcbddee60a', 'content-type': 'application/json'} ,
     url: 'https://api.assemblyai.com/v2/transcript',
     data: {
       audio_url: audioUrl, 
-      webhook_url
+      webhook_url: 'https://hn5f3nh1xk.execute-api.us-east-1.amazonaws.com/development/webhook'
     }
   })
 
