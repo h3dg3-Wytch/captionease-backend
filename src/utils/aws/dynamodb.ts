@@ -45,11 +45,11 @@ export const createDynamoDbClient = () => {
     }
 
     const search = async(options) => {
-        await entity.scan(options)
+        return await entity.scan(options)
     }
 
     const searchById = async (id) => {
-        await entity.query(id)
+        return await entity.query(id)
     }
 
     return {

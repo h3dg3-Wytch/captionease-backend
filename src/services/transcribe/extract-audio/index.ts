@@ -16,6 +16,8 @@ import childProcess from 'child_process';
 import cleanOutTmp from "../../../utils/clean-out-tmp";
 import { createDynamoDbClient } from "../../../utils/aws/dynamodb";
 
+import SSM from 'aws-sdk/clients/ssm';
+
 const createClients = (config: any) => ({
   s3: createS3Client(),
   db: createDynamoDbClient() 
@@ -44,6 +46,18 @@ const generateDefaultVideoItem = ({
 
 async function extractAudio(event, { logger }) {
   const config = getConfig(customConfig);
+
+  const { STAGE: env } = config;
+
+  const ssm = new SSM({ region: 'us-east-1' });
+
+  const { Parameter } = await ssm
+  .getParameter({
+	Name: `/${env}/central/s3/audioExtractedBucket`,
+  })
+  .promise();
+
+  const audioBucket = Parameter?.Value || ''; 
 
 	const clients = createClients(config);
 
@@ -85,11 +99,13 @@ async function extractAudio(event, { logger }) {
 
 		childProcess.execFileSync("/opt/ffmpeg", args, {});
 // 		
-		const audioBucket = 'development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz';
-
 		const audioName = fs.readFileSync(audioKeyName);
 		
 		logger.info(`audioName:${audioKeyName} Reading audio file...`);
+
+
+		// audio/video-id/audio.mp3
+		// tag the file for additional info
 
 		const audioBucketKeyName = `${item.id}.mp3`
 

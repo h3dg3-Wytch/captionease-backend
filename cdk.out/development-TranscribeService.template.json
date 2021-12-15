@@ -337,6 +337,151 @@
                   "Ref": "AWS::NoValue"
                 }
               ]
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoInputBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/audioExtractedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoTranscriptionBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoEncodedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/services/api/assemblyAiToken"
+                  ]
+                ]
+              }
             }
           ],
           "Version": "2012-10-17"
@@ -357,7 +502,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3Bucket716DC84A"
+            "Ref": "AssetParametersba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303S3BucketC2C13CC7"
           },
           "S3Key": {
             "Fn::Join": [
@@ -370,7 +515,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3VersionKeyC2BFFAC0"
+                          "Ref": "AssetParametersba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303S3VersionKey8729662D"
                         }
                       ]
                     }
@@ -383,7 +528,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3VersionKeyC2BFFAC0"
+                          "Ref": "AssetParametersba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303S3VersionKey8729662D"
                         }
                       ]
                     }
@@ -448,7 +593,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "development-TranscribeService/ExtractAudioLambda/Resource",
-        "aws:asset:path": "asset.a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d.zip",
+        "aws:asset:path": "asset.ba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303.zip",
         "aws:asset:property": "Code"
       }
     },
@@ -656,6 +801,180 @@
                   "Ref": "AWS::NoValue"
                 }
               ]
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/services/api/apiUrl"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoInputBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/audioExtractedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoTranscriptionBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoEncodedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/services/api/assemblyAiToken"
+                  ]
+                ]
+              }
             }
           ],
           "Version": "2012-10-17"
@@ -676,7 +995,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3BucketCE6167B3"
+            "Ref": "AssetParameters17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63cS3BucketCBB4D440"
           },
           "S3Key": {
             "Fn::Join": [
@@ -689,7 +1008,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3VersionKeyC90C6B8B"
+                          "Ref": "AssetParameters17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63cS3VersionKey60CD5500"
                         }
                       ]
                     }
@@ -702,7 +1021,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3VersionKeyC90C6B8B"
+                          "Ref": "AssetParameters17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63cS3VersionKey60CD5500"
                         }
                       ]
                     }
@@ -736,7 +1055,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "development-TranscribeService/sendTranscriptionLambda/Resource",
-        "aws:asset:path": "asset.a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9.zip",
+        "aws:asset:path": "asset.17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63c.zip",
         "aws:asset:property": "Code"
       }
     },
@@ -800,7 +1119,7 @@
         "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Account"
       }
     },
-    "ApiGatewayForApiServiceDeploymentB7C1F9F393047e0563c51137ef7cf633dd863e27": {
+    "ApiGatewayForApiServiceDeploymentB7C1F9F3ced0baabe016e5b080627c5e1a9b948e": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -810,6 +1129,7 @@
       },
       "DependsOn": [
         "ApiGatewayForApiServiceOPTIONS80DD8D66",
+        "ApiGatewayForApiServicewebhookGET094EEC39",
         "ApiGatewayForApiServicewebhookOPTIONSF30E100D",
         "ApiGatewayForApiServicewebhookPOSTA353740B",
         "ApiGatewayForApiServicewebhookE33C8AAD"
@@ -825,7 +1145,7 @@
           "Ref": "ApiGatewayForApiServiceF97F9386"
         },
         "DeploymentId": {
-          "Ref": "ApiGatewayForApiServiceDeploymentB7C1F9F393047e0563c51137ef7cf633dd863e27"
+          "Ref": "ApiGatewayForApiServiceDeploymentB7C1F9F3ced0baabe016e5b080627c5e1a9b948e"
         },
         "StageName": "development"
       },
@@ -1039,7 +1359,7 @@
         "AuthorizationType": "NONE",
         "Integration": {
           "IntegrationHttpMethod": "POST",
-          "Type": "AWS",
+          "Type": "AWS_PROXY",
           "Uri": {
             "Fn::Join": [
               "",
@@ -1067,6 +1387,133 @@
       },
       "Metadata": {
         "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST/Resource"
+      }
+    },
+    "ApiGatewayForApiServicewebhookGETApiPermissiondevelopmentTranscribeServiceApiGatewayForApiService3CC86A33GETwebhookAF051D31": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "assemblyWebhookLambda2AE37EC2",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayForApiServiceF97F9386"
+              },
+              "/",
+              {
+                "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+              },
+              "/GET/webhook"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/GET/ApiPermission.developmentTranscribeServiceApiGatewayForApiService3CC86A33.GET..webhook"
+      }
+    },
+    "ApiGatewayForApiServicewebhookGETApiPermissionTestdevelopmentTranscribeServiceApiGatewayForApiService3CC86A33GETwebhookE9CE9272": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "assemblyWebhookLambda2AE37EC2",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayForApiServiceF97F9386"
+              },
+              "/test-invoke-stage/GET/webhook"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/GET/ApiPermission.Test.developmentTranscribeServiceApiGatewayForApiService3CC86A33.GET..webhook"
+      }
+    },
+    "ApiGatewayForApiServicewebhookGET094EEC39": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "ResourceId": {
+          "Ref": "ApiGatewayForApiServicewebhookE33C8AAD"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "assemblyWebhookLambda2AE37EC2",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/GET/Resource"
       }
     },
     "assemblyWebhookLambdaServiceRoleA8F8BA14": {
@@ -1103,12 +1550,283 @@
         "aws:cdk:path": "development-TranscribeService/assemblyWebhookLambda/ServiceRole/Resource"
       }
     },
+    "assemblyWebhookLambdaServiceRoleDefaultPolicyA3CB1869": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-videotranscriptionsbucket52f9-1d74a0yn98fpu"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-videotranscriptionsbucket52f9-1d74a0yn98fpu/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/services/api/apiUrl"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoInputBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/audioExtractedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoTranscriptionBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoEncodedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/services/api/assemblyAiToken"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":dynamodb:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":table/development-videos"
+                    ]
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "assemblyWebhookLambdaServiceRoleDefaultPolicyA3CB1869",
+        "Roles": [
+          {
+            "Ref": "assemblyWebhookLambdaServiceRoleA8F8BA14"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/assemblyWebhookLambda/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
     "assemblyWebhookLambda2AE37EC2": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3BucketC86F973E"
+            "Ref": "AssetParameters0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bcS3Bucket76F5C614"
           },
           "S3Key": {
             "Fn::Join": [
@@ -1121,7 +1839,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3VersionKeyA4175600"
+                          "Ref": "AssetParameters0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bcS3VersionKey36A1F0C4"
                         }
                       ]
                     }
@@ -1134,7 +1852,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3VersionKeyA4175600"
+                          "Ref": "AssetParameters0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bcS3VersionKey36A1F0C4"
                         }
                       ]
                     }
@@ -1162,18 +1880,54 @@
         "Timeout": 60
       },
       "DependsOn": [
+        "assemblyWebhookLambdaServiceRoleDefaultPolicyA3CB1869",
         "assemblyWebhookLambdaServiceRoleA8F8BA14"
       ],
       "Metadata": {
         "aws:cdk:path": "development-TranscribeService/assemblyWebhookLambda/Resource",
-        "aws:asset:path": "asset.3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818.zip",
+        "aws:asset:path": "asset.0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bc.zip",
         "aws:asset:property": "Code"
+      }
+    },
+    "paramservicesapiapiUrlFED68942": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Type": "String",
+        "Value": {
+          "Fn::Join": [
+            "",
+            [
+              "https://",
+              {
+                "Ref": "ApiGatewayForApiServiceF97F9386"
+              },
+              ".execute-api.",
+              {
+                "Ref": "AWS::Region"
+              },
+              ".",
+              {
+                "Ref": "AWS::URLSuffix"
+              },
+              "/",
+              {
+                "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+              },
+              "/webhook"
+            ]
+          ]
+        },
+        "Name": "/development/services/api/apiUrl",
+        "Tier": "Standard"
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/param---services--api--apiUrl/Resource"
       }
     },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAAE41RTU+EMBD9LXsvXQgar7JrPGncYOK9lhG70JZ0pm4I4b9bChi4eZo3X533XjM+ZOkDTw+P4oaJrJrjIK0DPryTkA0rAa13EliBCBRqtTI1O1uD5Lwkdv4yF+GEBgI3JW+eOh/Lf5sBh/lKkbJmZNOVoRX6sxJ8mLbBaYUYeuxF9OA+wMUktHb5szeSlsaKR4Z5IiZiyCM/poTmQ2nbeDXGi22V7CPPiAKDTtWC4Cb6MApIRacWvisspLTeEHuCrrW9BhMFbbLJh3hiBqvUk0Bgr0DftpqaC9oaseJxHFmWpzvbozOY85OXDVB86x9yRjZ/1+5LtmeMrYBf8fiT3fHsnueHKyqVuKBPaeDlHH8Bd3j8OgYCAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAAE41RwW6DMAz9lt5DWsSmXUc77bRpFZN2z4LXppAExc4qhPj3JaGgctvJ7+XF8vNzzod898R3m2dxxUzWzXaQ1gEfPknIhlWA1jsJrEQECm8nZU7sYA2S85LY4ccchRMaCFwkH546n56XzoDD/1qRsmZkccrQCv1dCz7EbnBaIQaNvYke3Be4RIK04q/eSLoJMx4ZFpmIxpAnf0wJzYfKtmlqqkfbKtknnwkFB506CYKr6MNXQCo7dfM7w1JK6w2xF+ha22swaaE7FnNIIyYwr7oXCOwd6GzrKN7QfRAzDs5Rx4xdiHMV4ELGcWR5sVtdJoWHBd972QClcf/YeGTTRVdXW5wE2dga+AW3v/kDzx95sbmgUpkLESgNvJrqH1Qdo9wpAgAA"
       },
       "Metadata": {
         "aws:cdk:path": "development-TranscribeService/CDKMetadata/Default"
@@ -1194,41 +1948,65 @@
       "Type": "String",
       "Description": "Artifact hash for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3Bucket716DC84A": {
+    "AssetParametersba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303S3BucketC2C13CC7": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d\""
+      "Description": "S3 bucket for asset \"ba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303\""
     },
-    "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dS3VersionKeyC2BFFAC0": {
+    "AssetParametersba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303S3VersionKey8729662D": {
       "Type": "String",
-      "Description": "S3 key for asset version \"a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d\""
+      "Description": "S3 key for asset version \"ba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303\""
     },
-    "AssetParametersa32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1dArtifactHashFBF84B0D": {
+    "AssetParametersba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303ArtifactHashA915B7CF": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"a32ad39f352af07e2a6a0577031a5d1c0bc91a476c182292533dbf0cb8f50c1d\""
+      "Description": "Artifact hash for asset \"ba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303\""
     },
-    "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3BucketCE6167B3": {
+    "AssetParameters17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63cS3BucketCBB4D440": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9\""
+      "Description": "S3 bucket for asset \"17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63c\""
     },
-    "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9S3VersionKeyC90C6B8B": {
+    "AssetParameters17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63cS3VersionKey60CD5500": {
       "Type": "String",
-      "Description": "S3 key for asset version \"a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9\""
+      "Description": "S3 key for asset version \"17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63c\""
     },
-    "AssetParametersa7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9ArtifactHashFE668322": {
+    "AssetParameters17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63cArtifactHashE5F3CC24": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"a7f26f4edec75504c8b6c46f555d69b99455922b0dfb022d40eb5215a70ce6b9\""
+      "Description": "Artifact hash for asset \"17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63c\""
     },
-    "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3BucketC86F973E": {
+    "AssetParameters0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bcS3Bucket76F5C614": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818\""
+      "Description": "S3 bucket for asset \"0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bc\""
     },
-    "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818S3VersionKeyA4175600": {
+    "AssetParameters0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bcS3VersionKey36A1F0C4": {
       "Type": "String",
-      "Description": "S3 key for asset version \"3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818\""
+      "Description": "S3 key for asset version \"0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bc\""
     },
-    "AssetParameters3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818ArtifactHashA7286995": {
+    "AssetParameters0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bcArtifactHashDD9D72D3": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"3b6fdc10415b5342ade6cd81887f1905014c983de6ab1386f02489132c111818\""
+      "Description": "Artifact hash for asset \"0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bc\""
+    },
+    "importedparam1Parameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/services/api/apiUrl"
+    },
+    "importparamvideoInputBucketParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/central/s3/videoInputBucket"
+    },
+    "importparamaudioExtractedBucketParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/central/s3/audioExtractedBucket"
+    },
+    "importparamvideoTranscriptionBucketParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/central/s3/videoTranscriptionBucket"
+    },
+    "importparamvideoEncodedBucketParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/central/s3/videoEncodedBucket"
+    },
+    "importparamtokenParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/services/api/assemblyAiToken"
     }
   },
   "Outputs": {
@@ -1254,6 +2032,32 @@
               "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
             },
             "/"
+          ]
+        ]
+      }
+    },
+    "servicesapiapiUrl": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "ApiGatewayForApiServiceF97F9386"
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region"
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix"
+            },
+            "/",
+            {
+              "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+            },
+            "/webhook"
           ]
         ]
       }

@@ -6,8 +6,10 @@ const cdk = require('@aws-cdk/core');
 const s3 = require('@aws-cdk/aws-s3');
 const s3n = require('@aws-cdk/aws-s3-notifications');
 const sqs = require('@aws-cdk/aws-sqs');
+const ssm = require('@aws-cdk/aws-ssm');
 const dynamodb = require('@aws-cdk/aws-dynamodb');
 const { S3EventSource } = require('@aws-cdk/aws-lambda-event-sources');
+const { createSsmParameters } = require('../../utils/ssm')
 
 
 const createLambdaFunction = require('../../utils/create-lambda-function');
@@ -19,6 +21,7 @@ class TranscribeService extends cdk.Stack {
     // A user uploads a video
     const videoInputBucket = s3.Bucket.fromBucketName(this, 'VideoInputBucket', `development-storage-videoinputbucket940f4f43-1du1ixen5jp8u`);
     const extractedAudioBucket = s3.Bucket.fromBucketName(this, 'AudioExtractedBucket', `development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz`);
+    const videoTranscriptionBucket = s3.Bucket.fromBucketName(this, 'VideoTranscriptionBucket', `development-storage-videotranscriptionsbucket52f9-1d74a0yn98fpu`);
 
     const videoTable = dynamodb.Table.fromTableName(this, 'DynamoTableVideos', 'development-videos' )
 
@@ -83,8 +86,8 @@ class TranscribeService extends cdk.Stack {
 
     videoTable.grantReadWriteData(sendTranscriptionLambda);
 
-
     // assembly webhook api gateway
+    // attach a token and then use the token is cool? the video string and then a secret token ?
 
     const apiGatewayName = `assembly-${stage}-webhook`;
 
@@ -118,12 +121,62 @@ class TranscribeService extends cdk.Stack {
 
     assemblyWebhookApi.addMethod(
       'POST',
-      new apigateway.LambdaIntegration(assemblyWebhookLambda, {proxy: false}),
+      new apigateway.LambdaIntegration(assemblyWebhookLambda),
     )
-    
+    assemblyWebhookApi.addMethod(
+      'GET',
+      new apigateway.LambdaIntegration(assemblyWebhookLambda),
+    )
+
+    videoTranscriptionBucket.grantReadWrite(assemblyWebhookLambda);
 
 
-    // addCorsOptions(assemblyWebhookApi);
+
+
+// // Usage
+  const apiGatewayUrl = createSsmParameters({
+      scope: this,
+      envName: process.env.STAGE,
+      keyValues: {
+        '/services/api/apiUrl': `${api.url}webhook`,
+      },
+  });
+
+  const consumers = [extractAudioLambda, assemblyWebhookLambda, sendTranscriptionLambda];
+
+  Object.keys(apiGatewayUrl).forEach(key => { 
+    const param = ssm.StringParameter.fromStringParameterAttributes(
+      this,
+      'imported-param-1',
+      {
+        parameterName: `/${process.env.STAGE}${key}`,
+        simpleName: false,
+      },
+    );
+    param.grantRead(assemblyWebhookLambda);
+    param.grantRead(sendTranscriptionLambda);
+  });
+
+  const bucketNames = ['videoInputBucket', 'audioExtractedBucket', 'videoTranscriptionBucket', 'videoEncodedBucket'];
+
+  const bucketParams = bucketNames.map(name => 
+    ssm.StringParameter.fromStringParameterName(this, `import-param-${name}`, `/${process.env.STAGE}/central/s3/${name}`)
+  )
+
+  bucketParams.forEach(param => {
+    consumers.forEach(consumer => param.grantRead(consumer))
+  });
+
+  const apiTokens = [`/${process.env.STAGE}/services/api/assemblyAiToken`].map(url=> 
+    ssm.StringParameter.fromStringParameterName(this, `import-param-token`, url)
+  );
+
+  apiTokens.forEach(param => {
+    consumers.forEach(consumer => param.grantRead(consumer))
+  })
+
+  consumers.forEach(consumer => videoTable.grantReadWriteData(consumer));
+
   }
 }
 

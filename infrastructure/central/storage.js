@@ -1,25 +1,37 @@
 const cdk = require('@aws-cdk/core');
 const s3 = require('@aws-cdk/aws-s3');
+const { createSsmParameters } = require('../utils/ssm');
 
 class Storage extends cdk.Stack {
   constructor(app, id, { stage }) {
     super(app, id);
 
-    new s3.Bucket(this, 'VideoInputBucket', {
+    const videoInputBucket = new s3.Bucket(this, 'VideoInputBucket', {
       name: `video-input-bucket-${stage}`
     });
 
-    new s3.Bucket(this, 'AudioExtractedBucket', {
+    const audioExtractedBucket = new s3.Bucket(this, 'AudioExtractedBucket', {
       name: `audio-extracted-bucket-${stage}`
     });
     
-    new s3.Bucket(this, 'VideoTranscriptionsBucket', {
+    const videoTranscriptionBucket = new s3.Bucket(this, 'VideoTranscriptionsBucket', {
       name: `video-transcriptions-bucket-${stage}`
     });
 
-    new s3.Bucket(this, 'VideoEncodedBucket', {
+    const videoEncodedBucket = new s3.Bucket(this, 'VideoEncodedBucket', {
       name: `video-encoded-bucket-${stage}`
     });
+
+    createSsmParameters({
+      scope: this, 
+      envName: process.env.STAGE,
+      keyValues:{
+        '/central/s3/videoInputBucket': videoInputBucket.bucketName,
+        '/central/s3/audioExtractedBucket': audioExtractedBucket.bucketName,
+        '/central/s3/videoTranscriptionBucket': videoTranscriptionBucket.bucketName,
+        '/central/s3/videoEncodedBucket': videoEncodedBucket.bucketName,
+      }
+    })
   }
 }
 
