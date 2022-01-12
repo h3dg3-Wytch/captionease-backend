@@ -38,6 +38,15 @@ async function assemblyWebhook(event, { logger }) {
 
   logger.info(assemblyAiToken);
 
+  const { Parameter: BucketParameter } = await ssm
+  .getParameter({
+	Name: `/${env}/central/s3/videoTranscriptionBucket`,
+  })
+  .promise();
+
+  const videoTranscriptionBucket = BucketParameter?.Value || '';
+
+
   const { transcript_id: transcriptId } = JSON.parse(event.body);
   logger.info(transcriptId);
    
@@ -45,23 +54,22 @@ async function assemblyWebhook(event, { logger }) {
   const assemblyAiRepsonse = await axios({
     method: 'get',
     headers: {authorization: assemblyAiToken, 'content-type': 'application/json'} ,
-    url: `https://api.assemblyai.com/v2/transcript/${transcriptId}`,
+    url: `https://api.assemblyai.com/v2/transcript/${transcriptId}/srt`,
   });
 
   logger.info(JSON.stringify(assemblyAiRepsonse.data));
 
   if(assemblyAiRepsonse) {
+
+    const assemblyAiFileKeyName = `${transcriptId}.srt`;
+    const assemblyAiFile = assemblyAiRepsonse.data.words;
     const { Items } = await clients.db.search({filters: { attr: "transcriptionKey", eq: transcriptId}})
     const record = Items[0];
     await clients.db.update({
       ...record, 
       transcriptionState: 'complete',
-
-
     })
-
-
-
+    await clients.s3.put({ file: assemblyAiFile, bucket:videoTranscriptionBucket, key: assemblyAiFileKeyName})
   }
 
   // await clients.s3.put({ file: audioName, bucket: audioBucket, key: audioBucketKeyName }); 
@@ -76,7 +84,12 @@ async function assemblyWebhook(event, { logger }) {
   //dispatch the job preprend the video id and then encode it (base64?) happy iron 
   // get the response back you should have in the query that token 
   // decrpty with video id and the token , if the token's match good to go, otherwise throw
+ 
   
+  // https://docs.assemblyai.com/guides/exporting-a-transcript-as-srt-or-vtt-captions
+  // get the SRT file ->  fetch the file as a blob, store in s3, store it and rename the file to something (transcript id, binary blob file)
+  // put text to json 
+
 
   return {
     body: JSON.stringify(

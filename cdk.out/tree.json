@@ -409,6 +409,552 @@
         "id": "development-EncodeService",
         "path": "development-EncodeService",
         "children": {
+          "VideoTranscriptionBucket": {
+            "id": "VideoTranscriptionBucket",
+            "path": "development-EncodeService/VideoTranscriptionBucket",
+            "children": {
+              "Notifications": {
+                "id": "Notifications",
+                "path": "development-EncodeService/VideoTranscriptionBucket/Notifications",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "development-EncodeService/VideoTranscriptionBucket/Notifications/Resource",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnResource",
+                      "version": "1.130.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.130.0"
+                }
+              },
+              "AllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C556": {
+                "id": "AllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C556",
+                "path": "development-EncodeService/VideoTranscriptionBucket/AllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C556",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                  "aws:cdk:cloudformation:props": {
+                    "action": "lambda:InvokeFunction",
+                    "functionName": {
+                      "Fn::GetAtt": [
+                        "EncodeCaptionsLambda56B759D9",
+                        "Arn"
+                      ]
+                    },
+                    "principal": "s3.amazonaws.com",
+                    "sourceAccount": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "sourceArn": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:",
+                          {
+                            "Ref": "AWS::Partition"
+                          },
+                          ":s3:::development-storage-videotranscriptionsbucket52f9-1d74a0yn98fpu"
+                        ]
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnPermission",
+                  "version": "1.107.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-s3.BucketBase",
+              "version": "1.130.0"
+            }
+          },
+          "VideoEncodedBucket": {
+            "id": "VideoEncodedBucket",
+            "path": "development-EncodeService/VideoEncodedBucket",
+            "children": {
+              "Notifications": {
+                "id": "Notifications",
+                "path": "development-EncodeService/VideoEncodedBucket/Notifications",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.130.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-s3.BucketBase",
+              "version": "1.130.0"
+            }
+          },
+          "DynamoTableVideos": {
+            "id": "DynamoTableVideos",
+            "path": "development-EncodeService/DynamoTableVideos",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Resource",
+              "version": "1.107.0"
+            }
+          },
+          "EncodeCaptionsLambda": {
+            "id": "EncodeCaptionsLambda",
+            "path": "development-EncodeService/EncodeCaptionsLambda",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "development-EncodeService/EncodeCaptionsLambda/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "development-EncodeService/EncodeCaptionsLambda/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.107.0"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "development-EncodeService/EncodeCaptionsLambda/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "development-EncodeService/EncodeCaptionsLambda/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "s3:GetObject*",
+                                    "s3:GetBucket*",
+                                    "s3:List*",
+                                    "s3:DeleteObject*",
+                                    "s3:PutObject*",
+                                    "s3:Abort*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::development-storage-videotranscriptionsbucket52f9-1d74a0yn98fpu"
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::development-storage-videotranscriptionsbucket52f9-1d74a0yn98fpu/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "s3:GetObject*",
+                                    "s3:GetBucket*",
+                                    "s3:List*",
+                                    "s3:DeleteObject*",
+                                    "s3:PutObject*",
+                                    "s3:Abort*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::development-storage-videoencodedbucket1b0da95a-3ylnsk9fbzam"
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::development-storage-videoencodedbucket1b0da95a-3ylnsk9fbzam/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "dynamodb:BatchGetItem",
+                                    "dynamodb:GetRecords",
+                                    "dynamodb:GetShardIterator",
+                                    "dynamodb:Query",
+                                    "dynamodb:GetItem",
+                                    "dynamodb:Scan",
+                                    "dynamodb:ConditionCheckItem",
+                                    "dynamodb:BatchWriteItem",
+                                    "dynamodb:PutItem",
+                                    "dynamodb:UpdateItem",
+                                    "dynamodb:DeleteItem"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":dynamodb:",
+                                          {
+                                            "Ref": "AWS::Region"
+                                          },
+                                          ":",
+                                          {
+                                            "Ref": "AWS::AccountId"
+                                          },
+                                          ":table/development-videos"
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Ref": "AWS::NoValue"
+                                    }
+                                  ]
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "EncodeCaptionsLambdaServiceRoleDefaultPolicy0F9B0BA6",
+                            "roles": [
+                              {
+                                "Ref": "EncodeCaptionsLambdaServiceRole57299F75"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                          "version": "1.107.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.Policy",
+                      "version": "1.107.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.107.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "development-EncodeService/EncodeCaptionsLambda/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "development-EncodeService/EncodeCaptionsLambda/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.AssetStaging",
+                      "version": "1.107.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "development-EncodeService/EncodeCaptionsLambda/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Resource",
+                      "version": "1.107.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                  "version": "1.107.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "development-EncodeService/EncodeCaptionsLambda/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParametersf128509e0de3228bf48d3d276ed1fe3c83de260055a55cffacc5231d03c9c761S3BucketE40F142F"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersf128509e0de3228bf48d3d276ed1fe3c83de260055a55cffacc5231d03c9c761S3VersionKey5B56B75C"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersf128509e0de3228bf48d3d276ed1fe3c83de260055a55cffacc5231d03c9c761S3VersionKey5B56B75C"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "EncodeCaptionsLambdaServiceRole57299F75",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "STAGE": "development"
+                      }
+                    },
+                    "functionName": "encodeCaptionsLambda",
+                    "handler": "encode-captions-for-export.handler",
+                    "memorySize": 521,
+                    "runtime": "nodejs12.x",
+                    "timeout": 60
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                  "version": "1.107.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.Function",
+              "version": "1.107.0"
+            }
+          },
+          "AssetParameters": {
+            "id": "AssetParameters",
+            "path": "development-EncodeService/AssetParameters",
+            "children": {
+              "f128509e0de3228bf48d3d276ed1fe3c83de260055a55cffacc5231d03c9c761": {
+                "id": "f128509e0de3228bf48d3d276ed1fe3c83de260055a55cffacc5231d03c9c761",
+                "path": "development-EncodeService/AssetParameters/f128509e0de3228bf48d3d276ed1fe3c83de260055a55cffacc5231d03c9c761",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "development-EncodeService/AssetParameters/f128509e0de3228bf48d3d276ed1fe3c83de260055a55cffacc5231d03c9c761/S3Bucket",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.107.0"
+                    }
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "development-EncodeService/AssetParameters/f128509e0de3228bf48d3d276ed1fe3c83de260055a55cffacc5231d03c9c761/S3VersionKey",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.107.0"
+                    }
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "development-EncodeService/AssetParameters/f128509e0de3228bf48d3d276ed1fe3c83de260055a55cffacc5231d03c9c761/ArtifactHash",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.107.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.107.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.107.0"
+            }
+          },
+          "BucketNotificationsHandler050a0587b7544547bf325f094a3db834": {
+            "id": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834",
+            "path": "development-EncodeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834",
+            "children": {
+              "Role": {
+                "id": "Role",
+                "path": "development-EncodeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "development-EncodeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnRole",
+                      "version": "1.130.0"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "development-EncodeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "development-EncodeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "s3:PutBucketNotification",
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                },
+                                {
+                                  "Action": "s3:GetBucketNotification",
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36",
+                            "roles": [
+                              {
+                                "Ref": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                          "version": "1.130.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.Policy",
+                      "version": "1.130.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Role",
+                  "version": "1.130.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "development-EncodeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.130.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.130.0"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "development-EncodeService/CDKMetadata",
@@ -730,13 +1276,13 @@
                   "version": "1.107.0"
                 }
               },
-              "ba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303": {
-                "id": "ba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303",
-                "path": "development-TranscribeService/AssetParameters/ba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303",
+              "f77cc1b6db2c0bdf7fcc4969a2dc68489e5c928362bfe93e2cb5d2ed7b0557d4": {
+                "id": "f77cc1b6db2c0bdf7fcc4969a2dc68489e5c928362bfe93e2cb5d2ed7b0557d4",
+                "path": "development-TranscribeService/AssetParameters/f77cc1b6db2c0bdf7fcc4969a2dc68489e5c928362bfe93e2cb5d2ed7b0557d4",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "development-TranscribeService/AssetParameters/ba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303/S3Bucket",
+                    "path": "development-TranscribeService/AssetParameters/f77cc1b6db2c0bdf7fcc4969a2dc68489e5c928362bfe93e2cb5d2ed7b0557d4/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -744,7 +1290,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "development-TranscribeService/AssetParameters/ba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303/S3VersionKey",
+                    "path": "development-TranscribeService/AssetParameters/f77cc1b6db2c0bdf7fcc4969a2dc68489e5c928362bfe93e2cb5d2ed7b0557d4/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -752,7 +1298,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "development-TranscribeService/AssetParameters/ba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303/ArtifactHash",
+                    "path": "development-TranscribeService/AssetParameters/f77cc1b6db2c0bdf7fcc4969a2dc68489e5c928362bfe93e2cb5d2ed7b0557d4/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -764,13 +1310,13 @@
                   "version": "1.107.0"
                 }
               },
-              "17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63c": {
-                "id": "17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63c",
-                "path": "development-TranscribeService/AssetParameters/17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63c",
+              "4d0d478aec81315962b58e0a3394e31d8b041020b26bd5210f9a44c454c64f37": {
+                "id": "4d0d478aec81315962b58e0a3394e31d8b041020b26bd5210f9a44c454c64f37",
+                "path": "development-TranscribeService/AssetParameters/4d0d478aec81315962b58e0a3394e31d8b041020b26bd5210f9a44c454c64f37",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "development-TranscribeService/AssetParameters/17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63c/S3Bucket",
+                    "path": "development-TranscribeService/AssetParameters/4d0d478aec81315962b58e0a3394e31d8b041020b26bd5210f9a44c454c64f37/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -778,7 +1324,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "development-TranscribeService/AssetParameters/17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63c/S3VersionKey",
+                    "path": "development-TranscribeService/AssetParameters/4d0d478aec81315962b58e0a3394e31d8b041020b26bd5210f9a44c454c64f37/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -786,7 +1332,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "development-TranscribeService/AssetParameters/17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63c/ArtifactHash",
+                    "path": "development-TranscribeService/AssetParameters/4d0d478aec81315962b58e0a3394e31d8b041020b26bd5210f9a44c454c64f37/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -798,13 +1344,13 @@
                   "version": "1.107.0"
                 }
               },
-              "0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bc": {
-                "id": "0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bc",
-                "path": "development-TranscribeService/AssetParameters/0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bc",
+              "3c1ae849f9757158d9ca8753a3c7dfb7aa93e332666860824cbb6f80cac2a55b": {
+                "id": "3c1ae849f9757158d9ca8753a3c7dfb7aa93e332666860824cbb6f80cac2a55b",
+                "path": "development-TranscribeService/AssetParameters/3c1ae849f9757158d9ca8753a3c7dfb7aa93e332666860824cbb6f80cac2a55b",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "development-TranscribeService/AssetParameters/0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bc/S3Bucket",
+                    "path": "development-TranscribeService/AssetParameters/3c1ae849f9757158d9ca8753a3c7dfb7aa93e332666860824cbb6f80cac2a55b/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -812,7 +1358,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "development-TranscribeService/AssetParameters/0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bc/S3VersionKey",
+                    "path": "development-TranscribeService/AssetParameters/3c1ae849f9757158d9ca8753a3c7dfb7aa93e332666860824cbb6f80cac2a55b/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -820,7 +1366,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "development-TranscribeService/AssetParameters/0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bc/ArtifactHash",
+                    "path": "development-TranscribeService/AssetParameters/3c1ae849f9757158d9ca8753a3c7dfb7aa93e332666860824cbb6f80cac2a55b/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.107.0"
@@ -1219,7 +1765,7 @@
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParametersba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303S3BucketC2C13CC7"
+                        "Ref": "AssetParametersf77cc1b6db2c0bdf7fcc4969a2dc68489e5c928362bfe93e2cb5d2ed7b0557d4S3Bucket12FD128D"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -1232,7 +1778,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParametersba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303S3VersionKey8729662D"
+                                      "Ref": "AssetParametersf77cc1b6db2c0bdf7fcc4969a2dc68489e5c928362bfe93e2cb5d2ed7b0557d4S3VersionKey8B3AF409"
                                     }
                                   ]
                                 }
@@ -1245,7 +1791,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParametersba885411fb8900aa3441864252c707f5962f88e811573a547c0c80b683e47303S3VersionKey8729662D"
+                                      "Ref": "AssetParametersf77cc1b6db2c0bdf7fcc4969a2dc68489e5c928362bfe93e2cb5d2ed7b0557d4S3VersionKey8B3AF409"
                                     }
                                   ]
                                 }
@@ -1800,7 +2346,7 @@
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63cS3BucketCBB4D440"
+                        "Ref": "AssetParameters4d0d478aec81315962b58e0a3394e31d8b041020b26bd5210f9a44c454c64f37S3Bucket53EED37E"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -1813,7 +2359,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63cS3VersionKey60CD5500"
+                                      "Ref": "AssetParameters4d0d478aec81315962b58e0a3394e31d8b041020b26bd5210f9a44c454c64f37S3VersionKey681D3C3D"
                                     }
                                   ]
                                 }
@@ -1826,7 +2372,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters17fbac6d4fcc7c8a9de8af4d0348548d7276fe05b1fadd9101a4ad81243fc63cS3VersionKey60CD5500"
+                                      "Ref": "AssetParameters4d0d478aec81315962b58e0a3394e31d8b041020b26bd5210f9a44c454c64f37S3VersionKey681D3C3D"
                                     }
                                   ]
                                 }
@@ -2864,7 +3410,7 @@
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bcS3Bucket76F5C614"
+                        "Ref": "AssetParameters3c1ae849f9757158d9ca8753a3c7dfb7aa93e332666860824cbb6f80cac2a55bS3Bucket04F29D3A"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -2877,7 +3423,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bcS3VersionKey36A1F0C4"
+                                      "Ref": "AssetParameters3c1ae849f9757158d9ca8753a3c7dfb7aa93e332666860824cbb6f80cac2a55bS3VersionKey9B39AE6F"
                                     }
                                   ]
                                 }
@@ -2890,7 +3436,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters0348973903eb1e26c48226069b9d2acb898792f7f329e7e07f682b6dccb860bcS3VersionKey36A1F0C4"
+                                      "Ref": "AssetParameters3c1ae849f9757158d9ca8753a3c7dfb7aa93e332666860824cbb6f80cac2a55bS3VersionKey9B39AE6F"
                                     }
                                   ]
                                 }
