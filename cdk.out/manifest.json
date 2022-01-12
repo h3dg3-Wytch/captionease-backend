@@ -390,13 +390,43 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561.zip",
-              "id": "23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561",
+              "path": "asset.c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c.zip",
+              "id": "c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c",
               "packaging": "file",
-              "sourceHash": "23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561",
-              "s3BucketParameter": "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561S3Bucket141CDD0C",
-              "s3KeyParameter": "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561S3VersionKey401414DC",
-              "artifactHashParameter": "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561ArtifactHashE272B50E"
+              "sourceHash": "c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c",
+              "s3BucketParameter": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3BucketD54C6570",
+              "s3KeyParameter": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B",
+              "artifactHashParameter": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cArtifactHash1ED8151E"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:175:29)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "EncodeService.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack.js:410:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new LayerVersion (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:29:25)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429.zip",
+              "id": "441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429",
+              "packaging": "file",
+              "sourceHash": "441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429",
+              "s3BucketParameter": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3Bucket99B7F98C",
+              "s3KeyParameter": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3VersionKeyD972667F",
+              "artifactHashParameter": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429ArtifactHash7E902848"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -408,7 +438,7 @@
               "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
               "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:37:34)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:39:34)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -499,15 +529,13 @@
             ]
           }
         ],
-        "/development-EncodeService/VideoTranscriptionBucket/Notifications/Resource": [
+        "/development-EncodeService/ffmpeg-layer/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "VideoTranscriptionBucketNotificationsC7876A15",
+            "data": "ffmpeglayer406486B5",
             "trace": [
-              "BucketNotifications.createResourceOnce (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:95:29)",
-              "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:44:31)",
-              "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:53:30)",
+              "new LayerVersion (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/layers.js:64:26)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:29:25)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -518,16 +546,143 @@
             ]
           }
         ],
-        "/development-EncodeService/VideoTranscriptionBucket/AllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C556": [
+        "/development-EncodeService/AssetParameters/c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "VideoTranscriptionBucketAllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C55611B11E4C",
+            "data": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3BucketD54C6570",
             "trace": [
-              "Function.addPermission (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:42:9)",
-              "LambdaDestination.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-notifications/lib/lambda.js:40:21)",
-              "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:47:36)",
-              "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:53:30)",
+              "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "EncodeService.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack.js:410:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new LayerVersion (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:29:25)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/development-EncodeService/AssetParameters/c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B",
+            "trace": [
+              "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "EncodeService.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack.js:410:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new LayerVersion (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:29:25)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/development-EncodeService/AssetParameters/c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cArtifactHash1ED8151E",
+            "trace": [
+              "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "EncodeService.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack.js:410:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new LayerVersion (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:29:25)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/development-EncodeService/AssetParameters/441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3Bucket99B7F98C",
+            "trace": [
+              "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "EncodeService.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack.js:410:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
+              "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:39:34)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/development-EncodeService/AssetParameters/441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3VersionKeyD972667F",
+            "trace": [
+              "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "EncodeService.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack.js:410:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
+              "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:39:34)",
+              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/development-EncodeService/AssetParameters/441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429ArtifactHash7E902848",
+            "trace": [
+              "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "EncodeService.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack.js:410:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
+              "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:39:34)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -546,7 +701,7 @@
               "new Role (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
               "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:79:35)",
               "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:37:34)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:39:34)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -566,9 +721,9 @@
               "Role.addToPrincipalPolicy (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-iam/lib/role.js:205:34)",
               "Function.addToPrincipal (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-iam/lib/grant.js:90:65)",
               "Import.grantRead (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-ssm/lib/parameter.js:24:26)",
-              "/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:49:13",
+              "/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:52:13",
               "Array.forEach (<anonymous>)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:48:18)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:51:18)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -586,7 +741,7 @@
             "trace": [
               "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:135:26)",
               "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:37:34)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:39:34)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -597,21 +752,15 @@
             ]
           }
         ],
-        "/development-EncodeService/AssetParameters/23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561/S3Bucket": [
+        "/development-EncodeService/VideoTranscriptionBucket/Notifications/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561S3Bucket141CDD0C",
+            "data": "VideoTranscriptionBucketNotificationsC7876A15",
             "trace": [
-              "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
-              "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
-              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
-              "EncodeService.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack.js:410:33)",
-              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
-              "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
-              "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
-              "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
-              "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:37:34)",
+              "BucketNotifications.createResourceOnce (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:95:29)",
+              "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:44:31)",
+              "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:61:30)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -622,46 +771,16 @@
             ]
           }
         ],
-        "/development-EncodeService/AssetParameters/23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561/S3VersionKey": [
+        "/development-EncodeService/VideoTranscriptionBucket/AllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C556": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561S3VersionKey401414DC",
+            "data": "VideoTranscriptionBucketAllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C55611B11E4C",
             "trace": [
-              "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
-              "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
-              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
-              "EncodeService.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack.js:410:33)",
-              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
-              "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
-              "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
-              "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
-              "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:37:34)",
-              "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
-              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
-              "Module.load (internal/modules/cjs/loader.js:928:32)",
-              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
-              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
-              "internal/main/run_main_module.js:17:47"
-            ]
-          }
-        ],
-        "/development-EncodeService/AssetParameters/23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561/ArtifactHash": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561ArtifactHashE272B50E",
-            "trace": [
-              "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
-              "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
-              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
-              "EncodeService.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack.js:410:33)",
-              "LegacyStackSynthesizer.addFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
-              "new Asset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
-              "AssetCode.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
-              "new Function (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function.js:97:33)",
-              "createLambdaFunction (/Users/rexpeterson/work/captionease-backend/infrastructure/utils/create-lambda-function.js:15:3)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:37:34)",
+              "Function.addPermission (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:42:9)",
+              "LambdaDestination.bind (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3-notifications/lib/lambda.js:40:21)",
+              "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:47:36)",
+              "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:61:30)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -683,7 +802,7 @@
               "BucketNotifications.createResourceOnce (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:87:91)",
               "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:44:31)",
               "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:53:30)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:61:30)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -707,7 +826,7 @@
               "BucketNotifications.createResourceOnce (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:87:91)",
               "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:44:31)",
               "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:53:30)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:61:30)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -728,7 +847,7 @@
               "BucketNotifications.createResourceOnce (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:87:91)",
               "BucketNotifications.addNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/notifications-resource/notifications-resource.js:44:31)",
               "Import.addEventNotification (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/aws-s3/lib/bucket.js:390:28)",
-              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:53:30)",
+              "new EncodeService (/Users/rexpeterson/work/captionease-backend/infrastructure/services/encode/index.js:61:30)",
               "Object.<anonymous> (/Users/rexpeterson/work/captionease-backend/infrastructure/infrastructure.js:42:1)",
               "Module._compile (internal/modules/cjs/loader.js:1063:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
@@ -828,13 +947,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.b3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257.zip",
-              "id": "b3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257",
+              "path": "asset.815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6.zip",
+              "id": "815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6",
               "packaging": "file",
-              "sourceHash": "b3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257",
-              "s3BucketParameter": "AssetParametersb3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257S3BucketE64FE675",
-              "s3KeyParameter": "AssetParametersb3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257S3VersionKeyB346867C",
-              "artifactHashParameter": "AssetParametersb3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257ArtifactHash74C0DDEF"
+              "sourceHash": "815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6",
+              "s3BucketParameter": "AssetParameters815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6S3BucketF2AA6FBF",
+              "s3KeyParameter": "AssetParameters815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6S3VersionKeyDA61579F",
+              "artifactHashParameter": "AssetParameters815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6ArtifactHash2E53DE44"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -859,13 +978,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.db3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06b.zip",
-              "id": "db3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06b",
+              "path": "asset.76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2.zip",
+              "id": "76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2",
               "packaging": "file",
-              "sourceHash": "db3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06b",
-              "s3BucketParameter": "AssetParametersdb3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06bS3Bucket1D09FD65",
-              "s3KeyParameter": "AssetParametersdb3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06bS3VersionKeyB3857C86",
-              "artifactHashParameter": "AssetParametersdb3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06bArtifactHashDFAD2D3C"
+              "sourceHash": "76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2",
+              "s3BucketParameter": "AssetParameters76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2S3BucketF88C34A4",
+              "s3KeyParameter": "AssetParameters76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2S3VersionKey770D4528",
+              "artifactHashParameter": "AssetParameters76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2ArtifactHashC16F0226"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -890,13 +1009,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.b62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9f.zip",
-              "id": "b62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9f",
+              "path": "asset.cf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196.zip",
+              "id": "cf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196",
               "packaging": "file",
-              "sourceHash": "b62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9f",
-              "s3BucketParameter": "AssetParametersb62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9fS3BucketDB333EC5",
-              "s3KeyParameter": "AssetParametersb62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9fS3VersionKeyE39DFE5B",
-              "artifactHashParameter": "AssetParametersb62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9fArtifactHashB43BA6EB"
+              "sourceHash": "cf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196",
+              "s3BucketParameter": "AssetParameterscf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196S3Bucket124A8104",
+              "s3KeyParameter": "AssetParameterscf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196S3VersionKey8325757F",
+              "artifactHashParameter": "AssetParameterscf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196ArtifactHash3133D4EF"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -1086,10 +1205,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/b3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257/S3Bucket": [
+        "/development-TranscribeService/AssetParameters/815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersb3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257S3BucketE64FE675",
+            "data": "AssetParameters815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6S3BucketF2AA6FBF",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1111,10 +1230,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/b3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257/S3VersionKey": [
+        "/development-TranscribeService/AssetParameters/815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersb3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257S3VersionKeyB346867C",
+            "data": "AssetParameters815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6S3VersionKeyDA61579F",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1136,10 +1255,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/b3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257/ArtifactHash": [
+        "/development-TranscribeService/AssetParameters/815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersb3be91e5e5c499b06d3e3cbc2336021c9256073cba60b5f223e1cfc4c26a6257ArtifactHash74C0DDEF",
+            "data": "AssetParameters815d1e05baa7c6d6626b83be84e87ee1fd8267ef306606e6edbb9a1d1ddd93b6ArtifactHash2E53DE44",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1161,10 +1280,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/db3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06b/S3Bucket": [
+        "/development-TranscribeService/AssetParameters/76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersdb3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06bS3Bucket1D09FD65",
+            "data": "AssetParameters76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2S3BucketF88C34A4",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1186,10 +1305,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/db3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06b/S3VersionKey": [
+        "/development-TranscribeService/AssetParameters/76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersdb3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06bS3VersionKeyB3857C86",
+            "data": "AssetParameters76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2S3VersionKey770D4528",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1211,10 +1330,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/db3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06b/ArtifactHash": [
+        "/development-TranscribeService/AssetParameters/76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersdb3df8608e273ac986dfedc1724502f82b2d7ea9b091db25098626f878f6e06bArtifactHashDFAD2D3C",
+            "data": "AssetParameters76c58e802bb116da14c0a43a8b5287f8224a35250672d595e3b71ac30d7c11c2ArtifactHashC16F0226",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1236,10 +1355,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/b62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9f/S3Bucket": [
+        "/development-TranscribeService/AssetParameters/cf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersb62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9fS3BucketDB333EC5",
+            "data": "AssetParameterscf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196S3Bucket124A8104",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1261,10 +1380,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/b62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9f/S3VersionKey": [
+        "/development-TranscribeService/AssetParameters/cf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersb62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9fS3VersionKeyE39DFE5B",
+            "data": "AssetParameterscf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196S3VersionKey8325757F",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1286,10 +1405,10 @@
             ]
           }
         ],
-        "/development-TranscribeService/AssetParameters/b62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9f/ArtifactHash": [
+        "/development-TranscribeService/AssetParameters/cf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersb62bdf6f2fdafb0258a445765e0a613994a7b099199ec5448fa7659a68648c9fArtifactHashB43BA6EB",
+            "data": "AssetParameterscf7f90a96fea36d541f65b5148c4c1cba0831d4ba35acb2f9755ba81b07f4196ArtifactHash3133D4EF",
             "trace": [
               "new FileAssetParameters (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/rexpeterson/work/captionease-backend/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",

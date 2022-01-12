@@ -16,88 +16,84 @@
       "Type": "AWS::SSM::Parameter::Value<String>",
       "Default": "/development/central/s3/videoEncodedBucket"
     },
-    "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561S3Bucket141CDD0C": {
+    "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3BucketD54C6570": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561\""
+      "Description": "S3 bucket for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561S3VersionKey401414DC": {
+    "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B": {
       "Type": "String",
-      "Description": "S3 key for asset version \"23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561\""
+      "Description": "S3 key for asset version \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561ArtifactHashE272B50E": {
+    "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cArtifactHash1ED8151E": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561\""
+      "Description": "Artifact hash for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
+    },
+    "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3Bucket99B7F98C": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429\""
+    },
+    "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3VersionKeyD972667F": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429\""
+    },
+    "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429ArtifactHash7E902848": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429\""
     }
   },
   "Resources": {
-    "VideoTranscriptionBucketNotificationsC7876A15": {
-      "Type": "Custom::S3BucketNotifications",
+    "ffmpeglayer406486B5": {
+      "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
-        "ServiceToken": {
-          "Fn::GetAtt": [
-            "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
-            "Arn"
-          ]
-        },
-        "BucketName": {
-          "Ref": "importparamvideoTranscriptionBucketParameter"
-        },
-        "NotificationConfiguration": {
-          "LambdaFunctionConfigurations": [
-            {
-              "Events": [
-                "s3:ObjectCreated:*"
-              ],
-              "LambdaFunctionArn": {
-                "Fn::GetAtt": [
-                  "EncodeCaptionsLambda56B759D9",
-                  "Arn"
-                ]
-              }
-            }
-          ]
-        },
-        "Managed": false
-      },
-      "DependsOn": [
-        "VideoTranscriptionBucketAllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C55611B11E4C"
-      ],
-      "Metadata": {
-        "aws:cdk:path": "development-EncodeService/VideoTranscriptionBucket/Notifications/Resource"
-      }
-    },
-    "VideoTranscriptionBucketAllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C55611B11E4C": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "EncodeCaptionsLambda56B759D9",
-            "Arn"
-          ]
-        },
-        "Principal": "s3.amazonaws.com",
-        "SourceAccount": {
-          "Ref": "AWS::AccountId"
-        },
-        "SourceArn": {
-          "Fn::Join": [
-            "",
-            [
-              "arn:",
-              {
-                "Ref": "AWS::Partition"
-              },
-              ":s3:::",
-              {
-                "Ref": "importparamvideoTranscriptionBucketParameter"
-              }
+        "Content": {
+          "S3Bucket": {
+            "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3BucketD54C6570"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             ]
-          ]
-        }
+          }
+        },
+        "CompatibleRuntimes": [
+          "nodejs10.x",
+          "nodejs12.x",
+          "nodejs14.x"
+        ],
+        "Description": "ffmpeg use for lambda"
       },
       "Metadata": {
-        "aws:cdk:path": "development-EncodeService/VideoTranscriptionBucket/AllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C556"
+        "aws:cdk:path": "development-EncodeService/ffmpeg-layer/Resource",
+        "aws:asset:path": "asset.c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c.zip",
+        "aws:asset:property": "Content"
       }
     },
     "EncodeCaptionsLambdaServiceRole57299F75": {
@@ -320,6 +316,50 @@
                       },
                       ":s3:::",
                       {
+                        "Ref": "importparamvideoInputBucketParameter"
+                      }
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "importparamvideoInputBucketParameter"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
                         "Ref": "importparamvideoEncodedBucketParameter"
                       }
                     ]
@@ -403,7 +443,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561S3Bucket141CDD0C"
+            "Ref": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3Bucket99B7F98C"
           },
           "S3Key": {
             "Fn::Join": [
@@ -416,7 +456,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561S3VersionKey401414DC"
+                          "Ref": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3VersionKeyD972667F"
                         }
                       ]
                     }
@@ -429,7 +469,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561S3VersionKey401414DC"
+                          "Ref": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3VersionKeyD972667F"
                         }
                       ]
                     }
@@ -452,6 +492,11 @@
         },
         "FunctionName": "encodeCaptionsLambda",
         "Handler": "encode-captions-for-export.handler",
+        "Layers": [
+          {
+            "Ref": "ffmpeglayer406486B5"
+          }
+        ],
         "MemorySize": 521,
         "Runtime": "nodejs12.x",
         "Timeout": 60
@@ -462,8 +507,78 @@
       ],
       "Metadata": {
         "aws:cdk:path": "development-EncodeService/EncodeCaptionsLambda/Resource",
-        "aws:asset:path": "asset.23f683a4e3a3e373ad2244ae0d812c44181cac17cfc83090e0e536d2b5602561.zip",
+        "aws:asset:path": "asset.441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429.zip",
         "aws:asset:property": "Code"
+      }
+    },
+    "VideoTranscriptionBucketNotificationsC7876A15": {
+      "Type": "Custom::S3BucketNotifications",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
+            "Arn"
+          ]
+        },
+        "BucketName": {
+          "Ref": "importparamvideoTranscriptionBucketParameter"
+        },
+        "NotificationConfiguration": {
+          "LambdaFunctionConfigurations": [
+            {
+              "Events": [
+                "s3:ObjectCreated:*"
+              ],
+              "LambdaFunctionArn": {
+                "Fn::GetAtt": [
+                  "EncodeCaptionsLambda56B759D9",
+                  "Arn"
+                ]
+              }
+            }
+          ]
+        },
+        "Managed": false
+      },
+      "DependsOn": [
+        "VideoTranscriptionBucketAllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C55611B11E4C"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-EncodeService/VideoTranscriptionBucket/Notifications/Resource"
+      }
+    },
+    "VideoTranscriptionBucketAllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C55611B11E4C": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EncodeCaptionsLambda56B759D9",
+            "Arn"
+          ]
+        },
+        "Principal": "s3.amazonaws.com",
+        "SourceAccount": {
+          "Ref": "AWS::AccountId"
+        },
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":s3:::",
+              {
+                "Ref": "importparamvideoTranscriptionBucketParameter"
+              }
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-EncodeService/VideoTranscriptionBucket/AllowBucketNotificationsTodevelopmentEncodeServiceEncodeCaptionsLambda0BE7C556"
       }
     },
     "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC": {
@@ -557,7 +672,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAAE41QQWoDMQx8S+5aZc229Nom0HPYvED1qsHZtQ2W3VCM/17boYVCDz1pYEajGSnManzCcfdMNxn0su6z9oExnyPpFY7v7kSBLEcOMLP4FDTDiwjHKrgYd4GjdxJD0rGJfyQVV2Ix0XhXoHnnjezbQpibJwdrRCoHr8npJmob37iAIYt59ls36vPkN6M/e6COCsg0UAsi2POUAmoafzXpZ2XCQ9IrxwMJ/8e4wP0DfxYrlXZ+YbzK/kM9oHrEaXcVY4aQXDSWcb7PL66cPKtZAQAA"
+        "Analytics": "v2:deflate64:H4sIAAAAAAAAE41QwWrDMAz9lt4dNSYbu24t9LRDyGB3zdGKm9gGS24pJv++2B1jhR120hPv6elJGrJun6DdPOOFGzNO22xCJMhvgmZS+0/fY0RHQlENxCFFQ+qFmWQVHK0/qn3wLDEZKeIfyYpXYrRig19U8c4zuo8RIb/ileI7RV6porvrD8kb+SZ+456is8zVjbsGSwKGGkRZdJCHMNettfZhtuZa5ypalkXprr07s2biDnbJTCQ7ZPqXkbq958+ryxofRoITb8/6AfQjdJsTW9vE5MU6guFWvwDWbC3AdgEAAA=="
       },
       "Metadata": {
         "aws:cdk:path": "development-EncodeService/CDKMetadata/Default"

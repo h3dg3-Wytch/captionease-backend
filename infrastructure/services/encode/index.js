@@ -21,18 +21,20 @@ class EncodeService extends cdk.Stack {
     const bucketParams = bucketNames.map(name => 
       ssm.StringParameter.fromStringParameterName(this, `import-param-${name}`, `/${process.env.STAGE}/central/s3/${name}`)
     )
-
+ 
     const [videoInputBucketParam, audioExtractedBucketParam ,videoTranscriptionBucketParam,videoEncodedBucketParam ] = bucketParams;
 
-    console.log(videoTranscriptionBucketParam.stringValue);
-    console.log(videoEncodedBucketParam.parameterArn);
-
     // const videoTranscriptionBucket = s3.Bucket.fromBucketName(this, 'VideoTranscriptionBucket', `development-storage-videotranscriptionsbucket52f9-1d74a0yn98fpu`);
-    const videoTranscriptionBucket = s3.Bucket.fromBucketName(this, 'VideoTranscriptionBucket', videoTranscriptionBucketParam.stringValue);
-    const videoEncodedBucket = s3.Bucket.fromBucketName(this, 'VideoEncodedBucket', videoEncodedBucketParam.stringValue);
-    const videoInputBucket = s3.Bucket.fromBucketName(this, 'VideoInputBucket', videoInputBucketParam.stringValue);
 
-    const videoTable = dynamodb.Table.fromTableName(this, 'DynamoTableVideos', 'development-videos' );
+    const ffmpegLayer = new lambda.LayerVersion(this, 'ffmpeg-layer', {
+      compatibleRuntimes: [
+        lambda.Runtime.NODEJS_10_X,
+        lambda.Runtime.NODEJS_12_X,
+        lambda.Runtime.NODEJS_14_X,
+      ],
+      code: lambda.Code.fromAsset(path.resolve(__dirname, '../../layers/ffmpeg.zip')),
+      description: 'ffmpeg use for lambda',
+    });
 
     const encodeCaptionsLambda = createLambdaFunction({
       app: this,
@@ -42,16 +44,24 @@ class EncodeService extends cdk.Stack {
       handler: "encode-captions-for-export.handler",
       environment: {
         STAGE: process.env.STAGE,
-      }
+      },
+      layers: [ffmpegLayer]
     });
     
     bucketParams.forEach(param => {
       param.grantRead(encodeCaptionsLambda);
     });
 
+    const videoTranscriptionBucket = s3.Bucket.fromBucketName(this, 'VideoTranscriptionBucket', videoTranscriptionBucketParam.stringValue);
+    const videoEncodedBucket = s3.Bucket.fromBucketName(this, 'VideoEncodedBucket', videoEncodedBucketParam.stringValue);
+    const videoInputBucket = s3.Bucket.fromBucketName(this, 'VideoInputBucket', videoInputBucketParam.stringValue);
+
+    const videoTable = dynamodb.Table.fromTableName(this, 'DynamoTableVideos', 'development-videos' );
 
     videoTranscriptionBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(encodeCaptionsLambda));
     videoTranscriptionBucket.grantReadWrite(encodeCaptionsLambda);
+
+    videoInputBucket.grantReadWrite(encodeCaptionsLambda);
 
     videoEncodedBucket.grantReadWrite(encodeCaptionsLambda);
 

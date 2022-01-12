@@ -4,7 +4,7 @@ export async function getSSMParameter(props) {
     const { parameterName, env} = props;
     const ssm = new SSM({ region: 'us-east-1' });
     const { Parameter } = await ssm.getParameter({
-      Name: `/${env}/parameterName`,
+      Name: `/${env}/${parameterName}`,
     }).promise();
 
     return Parameter?.Value;

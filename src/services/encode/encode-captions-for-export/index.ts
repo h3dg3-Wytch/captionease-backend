@@ -27,7 +27,7 @@ async function encodeCaptions(event, { logger }) {
 
     logger.info(`Transcription Key: ${key}`);
 
-    const params = await Promise.all(['central/s3/videoTranscriptionBucket','central/s3/videoEncodedBucket'].map( async (bucket) => await getSSMParameter({bucket, env})));
+    const params = await Promise.all(['central/s3/videoTranscriptionBucket','central/s3/videoEncodedBucket'].map( async (bucket) => await getSSMParameter({parameterName: bucket, env})));
 
     const [videoTranscriptionBucket, videoEncodedBucket] = params;
     logger.info(`Buckets ${videoTranscriptionBucket} ${videoEncodedBucket}`);
