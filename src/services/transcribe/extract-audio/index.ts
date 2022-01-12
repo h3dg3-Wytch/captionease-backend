@@ -120,7 +120,7 @@ async function extractAudio(event, { logger }) {
 		logger.error(error);
 		throw error;
 	}
-	cleanOutTmp(logger);
+	await cleanOutTmp(logger);
 }
 
 const options = {
