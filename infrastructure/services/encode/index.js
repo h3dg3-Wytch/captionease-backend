@@ -16,13 +16,13 @@ class EncodeService extends cdk.Stack {
   constructor(app, id, { serviceName, stage, env }) {
     super(app, id);
 
-    const bucketNames = ['videoInputBucket', 'audioExtractedBucket', 'videoTranscriptionBucket', 'videoEncodedBucket'];
+    const bucketNames = ['videoInputBucket', 'audioExtractedBucket', 'videoTranscriptionBucket', 'videoEncodedBucket', 'videoOutputBucket'];
 
     const bucketParams = bucketNames.map(name => 
       ssm.StringParameter.fromStringParameterName(this, `import-param-${name}`, `/${process.env.STAGE}/central/s3/${name}`)
     )
  
-    const [videoInputBucketParam, audioExtractedBucketParam ,videoTranscriptionBucketParam,videoEncodedBucketParam ] = bucketParams;
+    const [videoInputBucketParam, audioExtractedBucketParam ,videoTranscriptionBucketParam,videoEncodedBucketParam, videoOutputBucketParam ] = bucketParams;
 
     // const videoTranscriptionBucket = s3.Bucket.fromBucketName(this, 'VideoTranscriptionBucket', `development-storage-videotranscriptionsbucket52f9-1d74a0yn98fpu`);
 
@@ -55,6 +55,7 @@ class EncodeService extends cdk.Stack {
     const videoTranscriptionBucket = s3.Bucket.fromBucketName(this, 'VideoTranscriptionBucket', videoTranscriptionBucketParam.stringValue);
     const videoEncodedBucket = s3.Bucket.fromBucketName(this, 'VideoEncodedBucket', videoEncodedBucketParam.stringValue);
     const videoInputBucket = s3.Bucket.fromBucketName(this, 'VideoInputBucket', videoInputBucketParam.stringValue);
+    const videoOutputBucket = s3.Bucket.fromBucketName(this, 'videoOutputBucket', videoOutputBucketParam.stringValue);
 
     const videoTable = dynamodb.Table.fromTableName(this, 'DynamoTableVideos', 'development-videos' );
 
@@ -64,6 +65,7 @@ class EncodeService extends cdk.Stack {
     videoInputBucket.grantReadWrite(encodeCaptionsLambda);
 
     videoEncodedBucket.grantReadWrite(encodeCaptionsLambda);
+    videoOutputBucket.grantReadWrite(encodeCaptionsLambda);
 
     videoTable.grantReadWriteData(encodeCaptionsLambda);
   }

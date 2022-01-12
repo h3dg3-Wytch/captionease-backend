@@ -22,6 +22,10 @@ class Storage extends cdk.Stack {
       name: `video-encoded-bucket-${stage}`
     });
 
+    const videoOutputBucket = new s3.Bucket(this, 'VideoOutputBucket', {
+      name: `video-output-bucket-${stage}`
+    });
+
     createSsmParameters({
       scope: this, 
       envName: process.env.STAGE,
@@ -30,6 +34,7 @@ class Storage extends cdk.Stack {
         '/central/s3/audioExtractedBucket': audioExtractedBucket.bucketName,
         '/central/s3/videoTranscriptionBucket': videoTranscriptionBucket.bucketName,
         '/central/s3/videoEncodedBucket': videoEncodedBucket.bucketName,
+        '/central/s3/videoOutputBucket': videoOutputBucket.bucketName,
       }
     })
   }

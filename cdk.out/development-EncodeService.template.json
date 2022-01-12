@@ -16,6 +16,10 @@
       "Type": "AWS::SSM::Parameter::Value<String>",
       "Default": "/development/central/s3/videoEncodedBucket"
     },
+    "importparamvideoOutputBucketParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/central/s3/videoOutputBucket"
+    },
     "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3BucketD54C6570": {
       "Type": "String",
       "Description": "S3 bucket for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
@@ -28,17 +32,17 @@
       "Type": "String",
       "Description": "Artifact hash for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3Bucket99B7F98C": {
+    "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7S3Bucket3B82BF76": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429\""
+      "Description": "S3 bucket for asset \"06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7\""
     },
-    "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3VersionKeyD972667F": {
+    "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7S3VersionKeyE24DE07E": {
       "Type": "String",
-      "Description": "S3 key for asset version \"441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429\""
+      "Description": "S3 key for asset version \"06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7\""
     },
-    "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429ArtifactHash7E902848": {
+    "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7ArtifactHash9146B317": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429\""
+      "Description": "Artifact hash for asset \"06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7\""
     }
   },
   "Resources": {
@@ -253,6 +257,35 @@
             },
             {
               "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoOutputBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
                 "s3:GetObject*",
                 "s3:GetBucket*",
                 "s3:List*",
@@ -376,6 +409,50 @@
                       ":s3:::",
                       {
                         "Ref": "importparamvideoEncodedBucketParameter"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "importparamvideoOutputBucketParameter"
+                      }
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "importparamvideoOutputBucketParameter"
                       },
                       "/*"
                     ]
@@ -443,7 +520,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3Bucket99B7F98C"
+            "Ref": "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7S3Bucket3B82BF76"
           },
           "S3Key": {
             "Fn::Join": [
@@ -456,7 +533,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3VersionKeyD972667F"
+                          "Ref": "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7S3VersionKeyE24DE07E"
                         }
                       ]
                     }
@@ -469,7 +546,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429S3VersionKeyD972667F"
+                          "Ref": "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7S3VersionKeyE24DE07E"
                         }
                       ]
                     }
@@ -507,7 +584,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "development-EncodeService/EncodeCaptionsLambda/Resource",
-        "aws:asset:path": "asset.441ec5b1b289d4c08a4017a27af71f91b87ae84a93d3765087632ee7db116429.zip",
+        "aws:asset:path": "asset.06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7.zip",
         "aws:asset:property": "Code"
       }
     },
