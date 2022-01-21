@@ -32,17 +32,17 @@
       "Type": "String",
       "Description": "Artifact hash for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7S3Bucket3B82BF76": {
+    "AssetParametersb5a9b3be01224fd494014216da21aec2a9d7fcbf34eaf36a6d0ee3c6b6bbae76S3Bucket0EDBFFEF": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7\""
+      "Description": "S3 bucket for asset \"b5a9b3be01224fd494014216da21aec2a9d7fcbf34eaf36a6d0ee3c6b6bbae76\""
     },
-    "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7S3VersionKeyE24DE07E": {
+    "AssetParametersb5a9b3be01224fd494014216da21aec2a9d7fcbf34eaf36a6d0ee3c6b6bbae76S3VersionKey77B9271B": {
       "Type": "String",
-      "Description": "S3 key for asset version \"06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7\""
+      "Description": "S3 key for asset version \"b5a9b3be01224fd494014216da21aec2a9d7fcbf34eaf36a6d0ee3c6b6bbae76\""
     },
-    "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7ArtifactHash9146B317": {
+    "AssetParametersb5a9b3be01224fd494014216da21aec2a9d7fcbf34eaf36a6d0ee3c6b6bbae76ArtifactHash384C5656": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7\""
+      "Description": "Artifact hash for asset \"b5a9b3be01224fd494014216da21aec2a9d7fcbf34eaf36a6d0ee3c6b6bbae76\""
     }
   },
   "Resources": {
@@ -520,7 +520,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7S3Bucket3B82BF76"
+            "Ref": "AssetParametersb5a9b3be01224fd494014216da21aec2a9d7fcbf34eaf36a6d0ee3c6b6bbae76S3Bucket0EDBFFEF"
           },
           "S3Key": {
             "Fn::Join": [
@@ -533,7 +533,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7S3VersionKeyE24DE07E"
+                          "Ref": "AssetParametersb5a9b3be01224fd494014216da21aec2a9d7fcbf34eaf36a6d0ee3c6b6bbae76S3VersionKey77B9271B"
                         }
                       ]
                     }
@@ -546,7 +546,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7S3VersionKeyE24DE07E"
+                          "Ref": "AssetParametersb5a9b3be01224fd494014216da21aec2a9d7fcbf34eaf36a6d0ee3c6b6bbae76S3VersionKey77B9271B"
                         }
                       ]
                     }
@@ -584,7 +584,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "development-EncodeService/EncodeCaptionsLambda/Resource",
-        "aws:asset:path": "asset.06e4f23591195b173d52e69b1c2dc7994623ddf0eaf432d3597e87ed9199c8a7.zip",
+        "aws:asset:path": "asset.b5a9b3be01224fd494014216da21aec2a9d7fcbf34eaf36a6d0ee3c6b6bbae76.zip",
         "aws:asset:property": "Code"
       }
     },

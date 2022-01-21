@@ -51,31 +51,29 @@ async function encodeCaptions(event, { logger }) {
     fs.writeFileSync(videoKeyName, videoBody);
 
     const subtitlesBlob = await clients.s3.get({ bucket: videoTranscriptionBucket!, key})
-    const subtitlesBody = subtitlesBlob?.Body;
+    const subtitlesBody = subtitlesBlob?.Body?.toString('utf-8');
 
-    logger.info(subtitlesBlob, subtitlesBody)
+    logger.info('subtitles', subtitlesBlob, subtitlesBody)
 
-    const subtitlesKeyName = `/tmp/mov_text`
+    const subtitlesKeyName = `/tmp/mov_text.srt`
 
     const outputKey = '/tmp/output.mp4';
 
     fs.writeFileSync(subtitlesKeyName,subtitlesBody);
 
     //ffmpeg -i input.mp4 -map 0 -c copy -c:s mov_text -metadata:s:s:0 language=eng -metadata:s:s:1 language=ipk output.mp4
+    // ffmpeg -i infile.mp4 -i infile.srt -c copy -c:s mov_text outfile.mp4
 
+    // ffmpeg -i mymovie.mp4 -vf subtitles=subtitles.srt mysubtitledmovie.mp4
+
+    // ffmpeg -i temp.mp4 -vf "subtitles=temp.srt:force_style='Name=Default,Fontname=Arial,Fontsize=14,PrimaryColour=&Hffffff,SecondaryColour=&Hffffff,OutlineColour=&H44000000BackColour=&H0,BorderStyle=4,Shadow=0'" output-with-subtitles.mp4
+
+    const subtitles = `subtitles=${subtitlesKeyName}:force_style='Name=Default,Fontname=Arial,Fontsize=14,PrimaryColour=&Hffffff,SecondaryColour=&Hffffff,OutlineColour=&H44000000BackColour=&H0,BorderStyle=4,Shadow=0`
     const args = [
       '-i',
       videoKeyName,
-      '-map',
-      0,
-      '-c',
-      'copy',
-      '-c:s',
-      subtitlesKeyName,
-      '-metadata:s:s:0',
-      'language=eng',
-      '-metadata:s:s:1',
-      'language=ipk',
+      '-vf',
+      subtitles,
       outputKey
     ];  
 
@@ -91,6 +89,7 @@ async function encodeCaptions(event, { logger }) {
   }
   catch (error){
     logger.error(error);
+    await cleanOutTmp(logger);
 		throw error;
   }
 

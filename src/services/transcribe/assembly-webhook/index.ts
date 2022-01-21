@@ -62,7 +62,8 @@ async function assemblyWebhook(event, { logger }) {
   if(assemblyAiRepsonse) {
 
     const assemblyAiFileKeyName = `${transcriptId}.srt`;
-    const assemblyAiFile = assemblyAiRepsonse.data.words;
+    const assemblyAiFile = assemblyAiRepsonse.data;
+    logger.info(assemblyAiFile);
     const { Items } = await clients.db.search({filters: { attr: "transcriptionKey", eq: transcriptId}})
     const record = Items[0];
     await clients.db.update({
@@ -71,6 +72,8 @@ async function assemblyWebhook(event, { logger }) {
     })
     await clients.s3.put({ file: assemblyAiFile, bucket:videoTranscriptionBucket, key: assemblyAiFileKeyName})
   }
+
+  
 
   // await clients.s3.put({ file: audioName, bucket: audioBucket, key: audioBucketKeyName }); 
   // const eventRecord = event.Records && event.Records[0];
