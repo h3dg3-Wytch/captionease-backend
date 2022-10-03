@@ -1,4 +1,4 @@
-import uuidv4 from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
 import os from "os";
@@ -12,9 +12,15 @@ import { createS3Client } from "../../../utils/aws/s3";
 
 import customConfig from './config';
 import { generateUUID } from "../../../utils/uuid";
+import childProcess from 'child_process';
+import cleanOutTmp from "../../../utils/clean-out-tmp";
+import { createDynamoDbClient } from "../../../utils/aws/dynamodb";
+
+import SSM from 'aws-sdk/clients/ssm';
 
 const createClients = (config: any) => ({
   s3: createS3Client(),
+  db: createDynamoDbClient() 
 });
 
 process.env.PATH =
@@ -26,31 +32,42 @@ const getExtension = (filename: string) => {
   return ext[ext.length - 1];
 };
 
+const generateDefaultVideoItem = ({
+	videoBucketKey,
+}) => ({
+	id: '' + generateUUID(),
+	userId: ''+ generateUUID(),
+	state: 'pending',
+	videoBucketKey,
+	extractedAudioKey: null,
+	transcriptionState: 'pending',
+	transcriptionKey: null
+})
+
 async function extractAudio(event, { logger }) {
   const config = getConfig(customConfig);
 
+  const { STAGE: env } = config;
+
+  const ssm = new SSM({ region: 'us-east-1' });
+
+  const { Parameter } = await ssm
+  .getParameter({
+	Name: `/${env}/central/s3/audioExtractedBucket`,
+  })
+  .promise();
+
+  const audioBucket = Parameter?.Value || ''; 
+
 	const clients = createClients(config);
 
-	
-
 	try {
-
-		await fs.readdir('/tmp/',async (err, files) => {
-			if (err) throw err;
-			logger.info(`do you like files ${files}`);
-			for (const file of files) {
-			  await fs.unlink(path.join('/tmp/', file), err => {
-				if (err) throw err;
-			  });
-			}
-		  });
 
 		logger.info('inside the extract audio lambda')
 		logger.info(JSON.stringify(event));
 
 		const eventRecord = event.Records && event.Records[0];
 
-		const id = generateUUID();
 		const inputBucket = eventRecord.s3.bucket.name;
 		const key = eventRecord.s3.object.key;
 
@@ -59,183 +76,51 @@ async function extractAudio(event, { logger }) {
 		const blob = await clients.s3.get({ bucket: inputBucket, key});
 		const body = blob?.Body;
 
+		const item = generateDefaultVideoItem({videoBucketKey: key});
+
+		await clients.db.put(item);
+
 		const videoKeyName = `/tmp/${key}`;
-		const audioKeyName = `/tmp/test.mp3`;
-
-		// @ts-ignore
-		// defensive check later
-
+		const audioKeyName = `/tmp/temp.mp3`;
 
 		logger.info('Writing video file to temp...');
 
-		
 		fs.writeFileSync(videoKeyName, body);
 
 		const args = [
 			"-i" ,
 		   videoKeyName,
-			"-q:a",
-			 "0",
-			"-map a",
+		   "-vn",
 			audioKeyName
 		];
 
 		//replace with mp4 with mp3
 		logger.info(`Extracting audio from video :: Video key ${inputBucket}/${key}`);
 
-		fs.readdirSync('/opt/').forEach(file => {
-			logger.info(`opt: ${file}`);
-		});
-		
-		
-		const stout = childProcess.execFileSync("/opt/ffmpeg", args, {});
-// 		ID (generate an ID using uuid package)
-// state (starts with pending)
-// videoBucketKey (location of uploaded video on s3)
-// extractedAudioKey (location of extracted audio key, will be null initially)
-// transcriptionState (starts with pending)
-// transcriptionKey (location of transcription SRT file from Assembly.AI, will be null initially)
-
-		logger.info(`Extracting audio from video :: Video key ${inputBucket}/${key}`);
-
-
-		const blob = await clients.s3.get({ bucket: inputBucket, key});
-		logger.info(`da blob ${blob}`);
-		logger.info('pas the blobl')
-	
-		const body = blob?.Body?.toString();
-		logger.info(`da body ${JSON.stringify(body)}`);
-		logger.info('pas the body')
-
-		const videoKeyName = `/tmp/${key}`;
-		const audioKeyName = `/tmp/test.mp3`;
-		logger.info('past key anems');
-		// @ts-ignore
-		// defensive check later
-
-
-		logger.info('Writing video file to temp...');
-
-		if(body){
-			fs.writeFileSync(videoKeyName, body);
-		}
-
-		const args = [
-			"-i" ,
-		   videoKeyName,
-			"-q:a",
-			 "0",
-			"-map a",
-			audioKeyName
-		];
-
-		//replace with mp4 with mp3
-		logger.info(`xffmphe lahyer time`);
-		
-
-		// await fs.renameSync('/opt/ffmpeg', '/tmp/ffmpeg');
-		// await fs.chmodSync('/tmp/ffmpeg', '777');
-
-		fs.readdir('/opt/ffmpeg', (err, files) => {
-			files.forEach(file => {
-			  logger.info(file);
-			});
-		  });
-
-		const stout = childProcess.execFileSync("/opt/ffmpeg/", args, {});
-
-		const audioBucket = 'development-transcribese-extractaudiobucket197901-4zaqtw7geuta';
-
+		childProcess.execFileSync("/opt/ffmpeg", args, {});
+// 		
 		const audioName = fs.readFileSync(audioKeyName);
-		logger.info(`audoName:${audioName} Reading audio file...`);
-
-		clients.s3.put({ file: audioName, bucket: audioBucket, key: audioKeyName });
 		
-		const {data, error} = await clients.supabase.from('Video').insert([{
-			id,
-		    state: 'pending',
-			videoBucketKey: key,
-			extractedAudioKey: null,
-			transcriptionState: 'pending',
-			transcriptionKey: null
-		}]);
-		if (error) {
-			throw new Error(`Failed to retrive video upload :: ${error.message}`)
-		}
-
-		logger.info(`Retrieved video ${JSON.stringify(data)}`);
+		logger.info(`audioName:${audioKeyName} Reading audio file...`);
 
 
-		// compress video
-		// split video into audio
-		// create audioKey
-		// store audio in s3
-		// update video record with audio key
+		// audio/video-id/audio.mp3
+		// tag the file for additional info
 
-		// 	const id = context.awsRequestId,
-		// 	const resultKey = key.replace(/\.[^.]+$/, EXTENSION),
-		// 	const workdir = os.tmpdir(),
-		// 	const inputFile = path.join(workdir,  id + path.extname(key)),
-		// 	const outputFile = path.join(workdir, id + EXTENSION);
+		const audioBucketKeyName = `${item.id}.mp3`
 
-		// return s3Util.downloadFileFromS3(inputBucket, key, inputFile)
-		// 	.then(() => childProcessPromise.spawn(
-		// 		'/opt/bin/ffmpeg',
-		// 		['-loglevel', 'error', '-y', '-i', inputFile, '-vf', `thumbnail,scale=${THUMB_WIDTH}:-1`, '-frames:v', '1', outputFile],
-		// 		{
-		//       env: process.env, 
-		//       cwd: workdir
-		//     }
-		// 	))
-		// 	.then(() => s3Util.uploadFileToS3(OUTPUT_BUCKET, resultKey, outputFile, MIME_TYPE));
+		await clients.s3.put({ file: audioName, bucket: audioBucket, key: audioBucketKeyName });
+		logger.info(`audioName:${audioKeyName} Writing audio file to s3 ...`);
 
-		// development-encodeservic-videoinputbucket940f4f43-iy9if872u4ib
+		item.extractedAudioKey = audioBucketKeyName as any;
 
-		const audioBucket = 'development-encodeservice-extractaudiobucket197901-1wjvufyahi68c';
-
-		const audioName = fs.readFileSync(audioKeyName);
-		logger.info(`audoName:${audioName} Reading audio file...`);
-
-		clients.s3.put({ file: audioName, bucket: audioBucket, key: audioKeyName });
-
-		// //.... rest of the logic to clear up locally written files from running the executable
-
-
-		// // compress video
-		// // split video into audio
-		// // create audioKey
-		// // store audio in s3
-		// // update video record with audio key
-
-	
+		await clients.db.update(item);
+		
 	} catch (error) {
 		logger.error(error);
-		fs.readdir('/tmp/', (err, files) => {
-			if (err) throw err;
-			
-			for (const file of files) {
-			  fs.unlink(path.join('/tmp/', file), err => {
-				if (err) throw err;
-				logger.info(`Deleting ${file}`);
-			  });
-			}
-		});	
-
-		logger.info('cleaning out tmp')
-		await fs.readdir('/tmp/',async (err, files) => {
-			if (err) throw err;
-			logger.info(files);
-
-		  
-			for (const file of files) {
-			  await fs.unlink(path.join('/tmp/', file), err => {
-				if (err) throw err;
-			  });
-			}
-		  });
-
-    throw error;
+		throw error;
 	}
+	await cleanOutTmp(logger);
 }
 
 const options = {

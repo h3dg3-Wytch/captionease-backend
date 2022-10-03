@@ -16,7 +16,7 @@ const createLambdaFunction = ({
     functionName,
     code: Code.fromAsset(codeAssetPath),
     handler,
-    runtime: Runtime.NODEJS_10_X,
+    runtime: Runtime.NODEJS_12_X,
     memorySize,
     timeout: timeout || cdk.Duration.seconds(60),
     layers,

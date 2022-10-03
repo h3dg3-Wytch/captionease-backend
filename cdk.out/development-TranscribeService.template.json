@@ -1,17 +1,190 @@
 {
   "Resources": {
-    "encodeCaptionsQueueEFD23B45": {
-      "Type": "AWS::SQS::Queue",
+    "VideoInputBucketNotifications76FF7081": {
+      "Type": "Custom::S3BucketNotifications",
       "Properties": {
-        "VisibilityTimeout": 180
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
+            "Arn"
+          ]
+        },
+        "BucketName": "development-storage-videoinputbucket940f4f43-1du1ixen5jp8u",
+        "NotificationConfiguration": {
+          "LambdaFunctionConfigurations": [
+            {
+              "Events": [
+                "s3:ObjectCreated:*"
+              ],
+              "LambdaFunctionArn": {
+                "Fn::GetAtt": [
+                  "ExtractAudioLambda12696EC4",
+                  "Arn"
+                ]
+              }
+            }
+          ]
+        },
+        "Managed": false
       },
-      "UpdateReplacePolicy": "Delete",
-      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "VideoInputBucketAllowBucketNotificationsTodevelopmentTranscribeServiceExtractAudioLambda34FAF03A0588AE5F"
+      ],
       "Metadata": {
-        "aws:cdk:path": "development-TranscribeService/encodeCaptionsQueue/Resource"
+        "aws:cdk:path": "development-TranscribeService/VideoInputBucket/Notifications/Resource"
       }
     },
-    "encodeCaptionsLambdaServiceRoleCE3B5A0B": {
+    "VideoInputBucketAllowBucketNotificationsTodevelopmentTranscribeServiceExtractAudioLambda34FAF03A0588AE5F": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ExtractAudioLambda12696EC4",
+            "Arn"
+          ]
+        },
+        "Principal": "s3.amazonaws.com",
+        "SourceAccount": {
+          "Ref": "AWS::AccountId"
+        },
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":s3:::development-storage-videoinputbucket940f4f43-1du1ixen5jp8u"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/VideoInputBucket/AllowBucketNotificationsTodevelopmentTranscribeServiceExtractAudioLambda34FAF03A"
+      }
+    },
+    "AudioExtractedBucketNotifications6E18EA69": {
+      "Type": "Custom::S3BucketNotifications",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
+            "Arn"
+          ]
+        },
+        "BucketName": "development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz",
+        "NotificationConfiguration": {
+          "LambdaFunctionConfigurations": [
+            {
+              "Events": [
+                "s3:ObjectCreated:*"
+              ],
+              "LambdaFunctionArn": {
+                "Fn::GetAtt": [
+                  "sendTranscriptionLambda653766BA",
+                  "Arn"
+                ]
+              }
+            }
+          ]
+        },
+        "Managed": false
+      },
+      "DependsOn": [
+        "AudioExtractedBucketAllowBucketNotificationsTodevelopmentTranscribeServicesendTranscriptionLambdaA272CF20F7E94B5A"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/AudioExtractedBucket/Notifications/Resource"
+      }
+    },
+    "AudioExtractedBucketAllowBucketNotificationsTodevelopmentTranscribeServicesendTranscriptionLambdaA272CF20F7E94B5A": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "sendTranscriptionLambda653766BA",
+            "Arn"
+          ]
+        },
+        "Principal": "s3.amazonaws.com",
+        "SourceAccount": {
+          "Ref": "AWS::AccountId"
+        },
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/AudioExtractedBucket/AllowBucketNotificationsTodevelopmentTranscribeServicesendTranscriptionLambdaA272CF20"
+      }
+    },
+    "ffmpeglayer406486B5": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "Content": {
+          "S3Bucket": {
+            "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3BucketD54C6570"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "CompatibleRuntimes": [
+          "nodejs10.x",
+          "nodejs12.x",
+          "nodejs14.x"
+        ],
+        "Description": "ffmpeg use for lambda"
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ffmpeg-layer/Resource",
+        "aws:asset:path": "asset.c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c.zip",
+        "aws:asset:property": "Content"
+      }
+    },
+    "ExtractAudioLambdaServiceRole0AE87B8E": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -42,50 +215,294 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "development-TranscribeService/encodeCaptionsLambda/ServiceRole/Resource"
+        "aws:cdk:path": "development-TranscribeService/ExtractAudioLambda/ServiceRole/Resource"
       }
     },
-    "encodeCaptionsLambdaServiceRoleDefaultPolicy3055993F": {
+    "ExtractAudioLambdaServiceRoleDefaultPolicyE1C9E0C3": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
           "Statement": [
             {
               "Action": [
-                "sqs:ReceiveMessage",
-                "sqs:ChangeMessageVisibility",
-                "sqs:GetQueueUrl",
-                "sqs:DeleteMessage",
-                "sqs:GetQueueAttributes"
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-videoinputbucket940f4f43-1du1ixen5jp8u"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-videoinputbucket940f4f43-1du1ixen5jp8u/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":dynamodb:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":table/development-videos"
+                    ]
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
               ],
               "Effect": "Allow",
               "Resource": {
-                "Fn::GetAtt": [
-                  "encodeCaptionsQueueEFD23B45",
-                  "Arn"
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoInputBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/audioExtractedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoTranscriptionBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoEncodedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/services/api/assemblyAiToken"
+                  ]
                 ]
               }
             }
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "encodeCaptionsLambdaServiceRoleDefaultPolicy3055993F",
+        "PolicyName": "ExtractAudioLambdaServiceRoleDefaultPolicyE1C9E0C3",
         "Roles": [
           {
-            "Ref": "encodeCaptionsLambdaServiceRoleCE3B5A0B"
+            "Ref": "ExtractAudioLambdaServiceRole0AE87B8E"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "development-TranscribeService/encodeCaptionsLambda/ServiceRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "development-TranscribeService/ExtractAudioLambda/ServiceRole/DefaultPolicy/Resource"
       }
     },
-    "encodeCaptionsLambdaE696604A": {
+    "ExtractAudioLambda12696EC4": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParametersd9d4aa8321272ad8816348fdb2bcef39583072ee2cf3c2bec6c8f98b558d3fcbS3Bucket9E8432EF"
+            "Ref": "AssetParameterse994249be93014f818fd77d9ddaaa872757ce03d21b3c013211221fd606bb142S3Bucket00E43643"
           },
           "S3Key": {
             "Fn::Join": [
@@ -98,7 +515,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersd9d4aa8321272ad8816348fdb2bcef39583072ee2cf3c2bec6c8f98b558d3fcbS3VersionKeyBA826A28"
+                          "Ref": "AssetParameterse994249be93014f818fd77d9ddaaa872757ce03d21b3c013211221fd606bb142S3VersionKey12B1F7DE"
                         }
                       ]
                     }
@@ -111,7 +528,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersd9d4aa8321272ad8816348fdb2bcef39583072ee2cf3c2bec6c8f98b558d3fcbS3VersionKeyBA826A28"
+                          "Ref": "AssetParameterse994249be93014f818fd77d9ddaaa872757ce03d21b3c013211221fd606bb142S3VersionKey12B1F7DE"
                         }
                       ]
                     }
@@ -123,114 +540,61 @@
         },
         "Role": {
           "Fn::GetAtt": [
-            "encodeCaptionsLambdaServiceRoleCE3B5A0B",
+            "ExtractAudioLambdaServiceRole0AE87B8E",
             "Arn"
           ]
         },
         "Environment": {
           "Variables": {
-            "STAGE": "development"
+            "STAGE": "development",
+            "NODE_ENV": "development",
+            "SUPABASE_API_URL": "https://jtlvnnrxubgfwmzltxon.supabase.co",
+            "SUPABASE_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNDQwOTk2NSwiZXhwIjoxOTQ5OTg1OTY1fQ.-i-Jl1gw1MM2KAz7NZwLrADMpqtBmY38t4_oHR6KGeM",
+            "VIDEO_INPUT_BUCKET": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":s3:::development-storage-videoinputbucket940f4f43-1du1ixen5jp8u"
+                ]
+              ]
+            },
+            "EXTRACTED_VIDEO_AUDIO_BUCKET": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz"
+                ]
+              ]
+            }
           }
         },
-        "FunctionName": "encodeCaptionsLambda",
-        "Handler": "encode-captions-for-export.handler",
+        "FunctionName": "extractAudioLambda",
+        "Handler": "extract-audio.handler",
+        "Layers": [
+          {
+            "Ref": "ffmpeglayer406486B5"
+          }
+        ],
         "MemorySize": 521,
-        "Runtime": "nodejs10.x",
+        "Runtime": "nodejs12.x",
         "Timeout": 60
       },
       "DependsOn": [
-        "encodeCaptionsLambdaServiceRoleDefaultPolicy3055993F",
-        "encodeCaptionsLambdaServiceRoleCE3B5A0B"
+        "ExtractAudioLambdaServiceRoleDefaultPolicyE1C9E0C3",
+        "ExtractAudioLambdaServiceRole0AE87B8E"
       ],
       "Metadata": {
-        "aws:cdk:path": "development-TranscribeService/encodeCaptionsLambda/Resource",
-        "aws:asset:path": "asset.d9d4aa8321272ad8816348fdb2bcef39583072ee2cf3c2bec6c8f98b558d3fcb.zip",
+        "aws:cdk:path": "development-TranscribeService/ExtractAudioLambda/Resource",
+        "aws:asset:path": "asset.e994249be93014f818fd77d9ddaaa872757ce03d21b3c013211221fd606bb142.zip",
         "aws:asset:property": "Code"
-      }
-    },
-    "encodeCaptionsLambdaSqsEventSourcedevelopmentTranscribeServiceencodeCaptionsQueue48B8AA4B4A0DBF97": {
-      "Type": "AWS::Lambda::EventSourceMapping",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "encodeCaptionsLambdaE696604A"
-        },
-        "EventSourceArn": {
-          "Fn::GetAtt": [
-            "encodeCaptionsQueueEFD23B45",
-            "Arn"
-          ]
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "development-TranscribeService/encodeCaptionsLambda/SqsEventSource:developmentTranscribeServiceencodeCaptionsQueue48B8AA4B/Resource"
-      }
-    },
-    "VideoInputBucket940F4F43": {
-      "Type": "AWS::S3::Bucket",
-      "UpdateReplacePolicy": "Retain",
-      "DeletionPolicy": "Retain",
-      "Metadata": {
-        "aws:cdk:path": "development-TranscribeService/VideoInputBucket/Resource"
-      }
-    },
-    "VideoInputBucketNotifications76FF7081": {
-      "Type": "Custom::S3BucketNotifications",
-      "Properties": {
-        "ServiceToken": {
-          "Fn::GetAtt": [
-            "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
-            "Arn"
-          ]
-        },
-        "BucketName": {
-          "Ref": "VideoInputBucket940F4F43"
-        },
-        "NotificationConfiguration": {
-          "LambdaFunctionConfigurations": [
-            {
-              "Events": [
-                "s3:ObjectCreated:*"
-              ],
-              "LambdaFunctionArn": {
-                "Fn::GetAtt": [
-                  "encodeCaptionsLambdaE696604A",
-                  "Arn"
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "DependsOn": [
-        "VideoInputBucketAllowBucketNotificationsTodevelopmentTranscribeServiceencodeCaptionsLambdaF225AF1776EBDDA8"
-      ],
-      "Metadata": {
-        "aws:cdk:path": "development-TranscribeService/VideoInputBucket/Notifications/Resource"
-      }
-    },
-    "VideoInputBucketAllowBucketNotificationsTodevelopmentTranscribeServiceencodeCaptionsLambdaF225AF1776EBDDA8": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "encodeCaptionsLambdaE696604A",
-            "Arn"
-          ]
-        },
-        "Principal": "s3.amazonaws.com",
-        "SourceAccount": {
-          "Ref": "AWS::AccountId"
-        },
-        "SourceArn": {
-          "Fn::GetAtt": [
-            "VideoInputBucket940F4F43",
-            "Arn"
-          ]
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "development-TranscribeService/VideoInputBucket/AllowBucketNotificationsTodevelopmentTranscribeServiceencodeCaptionsLambdaF225AF17"
       }
     },
     "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC": {
@@ -276,6 +640,11 @@
               "Action": "s3:PutBucketNotification",
               "Effect": "Allow",
               "Resource": "*"
+            },
+            {
+              "Action": "s3:GetBucketNotification",
+              "Effect": "Allow",
+              "Resource": "*"
             }
           ],
           "Version": "2012-10-17"
@@ -296,7 +665,7 @@
       "Properties": {
         "Description": "AWS CloudFormation handler for \"Custom::S3BucketNotifications\" resources (@aws-cdk/aws-s3)",
         "Code": {
-          "ZipFile": "exports.handler = (event, context) => {\n    // eslint-disable-next-line @typescript-eslint/no-require-imports, import/no-extraneous-dependencies\n    const s3 = new (require('aws-sdk').S3)();\n    // eslint-disable-next-line @typescript-eslint/no-require-imports\n    const https = require('https');\n    // eslint-disable-next-line @typescript-eslint/no-require-imports\n    const url = require('url');\n    log(JSON.stringify(event, undefined, 2));\n    const props = event.ResourceProperties;\n    if (event.RequestType === 'Delete') {\n        props.NotificationConfiguration = {}; // this is how you clean out notifications\n    }\n    const req = {\n        Bucket: props.BucketName,\n        NotificationConfiguration: props.NotificationConfiguration,\n    };\n    return s3.putBucketNotificationConfiguration(req, (err, data) => {\n        log({ err, data });\n        if (err) {\n            return submitResponse('FAILED', err.message + `\\nMore information in CloudWatch Log Stream: ${context.logStreamName}`);\n        }\n        else {\n            return submitResponse('SUCCESS');\n        }\n    });\n    function log(obj) {\n        console.error(event.RequestId, event.StackId, event.LogicalResourceId, obj);\n    }\n    // eslint-disable-next-line max-len\n    // adapted from https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html#cfn-lambda-function-code-cfnresponsemodule\n    // to allow sending an error message as a reason.\n    function submitResponse(responseStatus, reason) {\n        const responseBody = JSON.stringify({\n            Status: responseStatus,\n            Reason: reason || 'See the details in CloudWatch Log Stream: ' + context.logStreamName,\n            PhysicalResourceId: event.PhysicalResourceId || event.LogicalResourceId,\n            StackId: event.StackId,\n            RequestId: event.RequestId,\n            LogicalResourceId: event.LogicalResourceId,\n            NoEcho: false,\n        });\n        log({ responseBody });\n        const parsedUrl = url.parse(event.ResponseURL);\n        const options = {\n            hostname: parsedUrl.hostname,\n            port: 443,\n            path: parsedUrl.path,\n            method: 'PUT',\n            headers: {\n                'content-type': '',\n                'content-length': responseBody.length,\n            },\n        };\n        const request = https.request(options, (r) => {\n            log({ statusCode: r.statusCode, statusMessage: r.statusMessage });\n            context.done();\n        });\n        request.on('error', (error) => {\n            log({ sendError: error });\n            context.done();\n        });\n        request.write(responseBody);\n        request.end();\n    }\n};"
+          "ZipFile": "import boto3  # type: ignore\nimport json\nimport logging\nimport urllib.request\n\ns3 = boto3.client(\"s3\")\n\nCONFIGURATION_TYPES = [\"TopicConfigurations\", \"QueueConfigurations\", \"LambdaFunctionConfigurations\"]\n\ndef handler(event: dict, context):\n    response_status = \"SUCCESS\"\n    error_message = \"\"\n    try:\n        props = event[\"ResourceProperties\"]\n        bucket = props[\"BucketName\"]\n        notification_configuration = props[\"NotificationConfiguration\"]\n        request_type = event[\"RequestType\"]\n        managed = props.get('Managed', 'true').lower() == 'true'\n        stack_id = event['StackId']\n\n        if managed:\n          config = handle_managed(request_type, notification_configuration)\n        else:\n          config = handle_unmanaged(bucket, stack_id, request_type, notification_configuration)\n\n        put_bucket_notification_configuration(bucket, config)\n    except Exception as e:\n        logging.exception(\"Failed to put bucket notification configuration\")\n        response_status = \"FAILED\"\n        error_message = f\"Error: {str(e)}. \"\n    finally:\n        submit_response(event, context, response_status, error_message)\n\n\ndef handle_managed(request_type, notification_configuration):\n  if request_type == 'Delete':\n    return {}\n  return notification_configuration\n\n\ndef handle_unmanaged(bucket, stack_id, request_type, notification_configuration):\n\n  # find external notifications\n  external_notifications = find_external_notifications(bucket, stack_id)\n\n  # if delete, that's all we need\n  if request_type == 'Delete':\n    return external_notifications\n\n  def with_id(notification):\n    notification['Id'] = f\"{stack_id}-{hash(json.dumps(notification, sort_keys=True))}\"\n    return notification\n\n  # otherwise, merge external with incoming config and augment with id\n  notifications = {}\n  for t in CONFIGURATION_TYPES:\n    external = external_notifications.get(t, [])\n    incoming = [with_id(n) for n in notification_configuration.get(t, [])]\n    notifications[t] = external + incoming\n  return notifications\n\n\ndef find_external_notifications(bucket, stack_id):\n  existing_notifications = get_bucket_notification_configuration(bucket)\n  external_notifications = {}\n  for t in CONFIGURATION_TYPES:\n    # if the notification was created by us, we know what id to expect\n    # so we can filter by it.\n    external_notifications[t] = [n for n in existing_notifications.get(t, []) if not n['Id'].startswith(f\"{stack_id}-\")]\n\n  return external_notifications\n\n\ndef get_bucket_notification_configuration(bucket):\n  return s3.get_bucket_notification_configuration(Bucket=bucket)\n\n\ndef put_bucket_notification_configuration(bucket, notification_configuration):\n  s3.put_bucket_notification_configuration(Bucket=bucket, NotificationConfiguration=notification_configuration)\n\n\ndef submit_response(event: dict, context, response_status: str, error_message: str):\n    response_body = json.dumps(\n        {\n            \"Status\": response_status,\n            \"Reason\": f\"{error_message}See the details in CloudWatch Log Stream: {context.log_stream_name}\",\n            \"PhysicalResourceId\": event.get(\"PhysicalResourceId\") or event[\"LogicalResourceId\"],\n            \"StackId\": event[\"StackId\"],\n            \"RequestId\": event[\"RequestId\"],\n            \"LogicalResourceId\": event[\"LogicalResourceId\"],\n            \"NoEcho\": False,\n        }\n    ).encode(\"utf-8\")\n    headers = {\"content-type\": \"\", \"content-length\": str(len(response_body))}\n    try:\n        req = urllib.request.Request(url=event[\"ResponseURL\"], headers=headers, data=response_body, method=\"PUT\")\n        with urllib.request.urlopen(req) as response:\n            print(response.read().decode(\"utf-8\"))\n        print(\"Status code: \" + response.reason)\n    except Exception as e:\n        print(\"send(..) failed executing request.urlopen(..): \" + str(e))\n"
         },
         "Handler": "index.handler",
         "Role": {
@@ -305,7 +674,7 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs12.x",
+        "Runtime": "python3.7",
         "Timeout": 300
       },
       "DependsOn": [
@@ -316,10 +685,1249 @@
         "aws:cdk:path": "development-TranscribeService/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource"
       }
     },
+    "sendTranscriptionLambdaServiceRole094A4526": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/sendTranscriptionLambda/ServiceRole/Resource"
+      }
+    },
+    "sendTranscriptionLambdaServiceRoleDefaultPolicy6C448E60": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-audioextractedbuckete38bcdcf-10n4xngbp78mz/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":dynamodb:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":table/development-videos"
+                    ]
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/services/api/apiUrl"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoInputBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/audioExtractedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoTranscriptionBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoEncodedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/services/api/assemblyAiToken"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "sendTranscriptionLambdaServiceRoleDefaultPolicy6C448E60",
+        "Roles": [
+          {
+            "Ref": "sendTranscriptionLambdaServiceRole094A4526"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/sendTranscriptionLambda/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "sendTranscriptionLambda653766BA": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters14e8b805fc1ee52f3df043bbe7085da64449a052939313d3abfdff12b4507bfdS3Bucket3AC03FED"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters14e8b805fc1ee52f3df043bbe7085da64449a052939313d3abfdff12b4507bfdS3VersionKey0C08F141"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters14e8b805fc1ee52f3df043bbe7085da64449a052939313d3abfdff12b4507bfdS3VersionKey0C08F141"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "sendTranscriptionLambdaServiceRole094A4526",
+            "Arn"
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "STAGE": "development",
+            "ASSEMBLY_AI_KEY": "2d0bd2d301374b0a8d7efebcbddee60a"
+          }
+        },
+        "FunctionName": "sendTranscriptionLambda",
+        "Handler": "send-transcribe-job.handler",
+        "MemorySize": 521,
+        "Runtime": "nodejs12.x",
+        "Timeout": 60
+      },
+      "DependsOn": [
+        "sendTranscriptionLambdaServiceRoleDefaultPolicy6C448E60",
+        "sendTranscriptionLambdaServiceRole094A4526"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/sendTranscriptionLambda/Resource",
+        "aws:asset:path": "asset.14e8b805fc1ee52f3df043bbe7085da64449a052939313d3abfdff12b4507bfd.zip",
+        "aws:asset:property": "Code"
+      }
+    },
+    "ApiGatewayForApiServiceF97F9386": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Name": "assembly-development-webhook"
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Resource"
+      }
+    },
+    "ApiGatewayForApiServiceCloudWatchRole21D61FAC": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/CloudWatchRole/Resource"
+      }
+    },
+    "ApiGatewayForApiServiceAccount12973782": {
+      "Type": "AWS::ApiGateway::Account",
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "ApiGatewayForApiServiceCloudWatchRole21D61FAC",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ApiGatewayForApiServiceF97F9386"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Account"
+      }
+    },
+    "ApiGatewayForApiServiceDeploymentB7C1F9F3ced0baabe016e5b080627c5e1a9b948e": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "Description": "Automatically created by the RestApi construct"
+      },
+      "DependsOn": [
+        "ApiGatewayForApiServiceOPTIONS80DD8D66",
+        "ApiGatewayForApiServicewebhookGET094EEC39",
+        "ApiGatewayForApiServicewebhookOPTIONSF30E100D",
+        "ApiGatewayForApiServicewebhookPOSTA353740B",
+        "ApiGatewayForApiServicewebhookE33C8AAD"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Deployment/Resource"
+      }
+    },
+    "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A": {
+      "Type": "AWS::ApiGateway::Stage",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "DeploymentId": {
+          "Ref": "ApiGatewayForApiServiceDeploymentB7C1F9F3ced0baabe016e5b080627c5e1a9b948e"
+        },
+        "StageName": "development"
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/DeploymentStage.development/Resource"
+      }
+    },
+    "ApiGatewayForApiServiceOPTIONS80DD8D66": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Fn::GetAtt": [
+            "ApiGatewayForApiServiceF97F9386",
+            "RootResourceId"
+          ]
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Cache-Control,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/OPTIONS/Resource"
+      }
+    },
+    "ApiGatewayForApiServicewebhookE33C8AAD": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayForApiServiceF97F9386",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "webhook",
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/Resource"
+      }
+    },
+    "ApiGatewayForApiServicewebhookOPTIONSF30E100D": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "ApiGatewayForApiServicewebhookE33C8AAD"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Cache-Control,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST,PUT,PATCH,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'true'"
+              },
+              "StatusCode": "204"
+            }
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "StatusCode": "204"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/OPTIONS/Resource"
+      }
+    },
+    "ApiGatewayForApiServicewebhookPOSTApiPermissiondevelopmentTranscribeServiceApiGatewayForApiService3CC86A33POSTwebhookF90CA0F0": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "assemblyWebhookLambda2AE37EC2",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayForApiServiceF97F9386"
+              },
+              "/",
+              {
+                "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+              },
+              "/POST/webhook"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST/ApiPermission.developmentTranscribeServiceApiGatewayForApiService3CC86A33.POST..webhook"
+      }
+    },
+    "ApiGatewayForApiServicewebhookPOSTApiPermissionTestdevelopmentTranscribeServiceApiGatewayForApiService3CC86A33POSTwebhook547B1899": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "assemblyWebhookLambda2AE37EC2",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayForApiServiceF97F9386"
+              },
+              "/test-invoke-stage/POST/webhook"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST/ApiPermission.Test.developmentTranscribeServiceApiGatewayForApiService3CC86A33.POST..webhook"
+      }
+    },
+    "ApiGatewayForApiServicewebhookPOSTA353740B": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "ResourceId": {
+          "Ref": "ApiGatewayForApiServicewebhookE33C8AAD"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "assemblyWebhookLambda2AE37EC2",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/POST/Resource"
+      }
+    },
+    "ApiGatewayForApiServicewebhookGETApiPermissiondevelopmentTranscribeServiceApiGatewayForApiService3CC86A33GETwebhookAF051D31": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "assemblyWebhookLambda2AE37EC2",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayForApiServiceF97F9386"
+              },
+              "/",
+              {
+                "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+              },
+              "/GET/webhook"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/GET/ApiPermission.developmentTranscribeServiceApiGatewayForApiService3CC86A33.GET..webhook"
+      }
+    },
+    "ApiGatewayForApiServicewebhookGETApiPermissionTestdevelopmentTranscribeServiceApiGatewayForApiService3CC86A33GETwebhookE9CE9272": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "assemblyWebhookLambda2AE37EC2",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayForApiServiceF97F9386"
+              },
+              "/test-invoke-stage/GET/webhook"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/GET/ApiPermission.Test.developmentTranscribeServiceApiGatewayForApiService3CC86A33.GET..webhook"
+      }
+    },
+    "ApiGatewayForApiServicewebhookGET094EEC39": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "ResourceId": {
+          "Ref": "ApiGatewayForApiServicewebhookE33C8AAD"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayForApiServiceF97F9386"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "assemblyWebhookLambda2AE37EC2",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/ApiGatewayForApiService/Default/webhook/GET/Resource"
+      }
+    },
+    "assemblyWebhookLambdaServiceRoleA8F8BA14": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/assemblyWebhookLambda/ServiceRole/Resource"
+      }
+    },
+    "assemblyWebhookLambdaServiceRoleDefaultPolicyA3CB1869": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-videotranscriptionsbucket52f9-1d74a0yn98fpu"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::development-storage-videotranscriptionsbucket52f9-1d74a0yn98fpu/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/services/api/apiUrl"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoInputBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/audioExtractedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoTranscriptionBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/central/s3/videoEncodedBucket"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter/development/services/api/assemblyAiToken"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":dynamodb:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":table/development-videos"
+                    ]
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "assemblyWebhookLambdaServiceRoleDefaultPolicyA3CB1869",
+        "Roles": [
+          {
+            "Ref": "assemblyWebhookLambdaServiceRoleA8F8BA14"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/assemblyWebhookLambda/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "assemblyWebhookLambda2AE37EC2": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersecc2f7f72e6d12cf5f67bb7e88e81fb2160d7e31f1db1a79b5c65034fc27c5c9S3BucketBF876C90"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersecc2f7f72e6d12cf5f67bb7e88e81fb2160d7e31f1db1a79b5c65034fc27c5c9S3VersionKeyD29D51E9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersecc2f7f72e6d12cf5f67bb7e88e81fb2160d7e31f1db1a79b5c65034fc27c5c9S3VersionKeyD29D51E9"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "assemblyWebhookLambdaServiceRoleA8F8BA14",
+            "Arn"
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "STAGE": "development"
+          }
+        },
+        "FunctionName": "assemblyWebhookLambda",
+        "Handler": "assembly-webhook.handler",
+        "MemorySize": 521,
+        "Runtime": "nodejs12.x",
+        "Timeout": 60
+      },
+      "DependsOn": [
+        "assemblyWebhookLambdaServiceRoleDefaultPolicyA3CB1869",
+        "assemblyWebhookLambdaServiceRoleA8F8BA14"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/assemblyWebhookLambda/Resource",
+        "aws:asset:path": "asset.ecc2f7f72e6d12cf5f67bb7e88e81fb2160d7e31f1db1a79b5c65034fc27c5c9.zip",
+        "aws:asset:property": "Code"
+      }
+    },
+    "paramservicesapiapiUrlFED68942": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Type": "String",
+        "Value": {
+          "Fn::Join": [
+            "",
+            [
+              "https://",
+              {
+                "Ref": "ApiGatewayForApiServiceF97F9386"
+              },
+              ".execute-api.",
+              {
+                "Ref": "AWS::Region"
+              },
+              ".",
+              {
+                "Ref": "AWS::URLSuffix"
+              },
+              "/",
+              {
+                "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+              },
+              "/webhook"
+            ]
+          ]
+        },
+        "Name": "/development/services/api/apiUrl",
+        "Tier": "Standard"
+      },
+      "Metadata": {
+        "aws:cdk:path": "development-TranscribeService/param---services--api--apiUrl/Resource"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAAE22PwW7CMAyGn4V7aqhg4roNbbdJpTxBSA0ybRIWJ0woyrvTGGm77OTP/n/Z/ltoV1tYLV71DzdmGJfZ+ICQD1GbUb0xY5zxTO6semSfgkG1845jSCaq3cl1OmiLEUNt/iwnN7sGiuRdUXV35m+GvE+YRBUoatL2OGjIn8mZ6q3SL3/c0MWDLPzS12v9YZb/n3YYLDHLOdIWcu8nOSS18xOZu/iEiuJ1o2s4Bsk495DfkxlRQj2plKKcHxAuvLy1G2hfYL24MFETkotkEfpnfQD+Pax/RQEAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAAE41RwW6DMAz9lt5DWsSmXUc77bRpFZN2z4LXppAExc4qhPj3JaGgctvJ7+XF8vNzzod898R3m2dxxUzWzXaQ1gEfPknIhlWA1jsJrEQECm8nZU7sYA2S85LY4ccchRMaCFwkH546n56XzoDD/1qRsmZkccrQCv1dCz7EbnBaIQaNvYke3Be4RIK04q/eSLoJMx4ZFpmIxpAnf0wJzYfKtmlqqkfbKtknnwkFB506CYKr6MNXQCo7dfM7w1JK6w2xF+ha22swaaE7FnNIIyYwr7oXCOwd6GzrKN7QfRAzDs5Rx4xdiHMV4ELGcWR5sVtdJoWHBd972QClcf/YeGTTRVdXW5wE2dga+AW3v/kDzx95sbmgUpkLESgNvJrqH1Qdo9wpAgAA"
       },
       "Metadata": {
         "aws:cdk:path": "development-TranscribeService/CDKMetadata/Default"
@@ -328,17 +1936,131 @@
     }
   },
   "Parameters": {
-    "AssetParametersd9d4aa8321272ad8816348fdb2bcef39583072ee2cf3c2bec6c8f98b558d3fcbS3Bucket9E8432EF": {
+    "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3BucketD54C6570": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"d9d4aa8321272ad8816348fdb2bcef39583072ee2cf3c2bec6c8f98b558d3fcb\""
+      "Description": "S3 bucket for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParametersd9d4aa8321272ad8816348fdb2bcef39583072ee2cf3c2bec6c8f98b558d3fcbS3VersionKeyBA826A28": {
+    "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cS3VersionKey2462D29B": {
       "Type": "String",
-      "Description": "S3 key for asset version \"d9d4aa8321272ad8816348fdb2bcef39583072ee2cf3c2bec6c8f98b558d3fcb\""
+      "Description": "S3 key for asset version \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
     },
-    "AssetParametersd9d4aa8321272ad8816348fdb2bcef39583072ee2cf3c2bec6c8f98b558d3fcbArtifactHashEF6BA326": {
+    "AssetParametersc8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7cArtifactHash1ED8151E": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"d9d4aa8321272ad8816348fdb2bcef39583072ee2cf3c2bec6c8f98b558d3fcb\""
+      "Description": "Artifact hash for asset \"c8ef7b05d969af8a7228ffccde7487627da82ed2f2f98b7f15b90084d93b2b7c\""
+    },
+    "AssetParameterse994249be93014f818fd77d9ddaaa872757ce03d21b3c013211221fd606bb142S3Bucket00E43643": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"e994249be93014f818fd77d9ddaaa872757ce03d21b3c013211221fd606bb142\""
+    },
+    "AssetParameterse994249be93014f818fd77d9ddaaa872757ce03d21b3c013211221fd606bb142S3VersionKey12B1F7DE": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"e994249be93014f818fd77d9ddaaa872757ce03d21b3c013211221fd606bb142\""
+    },
+    "AssetParameterse994249be93014f818fd77d9ddaaa872757ce03d21b3c013211221fd606bb142ArtifactHashED906050": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"e994249be93014f818fd77d9ddaaa872757ce03d21b3c013211221fd606bb142\""
+    },
+    "AssetParameters14e8b805fc1ee52f3df043bbe7085da64449a052939313d3abfdff12b4507bfdS3Bucket3AC03FED": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"14e8b805fc1ee52f3df043bbe7085da64449a052939313d3abfdff12b4507bfd\""
+    },
+    "AssetParameters14e8b805fc1ee52f3df043bbe7085da64449a052939313d3abfdff12b4507bfdS3VersionKey0C08F141": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"14e8b805fc1ee52f3df043bbe7085da64449a052939313d3abfdff12b4507bfd\""
+    },
+    "AssetParameters14e8b805fc1ee52f3df043bbe7085da64449a052939313d3abfdff12b4507bfdArtifactHashAE94C85B": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"14e8b805fc1ee52f3df043bbe7085da64449a052939313d3abfdff12b4507bfd\""
+    },
+    "AssetParametersecc2f7f72e6d12cf5f67bb7e88e81fb2160d7e31f1db1a79b5c65034fc27c5c9S3BucketBF876C90": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"ecc2f7f72e6d12cf5f67bb7e88e81fb2160d7e31f1db1a79b5c65034fc27c5c9\""
+    },
+    "AssetParametersecc2f7f72e6d12cf5f67bb7e88e81fb2160d7e31f1db1a79b5c65034fc27c5c9S3VersionKeyD29D51E9": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"ecc2f7f72e6d12cf5f67bb7e88e81fb2160d7e31f1db1a79b5c65034fc27c5c9\""
+    },
+    "AssetParametersecc2f7f72e6d12cf5f67bb7e88e81fb2160d7e31f1db1a79b5c65034fc27c5c9ArtifactHash8EC4D53F": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"ecc2f7f72e6d12cf5f67bb7e88e81fb2160d7e31f1db1a79b5c65034fc27c5c9\""
+    },
+    "importedparam1Parameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/services/api/apiUrl"
+    },
+    "importparamvideoInputBucketParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/central/s3/videoInputBucket"
+    },
+    "importparamaudioExtractedBucketParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/central/s3/audioExtractedBucket"
+    },
+    "importparamvideoTranscriptionBucketParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/central/s3/videoTranscriptionBucket"
+    },
+    "importparamvideoEncodedBucketParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/central/s3/videoEncodedBucket"
+    },
+    "importparamtokenParameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/development/services/api/assemblyAiToken"
+    }
+  },
+  "Outputs": {
+    "ApiGatewayForApiServiceEndpointE631541E": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "ApiGatewayForApiServiceF97F9386"
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region"
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix"
+            },
+            "/",
+            {
+              "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+            },
+            "/"
+          ]
+        ]
+      }
+    },
+    "servicesapiapiUrl": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "ApiGatewayForApiServiceF97F9386"
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region"
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix"
+            },
+            "/",
+            {
+              "Ref": "ApiGatewayForApiServiceDeploymentStagedevelopmentC066677A"
+            },
+            "/webhook"
+          ]
+        ]
+      }
     }
   },
   "Conditions": {

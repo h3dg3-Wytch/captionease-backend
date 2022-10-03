@@ -10,6 +10,7 @@ const { Dynamo } = require("./central/dynamodb");
 
 const { EncodeService } = require("./services/encode");
 const { TranscribeService } = require("./services/transcribe");
+const { Storage } = require('./central/storage');
 
 console.log(process.env.AWS_ACCESS_KEY_ID)
 
@@ -31,6 +32,11 @@ new Dynamo(app, `${stage}-Dynamo`, {
   env,
   stage,
 });
+new Storage(app, `${stage}-Storage`, {
+  serviceName: "storage",
+  env,
+  stage
+});
 
 // Services
 new EncodeService(app, `${stage}-EncodeService`, {
@@ -46,5 +52,6 @@ new TranscribeService(app, `${stage}-TranscribeService`, {
   stage,
   dependencies: {},
 });
+
 
 app.synth();
